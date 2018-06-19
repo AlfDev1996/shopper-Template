@@ -2,40 +2,42 @@
 <html lang="en">
 	<head>
 		<meta charset="utf-8">
-		<title>Bootstrap E-commerce Templates</title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>e-shoes</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- ViewPort è l'aria visibile dall'utente, con questo meta tag introdotto in HTML5 diamo istruzioni al browser sul ridimensionamento  -->
 		<meta name="description" content="">
 		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
 		<!-- bootstrap -->
-		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">      
-		<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">    <!-- Libreria bootsrao (min) utilizzata dagli sviluppatori durante la fase di debugging o di sito in lavorazione, possiede meno proprieta del bootstrap.css  -->   
+		<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet"> <!-- Libreria responsive -->
 		
 		<link href="themes/css/bootstrappage.css" rel="stylesheet"/>
 		
 		<!-- global styles -->
-		<link href="themes/css/flexslider.css" rel="stylesheet"/>
+		<link href="themes/css/flexslider.css" rel="stylesheet"/> <!-- classe jquery per realizzare immagini, gallerie di immagini responsive !! -->
 		<link href="themes/css/main.css" rel="stylesheet"/>
 
 		<!-- scripts -->
-		<script src="themes/js/jquery-1.7.2.min.js"></script>
-		<script src="bootstrap/js/bootstrap.min.js"></script>				
-		<script src="themes/js/superfish.js"></script>	
-		<script src="themes/js/jquery.scrolltotop.js"></script>
+		<script src="themes/js/jquery-1.7.2.min.js"></script> <!-- Libreeia jQuery: preferisco linkarla da google -->
+		<script src="bootstrap/js/bootstrap.min.js"></script> <!-- Funzioni bootstrap per eventuali animazioni  -->				
+		<script src="themes/js/superfish.js"></script>	 	<!-- Classe javascript per implementare il menu, sembra non utilizzata da una prima analisi -->
+		<script src="themes/js/jquery.scrolltotop.js"></script> <!-- http://www.dynamicdrive.com libreria di questo sito che permette di swipppare al top della pagina o in una posizione precisa -->
 		<!--[if lt IE 9]>			
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 			<script src="js/respond.min.js"></script>
 		<![endif]-->
 	</head>
-    <body>		
-		<div id="top-bar" class="container">
-			<div class="row">
-				<div class="span4">
-					<form method="POST" class="search_form">
+    <body>	
+    
+    											<!-- START -->	
+		<div id="top-bar" class="container">   <!--Contrainer superiore   -->  
+			<div class="row"> <!-- Crea una riga in alto con bootstrap -->
+				<div class="span4">	<!-- classe span 4 predefinita bootstrap, le colonne possono essere max 12, quindi qui ne abbiamo una da 4 e quindi ne restano 8 -->
+					<form method="POST" class="search_form"> <!-- Form per la ricerca   -->
 						<input type="text" class="input-block-level search-query" Placeholder="eg. T-sirt">
 					</form>
 				</div>
-				<div class="span8">
-					<div class="account pull-right">
+				<div class="span8"> <!-- Colonna da 8 mancante -->
+					<div class="account pull-right">  <!-- Div che contiene il menu  -->
 						<ul class="user-menu">				
 							<li><a href="#">My Account</a></li>
 							<li><a href="cart.html">Your Cart</a></li>
@@ -46,15 +48,20 @@
 				</div>
 			</div>
 		</div>
-		<div id="wrapper" class="container">
-			<section class="navbar main-menu">
+		
+		
+		
+		
+		
+		<div id="wrapper" class="container"> <!-- Qui inizia il menu principale  -->
+			<section class="navbar main-menu"> <!--  Inizio section menu -->
 				<div class="navbar-inner main-menu">				
-					<a href="index.html" class="logo pull-left"><img src="themes/images/logo.png" class="site_logo" alt=""></a>
-					<nav id="menu" class="pull-right">
+					<a href="index.html" class="logo pull-left"><img src="themes/images/logo.png" class="site_logo" alt=""></a> <!-- logo del sito  con posizionamento a sinistra tramite la classe pull-left -->
+					<nav id="menu" class="pull-right"> <!-- Il menu invece si posiziona a destra -->
 						<ul>
-							<li><a href="./products.html">Woman</a>					
+							<li><a href="./products.html">Woman</a>		 <!-- categoria menu  -->			
 								<ul>
-									<li><a href="./products.html">Lacinia nibh</a></li>									
+									<li><a href="./products.html">Lacinia nibh</a></li>		<!-- sottocategoria -->							
 									<li><a href="./products.html">Eget molestie</a></li>
 									<li><a href="./products.html">Varius purus</a></li>									
 								</ul>
@@ -73,8 +80,12 @@
 						</ul>
 					</nav>
 				</div>
-			</section>
-			<section  class="homepage-slider" id="home-slider">
+			</section>  <!-- Fine section menu -->
+			
+			
+			
+			<!-- Inizio section slider -->
+			<section  class="homepage-slider" id="home-slider">  <!--  Slider, immagini che scorrono sulla home page, tutto gia implementato libreria indicata nell'header -->
 				<div class="flexslider">
 					<ul class="slides">
 						<li>
@@ -82,7 +93,7 @@
 						</li>
 						<li>
 							<img src="themes/images/carousel/banner-2.jpg" alt="" />
-							<div class="intro">
+							<div class="intro">   <!-- Eventuale testo che va inserito sopra le immagini dello slider -->
 								<h1>Mid season sale</h1>
 								<p><span>Up to 50% Off</span></p>
 								<p><span>On selected items online and in stores</span></p>
@@ -91,10 +102,21 @@
 					</ul>
 				</div>			
 			</section>
+			
+			
+			<!-- Fine section Slider -->
+			
+			<!-- testo principale della pagina , tipicamente riservato per il motto  -->
 			<section class="header_text">
 				We stand for top quality templates. Our genuine developers always optimized bootstrap commercial templates. 
 				<br/>Don't miss to use our cheap abd best bootstrap templates.
 			</section>
+			
+			
+			<!--Fine sezione testo  -->
+			
+			<!-- Inizio spazio dedicato ai prodotti "Feature" -->
+			
 			<section class="main-content">
 				<div class="row">
 					<div class="span12">													
@@ -187,6 +209,12 @@
 							</div>						
 						</div>
 						<br/>
+						
+						
+						<!-- Fine sezione feature -->
+						
+						
+						<!-- Inizio spazio dedicato ai prodotti "latest" -->
 						<div class="row">
 							<div class="span12">
 								<h4 class="title">
@@ -274,6 +302,13 @@
 								</div>
 							</div>						
 						</div>
+						
+						<!-- Fine spazio dedicato ai prodotti "Feature" -->
+						
+						
+						
+						
+						<!-- Inizio spazio dedicato ai servizi -->
 						<div class="row feature_box">						
 							<div class="span4">
 								<div class="service">
@@ -305,7 +340,13 @@
 						</div>		
 					</div>				
 				</div>
+				<!-- Fine spazio dedicato ai prodotti "latest" -->
+				
 			</section>
+			<!-- Fine main content -->
+			
+			
+			<!-- Inizio area clienti  -->
 			<section class="our_client">
 				<h4 class="title"><span class="text">Manufactures</span></h4>
 				<div class="row">					
@@ -329,6 +370,11 @@
 					</div>
 				</div>
 			</section>
+			
+			<!-- Fine area clienti -->
+			
+			
+			<!-- Inizio footer che dovremmo generare dinamicamente -->
 			<section id="footer-bar">
 				<div class="row">
 					<div class="span3">
@@ -367,16 +413,21 @@
 				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
 			</section>
 		</div>
+		<!-- Fine footer -->
+		
+		
+		
 		<script src="themes/js/common.js"></script>
 		<script src="themes/js/jquery.flexslider-min.js"></script>
 		<script type="text/javascript">
+		//Funzione jquery che permette alle immagini dello slider di muoversi e scorrere.
 			$(function() {
 				$(document).ready(function() {
 					$('.flexslider').flexslider({
 						animation: "fade",
 						slideshowSpeed: 4000,
 						animationSpeed: 600,
-						controlNav: false,
+						controlNav: false,  //Abilitandolo abiliti il controllo con il mouse
 						directionNav: true,
 						controlsContainer: ".flex-container" // the container that holds the flexslider
 					});
