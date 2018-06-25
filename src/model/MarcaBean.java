@@ -1,17 +1,17 @@
 package model;
 
-public class marcaBean {
+public class MarcaBean {
 
 	
 	
 	
-	public marcaBean() {
+	public MarcaBean() {
 		this.id_marca=0;
 		this.descrizione="";
 	}
 	
 	
-	public marcaBean(int id_marca, String descrizione) {
+	public MarcaBean(int id_marca, String descrizione) {
 		
 		this.id_marca = id_marca;
 		this.descrizione = descrizione;

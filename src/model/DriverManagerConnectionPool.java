@@ -5,7 +5,10 @@ import java.util.LinkedList;
 import java.util.List;
 
 
-public class driverManagerConnectionPool {
+public class DriverManagerConnectionPool {
+	//lista delle connessioni libere
+		private static List<Connection> freeDBConnections;
+	
 	
 	static{
 		//instanzio la LinkedList
@@ -30,7 +33,7 @@ public class driverManagerConnectionPool {
 		Connection newConnection = null;
 		String ip = "localhost";
 		String port = "3306";
-		String db = "mydbFinal";
+		String db = "e-shoes";
 		String username = "root";
 		String password = "";
 
@@ -99,6 +102,5 @@ public class driverManagerConnectionPool {
 			freeDBConnections.add(connection);
 	}
 	
-	//lista delle connessioni libere
-	private static List<Connection> freeDBConnections;
+	
 }

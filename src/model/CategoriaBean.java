@@ -1,19 +1,21 @@
 package model;
 
-public class categoriaBean {
+public class CategoriaBean {
 
+	private int id_categoria,sconto;
+	private String descrizione; 
+	private boolean in_saldo;
 	
 	
-	
-	public categoriaBean() {
-		this.id_categoria =0;
+	public CategoriaBean() {
+		
 		this.sconto=0;
 		this.descrizione="";
 		this.in_saldo=false;
 	}
 	
 	
-	public categoriaBean(int id_categoria, int sconto, String descrizione, boolean in_saldo) {
+	public CategoriaBean(int id_categoria, int sconto, String descrizione, boolean in_saldo) {
 		this.id_categoria = id_categoria;
 		this.sconto = sconto;
 		this.descrizione = descrizione;
@@ -23,12 +25,12 @@ public class categoriaBean {
 	
 
 
-	public int getId_categoria() {
+	public int getIdCategoria() {
 		return id_categoria;
 	}
 
 
-	public void setId_categoria(int id_categoria) {
+	public void setIdCategoria(int id_categoria) {
 		this.id_categoria = id_categoria;
 	}
 
@@ -53,19 +55,14 @@ public class categoriaBean {
 	}
 
 
-	public boolean isIn_saldo() {
+	public boolean isInSaldo() {
 		return in_saldo;
 	}
 
 
-	public void setIn_saldo(boolean in_saldo) {
+	public void setInSaldo(boolean in_saldo) {
 		this.in_saldo = in_saldo;
 	}
-	
-	
-	
-
-
 
 
 	@Override
@@ -80,8 +77,6 @@ public class categoriaBean {
 
 
 
-	private int id_categoria,sconto;
-	private String descrizione; 
-	private boolean in_saldo;
+	
 	
 }
