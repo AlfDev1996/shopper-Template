@@ -3,17 +3,17 @@ package model;
 public class MarcaBean {
 
 	private int id_marca;
-	private String descrizione;
+	private String nome;
 	
 	public MarcaBean() {
-		this.descrizione="";
+		this.nome="";
 		this.id_marca=0;
 	}
 	
 	
-	public MarcaBean(int id_marca, String descrizione) {
+	public MarcaBean(int id_marca, String nome) {
 		this.id_marca = id_marca;
-		this.descrizione = descrizione;
+		this.nome = nome;
 	}
 	
 	
@@ -28,13 +28,13 @@ public class MarcaBean {
 	}
 
 
-	public String getDescrizione() {
-		return descrizione;
+	public String getNome() {
+		return nome;
 	}
 
 
-	public void setDescrizione(String descrizione) {
-		this.descrizione = descrizione;
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	
@@ -43,7 +43,7 @@ public class MarcaBean {
 
 	@Override
 	public String toString() {
-		return "marca : [id_marca=" + id_marca + ", descrizione=" + descrizione + "]";
+		return "marca : [id_marca=" + id_marca + ", nome=" + nome + "]";
 	}
 
 	
