@@ -151,6 +151,80 @@ public synchronized ArrayList<UtenteBean> doRetrieveAll(String orderBy){
 	return utenti;
 }
 
+public synchronized void doSave(UtenteBean utente) {
+	if(utente!=null)
+	{
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;	
+		String sqlInsert = "Insert into utente (nome,cognome,email,password,ruolo,nazione,indirizzo_via,indirizzo_citta,indirizzo_cap,indirizzo_provincia,indirizzo_nazione,indirizzo_num_civico) values (?,?,?,?,?,?,?,?,?,?,?,?) ";
+		
+		try {
+			
+			connection = (Connection) DriverManagerConnectionPool.getConnection();
+			preparedStatement = (PreparedStatement) connection.prepareStatement(sqlInsert);
+			preparedStatement.setString(1, utente.getNome());
+			preparedStatement.setString(2, utente.getCognome());
+			preparedStatement.setString(3, utente.getEmail());
+			preparedStatement.setString(4, utente.getPassword());
+			preparedStatement.setString(5, utente.getRuolo());
+			preparedStatement.setString(6, utente.getNazione());
+			preparedStatement.setString(7, utente.getIndirizzo_via());
+			preparedStatement.setString(8, utente.getIndirizzo_citta());
+			preparedStatement.setInt(9, utente.getIndirizzo_cap());
+			preparedStatement.setString(10, utente.getIndirizzo_provincia());
+			preparedStatement.setString(11, utente.getIndirizzo_nazione());
+			preparedStatement.setInt(12, utente.getIndirizzo_num_civico());
+			
+			preparedStatement.executeUpdate();
+			connection.commit();
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally{
+			try {
+				preparedStatement.close();
+				DriverManagerConnectionPool.releaseConnection(connection);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
+	
+}
+
+public synchronized boolean doDelete(int id_utente) {
+	Connection connection = null;
+	PreparedStatement preparedStatement = null;	
+	String sqlDelete = "delete from utente where id_utente = ? ";
+	int res=0;
+	
+	try {
+		connection = (Connection) DriverManagerConnectionPool.getConnection();
+		preparedStatement=(PreparedStatement) connection.prepareStatement(sqlDelete);
+		preparedStatement.setInt(1, id_utente);
+		
+		res = preparedStatement.executeUpdate();
+		
+		
+	} catch (SQLException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}finally{
+		try {
+			preparedStatement.close();
+			DriverManagerConnectionPool.releaseConnection(connection);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	
+	return (res!=0);
+	
+}
 
 public synchronized boolean doUpdate(UtenteBean utente) {
 	
