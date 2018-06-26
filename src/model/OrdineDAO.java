@@ -252,6 +252,7 @@ public class OrdineDAO {
 			
 			
 			
+			
 			res = preparedStatement.executeUpdate();
 			connection.commit();
 			
