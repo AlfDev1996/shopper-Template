@@ -20,6 +20,7 @@ public class OrdineDAO {
 		ps.setInt(1, id);
 		
 		
+		
 		ResultSet rs = ps.executeQuery();
 		
 		
@@ -28,6 +29,11 @@ public class OrdineDAO {
 			
 			ordine.setDataCreazione( rs.getDate("data_creazione") );
 			ordine.setDataPrevistaPonsegna(rs.getDate("data_prevista_consegna"));
+			ordine.setIdOrdine(rs.getInt("id_ordine"));
+			
+			
+			
+			
 			
 			
 		}
