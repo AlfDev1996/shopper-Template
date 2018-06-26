@@ -231,7 +231,7 @@ public synchronized boolean doUpdate(UtenteBean utente) {
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
 	int res=0;
-	String sqlUpdate = "UPDATE categoria SET nome = ? , cognome = ? , email = ? , password = ? , ruolo = ? , nazione = ? , indirizzo_via = ? , indirizzo_citta = ? , indirizzo_cap = ? , indirizzo_provincia = ? , indirizzo_nazione = ? , indirizzo_num_civico = ? where id_utente = ?";
+	String sqlUpdate = "UPDATE utente SET nome = ? , cognome = ? , email = ? , password = ? , ruolo = ? , nazione = ? , indirizzo_via = ? , indirizzo_citta = ? , indirizzo_cap = ? , indirizzo_provincia = ? , indirizzo_nazione = ? , indirizzo_num_civico = ? where id_utente = ?";
 	try {
 		connection = (Connection) DriverManagerConnectionPool.getConnection();
 		preparedStatement=(PreparedStatement) connection.prepareStatement(sqlUpdate);

@@ -7,6 +7,7 @@ public class MarcaBean {
 	
 	public MarcaBean() {
 		this.descrizione="";
+		this.id_marca=0;
 	}
 	
 	

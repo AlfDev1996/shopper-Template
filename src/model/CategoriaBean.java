@@ -8,7 +8,7 @@ public class CategoriaBean {
 	
 	
 	public CategoriaBean() {
-		
+		this.id_categoria=0;
 		this.sconto=0;
 		this.descrizione="";
 		this.in_saldo=false;
