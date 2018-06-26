@@ -20,6 +20,7 @@ public class OrdineDAO {
 		ps.setInt(1, id);
 		
 		
+		
 		ResultSet rs = ps.executeQuery();
 		
 		
