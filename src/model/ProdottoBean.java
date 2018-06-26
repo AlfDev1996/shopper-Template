@@ -9,7 +9,6 @@ public class ProdottoBean {
 	
 	public ProdottoBean() {
 		id_prodotto=0;
-		
 		nome=descrizione_breve=descrizione_estesa=tags=modello=sesso="";
 		prezzo=0.0;
 		marca=new MarcaBean();
