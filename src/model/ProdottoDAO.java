@@ -32,6 +32,7 @@ public synchronized ProdottoBean doRetriveByKey(int id)  {
 				prodotto.setModello(res.getString("modello"));
 				prodotto.setPrezzo(res.getDouble("prezzo"));
 				prodotto.setSesso(res.getString("sesso"));
+				
 				int id_marca = res.getInt("id_marca") != 0 ? res.getInt("id_marca") : 0;
 				if(id_marca!=0)
 				{

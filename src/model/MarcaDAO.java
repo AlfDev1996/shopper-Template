@@ -24,7 +24,7 @@ public class MarcaDAO {
 		
 		if(rs.next()) {
 			mar.setIdMarca(rs.getInt("id_marca"));
-			mar.setDescrizione(rs.getString("descrizione"));
+			mar.setNome(rs.getString("nome"));
 			return mar;
 		}
 		
@@ -45,22 +45,22 @@ return mar;
 }
 	
 	
-	public synchronized MarcaBean doRetriveByDescrizione(String descrizione) {
+	public synchronized MarcaBean doRetriveBynome(String nome) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
 		MarcaBean mar = null;
 		try {
 		
 		connection= (Connection) DriverManagerConnectionPool.getConnection();
-		preparedStatement= (PreparedStatement) connection.prepareStatement("SELECT * FROM marca WHERE descrizione =?");
-		preparedStatement.setString(1, descrizione);
+		preparedStatement= (PreparedStatement) connection.prepareStatement("SELECT * FROM marca WHERE nome =?");
+		preparedStatement.setString(1, nome);
 		
 		ResultSet rs= preparedStatement.executeQuery();
 		
 		
 		if(rs.next()) {
 			mar.setIdMarca(rs.getInt("id_marca"));
-			mar.setDescrizione(rs.getString("descrizione"));
+			mar.setNome(rs.getString("nome"));
 		return mar;	
 		}
 		
@@ -84,17 +84,17 @@ return mar;
 	
 	public synchronized void doSave(MarcaBean marca) {
 		
-		if(marca!=null&& marca.getDescrizione()!=null && !marca.getDescrizione().equals("")) {
+		if(marca!=null&& marca.getNome()!=null && !marca.getNome().equals("")) {
 			Connection connection=null;
 			PreparedStatement preparedStatement=null;
-			String sqlInsert="Insert into marca (descrizione) values (?)";
+			String sqlInsert="Insert into marca (nome) values (?)";
 			
 			
 			try {
 				
 				connection=(Connection) DriverManagerConnectionPool.getConnection();
-				preparedStatement = (PreparedStatement) connection.prepareStatement("");
-				preparedStatement.setString(1, marca.getDescrizione());
+				preparedStatement = (PreparedStatement) connection.prepareStatement(sqlInsert);
+				preparedStatement.setString(1, marca.getNome());
 				preparedStatement.executeUpdate();
 				connection.commit();
 				
@@ -154,7 +154,7 @@ return mar;
 		MarcaBean tmpMarca = null;
 		
 		String sqlSelect ="select * from marca";
-		if(orderBy!=null && (orderBy.equals("id_marca")||orderBy.equals("descrizione"))) 
+		if(orderBy!=null && (orderBy.equals("id_marca")||orderBy.equals("nome"))) 
 			sqlSelect+="order by "+orderBy;
 			try {
 			connection = (Connection) DriverManagerConnectionPool.getConnection();
@@ -167,7 +167,7 @@ return mar;
 			while(rs.next()) {
 				tmpMarca = new MarcaBean();
 				tmpMarca.setIdMarca(rs.getInt("id_marca"));
-				tmpMarca.setDescrizione(rs.getString("descrizione"));
+				tmpMarca.setNome(rs.getString("nome"));
 				marche.add(tmpMarca);
 				
 			}
@@ -197,13 +197,13 @@ return mar;
 		PreparedStatement preparedStatement = null;
 		int res=0;
 		
-		String sqlUpdate = "UPDATE marca SET descrizione = ?  WHERE id_marca = ?";
+		String sqlUpdate = "UPDATE marca SET nome = ?  WHERE id_marca = ?";
 		
 		try {
 		
 		connection = (Connection) DriverManagerConnectionPool.getConnection();
 		preparedStatement=(PreparedStatement) connection.prepareStatement(sqlUpdate);
-		preparedStatement.setString(1, marca.getDescrizione());
+		preparedStatement.setString(1, marca.getNome());
 		preparedStatement.setInt(2, marca.getIdMarca());
 		
 		
