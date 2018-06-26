@@ -44,6 +44,13 @@ public synchronized ProdottoBean doRetriveByKey(int id)  {
 					 prodotto.setMarca(null);
 				}
 				
+				//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
+				ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
+				VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
+				varianti = varianteDAO.doRetriveByProdotto(prodotto);
+				
+				prodotto.setVariantiProdotto(varianti);
+				
 				return prodotto;
 			}
 		}catch(SQLException ex) {
@@ -94,6 +101,14 @@ public synchronized ArrayList<ProdottoBean> doRetriveBySesso(String sesso)  {
 				else
 				 prodotto.setMarca(null);
 			}
+			
+			//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
+			ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
+			VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
+			varianti = varianteDAO.doRetriveByProdotto(prodotto);
+			
+			prodotto.setVariantiProdotto(varianti);
+			
 			prodotti.add(prodotto);
 		}
 	}catch(SQLException ex) {
@@ -144,6 +159,14 @@ public synchronized ArrayList<ProdottoBean> doRetriveByMarca(MarcaBean marca)  {
 				else
 				 prodotto.setMarca(null);
 			}
+			
+			//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
+			ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
+			VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
+			varianti = varianteDAO.doRetriveByProdotto(prodotto);
+			
+			prodotto.setVariantiProdotto(varianti);
+			
 			prodotti.add(prodotto);
 		}
 	}catch(SQLException ex) {
@@ -198,6 +221,14 @@ public synchronized ArrayList<ProdottoBean> doRetrieveAll(String orderBy){
 				else
 				 prodotto.setMarca(null);
 			}
+			
+			//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
+			ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
+			VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
+			varianti = varianteDAO.doRetriveByProdotto(prodotto);
+			
+			prodotto.setVariantiProdotto(varianti);
+			
 			prodotti.add(prodotto);
 			
 		}

@@ -1,21 +1,25 @@
 package model;
 
+import java.util.ArrayList;
+
 public class ProdottoBean {
 
 	private int id_prodotto;
 	private String nome, descrizione_breve, descrizione_estesa, tags, modello, sesso;
 	private double prezzo ;
 	private MarcaBean marca;
+	private ArrayList<VarianteProdottoBean> variantiProdotto;
 	
 	public ProdottoBean() {
 		id_prodotto=0;
 		nome=descrizione_breve=descrizione_estesa=tags=modello=sesso="";
 		prezzo=0.0;
 		marca=new MarcaBean();
+		variantiProdotto=new ArrayList<>();
 	}
 
 	public ProdottoBean(int id_prodotto, String nome, String descrizione_breve, String descrizione_estesa, String tags,
-			String modello, String sesso, double prezzo, MarcaBean marca) {
+			String modello, String sesso, double prezzo, MarcaBean marca, ArrayList<VarianteProdottoBean> varianti) {
 		
 		this.id_prodotto = id_prodotto;
 		this.nome = nome;
@@ -26,6 +30,7 @@ public class ProdottoBean {
 		this.sesso = sesso;
 		this.prezzo = prezzo;
 		this.marca = marca;
+		this.variantiProdotto=varianti;
 	}
 
 	public int getId_prodotto() {
@@ -100,12 +105,25 @@ public class ProdottoBean {
 		this.marca = marca;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "ProdottoBean [id_prodotto=" + id_prodotto + ", nome=" + nome + ", descrizione_breve="
 				+ descrizione_breve + ", descrizione_estesa=" + descrizione_estesa + ", tags=" + tags + ", modello="
-				+ modello + ", sesso=" + sesso + ", prezzo=" + prezzo + ", marca=" + marca + "]";
+				+ modello + ", sesso=" + sesso + ", prezzo=" + prezzo + ", marca=" + marca + ", variantiProdotto="
+				+ variantiProdotto + "]";
 	}
+
+	public ArrayList<VarianteProdottoBean> getVariantiProdotto() {
+		return variantiProdotto;
+	}
+
+	public void setVariantiProdotto(ArrayList<VarianteProdottoBean> variantiProdotto) {
+		this.variantiProdotto = variantiProdotto;
+	}
+	
+	
 	
 	
 	
