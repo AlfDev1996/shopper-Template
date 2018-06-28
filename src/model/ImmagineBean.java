@@ -67,6 +67,15 @@ public class ImmagineBean {
 
 
 
+	@Override
+	public String toString() {
+		return "ImmagineBean [id_immagine=" + id_immagine + ", nome_file=" + nome_file + ", didascalia=" + didascalia
+				+ ", prodotto=" + prodotto + "]";
+	}
+
+
+
+
 	private int id_immagine;
 	private String nome_file, didascalia;
 	private ProdottoBean prodotto;
