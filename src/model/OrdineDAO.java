@@ -311,7 +311,7 @@ public class OrdineDAO {
 		PreparedStatement preparedStatement = null;
 		int res=0;
 		
-		String sqlUpdate = "UPDATE ordine SET data_creazione = ? , data_prevista_consegna = ? , stato = ? , indirizzo = ? , totale = ? , id_utente = ? ";
+		String sqlUpdate = "UPDATE ordine SET data_creazione = ? , data_prevista_consegna = ? , stato = ? , indirizzo = ? , totale = ? , id_utente = ? where id_ordine=? ";
 		try {
 		connection = (Connection) DriverManagerConnectionPool.getConnection();
 		preparedStatement=(PreparedStatement) connection.prepareStatement(sqlUpdate);
@@ -322,6 +322,7 @@ public class OrdineDAO {
 		preparedStatement.setString(4, ordine.getIndirizzo());
 		preparedStatement.setFloat(5, ordine.getTotale());
 		preparedStatement.setInt(6, ordine.getUtente().getId_utente());
+		preparedStatement.setInt(7, ordine.getIdOrdine());
 		
 		res = preparedStatement.executeUpdate();
 		connection.commit();
