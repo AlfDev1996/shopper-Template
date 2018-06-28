@@ -24,7 +24,7 @@ public class ImmagineDAO {
 		ResultSet rs = preparedStatement.executeQuery();
 		
 		
-		if(rs.next()) {
+		while(rs.next()) {
 			
 			img.setIdImmagine(rs.getInt("id_immagine"));
 			img.setDidascalia(rs.getString("didascalia"));
@@ -80,7 +80,7 @@ public class ImmagineDAO {
 		
 		ResultSet rs= preparedStatement.executeQuery();
 		
-		if(rs.next()) {
+		while(rs.next()) {
 			img= new ImmagineBean();
 			img.setIdImmagine(rs.getInt("id_immagine"));
 			img.setDidascalia(rs.getString("didascalia"));
@@ -187,6 +187,51 @@ public class ImmagineDAO {
 		return (res!=0);
 		
 	}
+	
+	public synchronized ArrayList<ImmagineBean> doRetriveByProdotto(ProdottoBean prodotto)  {
+		ArrayList<ImmagineBean> immagini =new ArrayList<>();
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		ImmagineBean img=null;
+		try {
+		connection = (Connection) DriverManagerConnectionPool.getConnection();
+		preparedStatement=(PreparedStatement) connection.prepareStatement("SELECT * from immagine where id_prodotto = ? ");
+		
+		preparedStatement.setInt(1, prodotto.getId_prodotto());
+		
+		ResultSet res =preparedStatement.executeQuery();
+		
+		while(res.next()) {
+			img= new  ImmagineBean();
+			img.setDidascalia(res.getString("didascalia"));
+			img.setNomeFile(res.getString("nome_file"));
+			img.setIdImmagine(res.getInt("id_immagine"));
+			
+			int id_prodotto = res.getInt("id_prodotto");
+			if(id_prodotto!=0) {
+				ProdottoDAO prodotoDAO= new ProdottoDAO();
+				prodotto = prodotoDAO.doRetriveByKey(id_prodotto);
+				img.setProdotto(prodotto);
+				
+			}
+			immagini.add(img);
+			
+		}
+		
+		}catch (SQLException e) {
+			
+			e.printStackTrace();
+		}finally{
+			try {
+				preparedStatement.close();
+				DriverManagerConnectionPool.releaseConnection(connection);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return immagini;
+		}
 	
 	
 	public synchronized boolean doUpdate(ImmagineBean immagine) {
