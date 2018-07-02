@@ -11,9 +11,16 @@ public class TransazioneBean {
 		this.tipoPagamento= new TipoPagamentoBean();
 		this.importo=0;
 		this.data= new Date();
+		this.id_transazione=0;
 	}
-	public TransazioneBean(OrdineBean ordine, TipoPagamentoBean tipoPagamento, double importo, Date data) {
-		
+	public int getId_transazione() {
+		return id_transazione;
+	}
+	public void setId_transazione(int id_transazione) {
+		this.id_transazione = id_transazione;
+	}
+	public TransazioneBean(int id_transazione,OrdineBean ordine, TipoPagamentoBean tipoPagamento, double importo, Date data) {
+		this.id_transazione = id_transazione;
 		this.ordine = ordine;
 		this.tipoPagamento = tipoPagamento;
 		this.importo = importo;
@@ -58,5 +65,6 @@ public class TransazioneBean {
 	private TipoPagamentoBean tipoPagamento;
 	private double importo;
 	private Date data;
+	private int id_transazione;
 	
 }
