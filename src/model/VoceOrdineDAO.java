@@ -134,7 +134,7 @@ public synchronized ArrayList<VoceOrdineBean> doRetriveByOrdine(int id_ordine)  
 
 public synchronized ArrayList<VoceOrdineBean> doRetrieveAll(){
 	
-	ArrayList<VoceOrdineBean> vociOrdine =null;
+	ArrayList<VoceOrdineBean> vociOrdine =new ArrayList<>();
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
 	VoceOrdineBean voceOrdine = null;

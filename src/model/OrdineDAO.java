@@ -232,6 +232,130 @@ public class OrdineDAO {
 	
 	
 	
+	public synchronized ArrayList<OrdineBean> doRetrieveByProdotto(ProdottoBean prodotto){
+		ArrayList<OrdineBean> ordini =null;
+		if(prodotto!=null) {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		OrdineBean ordine = null;
+		String sqlSelect="select ord.* "
+				+ "from ordine ord join voce_ordine voceord on voceord.id_ordine = ord.id_ordine "
+				+ "join variante_prodotto varprod on voceord.id_variante_prodotto=varprod.id_variante_prodotto "
+				+ "join prodotto prod on varprod.id_prodotto=prod.id where prod.id= ?";
+		
+		
+		try {
+			connection = (Connection) DriverManagerConnectionPool.getConnection();
+			preparedStatement = (PreparedStatement) connection.prepareStatement(sqlSelect);
+			preparedStatement.setInt(1, prodotto.getId_prodotto());
+			
+			ResultSet res = preparedStatement.executeQuery();
+			
+			while(res.next()) {
+				ordine= new OrdineBean();
+				ordine.setDataCreazione(res.getDate("data_creazione"));
+				ordine.setDataPrevistaPonsegna(res.getDate("data_prevista_consegna"));
+				ordine.setStato(res.getString("stato"));
+				ordine.setIndirizzo(res.getString("indirizzo"));
+				ordine.setTotale(res.getFloat("totale"));
+				
+				int id_utente= res.getInt("id_utente") !=0 ? res.getInt("id_utente"):0;
+				
+				if(id_utente!=0) {
+					UtenteDAO utenteDao= new UtenteDAO();
+					UtenteBean utente = utenteDao.doRetriveByKey(id_utente);
+					if(utente!=null &&utente.getId_utente()>0)
+						ordine.setUtente(utente);
+					else
+						ordine.setUtente(null);
+					
+				}
+				ordini.add(ordine);
+			}
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}finally{
+			try {
+				preparedStatement.close();
+				DriverManagerConnectionPool.releaseConnection(connection);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
+		return ordini;
+	}
+	
+	public synchronized ArrayList<OrdineBean> doRetrieveByVarianteProdotto(VarianteProdottoBean varProdotto){
+		ArrayList<OrdineBean> ordini =null;
+		if(varProdotto!=null) {
+		
+		Connection connection = null;
+		PreparedStatement preparedStatement = null;
+		OrdineBean ordine = null;
+		String sqlSelect="“select ord.* "
+				+ "from ordine ord join voce_ordine voceord on voceord.id_ordine = ord.id_ordine "
+				+ "join variante_prodotto varprod on vord.id_variante_prodotto=varprod.id_variante_prodotto "
+				+ "where varprod.id_variante_prodotto= ?";
+		
+		
+		try {
+			connection = (Connection) DriverManagerConnectionPool.getConnection();
+			preparedStatement = (PreparedStatement) connection.prepareStatement(sqlSelect);
+			preparedStatement.setInt(1, varProdotto.getId_variante_prodotto());
+			
+			ResultSet res = preparedStatement.executeQuery();
+			
+			while(res.next()) {
+				ordine= new OrdineBean();
+				ordine.setDataCreazione(res.getDate("data_creazione"));
+				ordine.setDataPrevistaPonsegna(res.getDate("data_prevista_consegna"));
+				ordine.setStato(res.getString("stato"));
+				ordine.setIndirizzo(res.getString("indirizzo"));
+				ordine.setTotale(res.getFloat("totale"));
+				
+				int id_utente= res.getInt("id_utente") !=0 ? res.getInt("id_utente"):0;
+				
+				if(id_utente!=0) {
+					UtenteDAO utenteDao= new UtenteDAO();
+					UtenteBean utente = utenteDao.doRetriveByKey(id_utente);
+					if(utente!=null &&utente.getId_utente()>0)
+						ordine.setUtente(utente);
+					else
+						ordine.setUtente(null);
+					
+				}
+				ordini.add(ordine);
+			}
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}finally{
+			try {
+				preparedStatement.close();
+				DriverManagerConnectionPool.releaseConnection(connection);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		
+		
+	}
+		return ordini;
+	}
+	
+	
+	
 	public synchronized void doSave(OrdineBean ordine) {
 		if(ordine!=null) {
 			Connection connection = null;
