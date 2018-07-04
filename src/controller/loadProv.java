@@ -42,10 +42,10 @@ public class loadProv extends HttpServlet {
 
 		
 		if(nazione.equalsIgnoreCase("Italia")) {
-			out.append("<option> Napoli </option>");
-			out.append("<option> caserta </option>");
-			out.append("<option> Salerno </option>");
-			out.append("<option> Avellino </option>");
+			out.append("<option value='Napoli'> Napoli </option>");
+			out.append("<option value='Caserta'> caserta </option>");
+			out.append("<option value='Salerno'> Salerno </option>");
+			out.append("<option value='Avellino'> Avellino </option>");
 			
 			
 		}

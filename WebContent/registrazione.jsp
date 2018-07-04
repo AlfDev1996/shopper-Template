@@ -49,38 +49,42 @@
 <div class ="reg">
 <form method="POST" action ="register">
 	Nome : <br>
-	<input type="text" name="nome"/>
+	<input type="text" name="nome" required/>
 	<br>
 	Cognome :<br>
-	<input type="text" name="cognome"/>
+	<input type="text" name="cognome" required/>
 	<br>
 	Email : <br>
-	<input type="text" name="email"/>
+	<input type="text" name="email" required/>
 	<br>
 	Password: <br>
-	<input type="password" name="password"/>
+	<input type="password" name="password" required />
 	<br>
 	Nazione : <br>
-	<input type="text" id="nazione" onfocusout="loadCitta()">
+	<input type="text" id="nazione" name="nazione" onfocusout="loadCitta()"required / >
 	<br>
 	Provincia : <br>
-	<select id="provincia">
+	<select id="provincia" name="provincia" required>
 	
 	</select>
 	
 	<br>
 	
 	Citta: <br>
-	<input type="text" name="citta"/>
+	<input type="text" name="citta" required />
 	<br>
 	Via : <br>
-	<input type="text" name="via">
+	<input type="text" name="via" required />
 	<br>
 	
 	CAP: <br>
-	<input type="text" name="citta"/>
+	<input type="text" name="cap" required />
 	<br>
 	<input type="submit" value="Registrati"> 
+	
+	Civico: <br>
+	<input type="text" name="civico" required />
+	<br>
 </form>
 
 

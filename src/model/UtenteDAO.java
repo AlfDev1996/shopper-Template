@@ -100,6 +100,53 @@ public synchronized UtenteBean doRetriveByEmailAndPassword(String email,String p
 	return null;
 	}
 
+
+public synchronized UtenteBean doRetriveByEmail(String email)  {
+	
+	Connection conn = null;
+	PreparedStatement ps = null;
+	UtenteBean utente =null;
+	try {
+		conn = (Connection) DriverManagerConnectionPool.getConnection();
+		ps=(PreparedStatement) conn.prepareStatement("SELECT * from utente where email = ?");
+		ps.setString(1, email);
+		
+		
+		ResultSet res =ps.executeQuery();
+
+		//Prendo il risultato dalla query
+		
+		if(res.next()) {
+			utente = new UtenteBean();
+			utente.setId_utente(res.getInt("id_utente"));
+			utente.setNome(res.getString("nome"));
+			utente.setCognome(res.getString("cognome"));
+			utente.setEmail(res.getString("email"));
+			utente.setPassword(res.getString("password"));
+			utente.setRuolo(res.getString("ruolo"));
+			utente.setNazione(res.getString("nazione"));
+			utente.setIndirizzo_via(res.getString("indirizzo_via"));
+			utente.setIndirizzo_citta(res.getString("indirizzo_citta"));
+			utente.setIndirizzo_cap(res.getInt("indirizzo_cap"));
+			utente.setIndirizzo_provincia(res.getString("indirizzo_provincia"));
+			utente.setIndirizzo_nazione("indirizzo_nazione");
+			utente.setIndirizzo_num_civico(res.getInt("indirizzo_num_civico"));
+			return utente;
+		}
+	}catch(SQLException ex) {
+		ex.printStackTrace();
+	}finally{
+		try {
+			ps.close();
+			DriverManagerConnectionPool.releaseConnection(conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	return null;
+	}
+
 public synchronized ArrayList<UtenteBean> doRetrieveAll(String orderBy){
 	ArrayList<UtenteBean> utenti = null;
 	Connection connection = null;
