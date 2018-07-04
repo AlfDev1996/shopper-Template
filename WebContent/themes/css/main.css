@@ -23,6 +23,12 @@ ul li a,a{
 a{
 	color:#eb4800;
 }
+
+/*Padding  nella login*/
+.reg{
+		padding :50px !important;
+	}
+
 a:hover{
 	color:#fd4004;
 	text-decoration:none;
@@ -122,6 +128,8 @@ section.homepage-slider p{
 	width:100%;
 	margin-bottom:2px;
 }
+
+
 section.homepage-slider span{
 	background-color:#fff;
 	color:#000;	
@@ -665,6 +673,10 @@ section.our_client .row{
 	background: url(../images/bg_h.png) no-repeat bottom left;
 	margin-bottom:10px;
 }
+.prova{
+		padding :50px !importanf;
+	}
+
 .nav-list li{
 	text-align:left;
 }
@@ -772,6 +784,8 @@ section.our_client .row{
 		background-color:transparent;
 		color:#eb4800;
 	}
+	
+	
 	.feature_box .service{	
 		border-bottom:1px solid #eee;
 	}

@@ -58,7 +58,7 @@ public synchronized UtenteBean doRetriveByEmailAndPassword(String email,String p
 	
 	Connection conn = null;
 	PreparedStatement ps = null;
-	UtenteBean utente = null;
+	UtenteBean utente =null;
 	try {
 		conn = (Connection) DriverManagerConnectionPool.getConnection();
 		ps=(PreparedStatement) conn.prepareStatement("SELECT * from utente where email = ? and password = ?");
@@ -83,7 +83,7 @@ public synchronized UtenteBean doRetriveByEmailAndPassword(String email,String p
 			utente.setIndirizzo_cap(res.getInt("indirizzo_cap"));
 			utente.setIndirizzo_provincia(res.getString("indirizzo_provincia"));
 			utente.setIndirizzo_nazione("indirizzo_nazione");
-			utente.setIndirizzo_num_civico(res.getInt("indirizzo_num_civico"));
+		//	utente.setIndirizzo_num_civico(res.getInt("indirizzo_num_civico"));
 			return utente;
 		}
 	}catch(SQLException ex) {
