@@ -25,6 +25,20 @@
 			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
 			<script src="js/respond.min.js"></script>
 		<![endif]-->
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script >
+		
+		$(document).ready(function(){
+			//var quote = document.createElement("blockquote");
+			 var txt2 = $("<blockquote></blockquote>").text("«Vediamo i nostri clienti come ospiti invitati a una festa, e noi siamo i padroni di casa. Il nostro lavoro è migliorare ogni giorno ogni aspetto della customer experience»");
+		
+			 
+			 $("#motto").append(txt2);
+			$("#motto").addClass("header_text");
+		});
+		</script>
+		
 	</head>
     <body>	
     
@@ -39,6 +53,11 @@
 					<ul class="slides">
 						<li>
 							<img src="themes/images/carousel/banner-1.jpg" alt="" />
+							<div class="intro">   <!-- Eventuale testo che va inserito sopra le immagini dello slider -->
+								<h1>Per Informazioni Contattare</h1>
+								<p><span>Edward Chen</span></p>
+								<p><span>Preferibilmente WeChat</span></p>
+							</div>
 						</li>
 						<li>
 							<img src="themes/images/carousel/banner-2.jpg" alt="" />
@@ -56,9 +75,8 @@
 			<!-- Fine section Slider -->
 			
 			<!-- testo principale della pagina , tipicamente riservato per il motto  -->
-			<section class="header_text">
-				We stand for top quality templates. Our genuine developers always optimized bootstrap commercial templates. 
-				<br/>Don't miss to use our cheap abd best bootstrap templates.
+			<section  id="motto">
+				
 			</section>
 			
 			

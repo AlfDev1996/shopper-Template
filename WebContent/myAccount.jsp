@@ -18,14 +18,16 @@
 <body>
 
 	<%@ include file="header.jsp"%>
+	
+
 <form method="post" action="ModificaAccount">
 	<div class="row">
-		<div class="span6">
+		<div class="span6" style="margin-top: 5%;">
 			<hr style="border: solid;">
 			<h5> Informazioni personali</h5>
 			<hr style="border: solid;">
 		</div>
-		<div class="span6">
+		<div class="span6"  style="margin-top: 5%;">
 			<hr style="border: solid;">
 			<h5> Informazioni di accesso</h5>
 			<hr style="border: solid;">
@@ -34,7 +36,7 @@
 
 	<div class="row">
 	<!--  Tabella per informazioni Personali -->
-		<div class="span6">
+		<div class="span6 tp">
 		 <table style="float: left; width: 100%">
 		 <tr>
 		 	<td colspan="3"> Nome : </td>
@@ -79,7 +81,7 @@
 		 </table>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row bot" >
 		<div class="span6" align="right">
 			<input type="button" class="btn btn" value="Modifica">
 		</div>
@@ -87,13 +89,9 @@
 			<input type="button" class="btn btn" value="Modifica">
 		</div>
 	</div>
- 
+ </div>
 
 
-
-<br>
-<br>
-<br>
 
 		<%@ include file="footer.jsp"%>
 </body>

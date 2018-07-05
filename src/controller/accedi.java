@@ -41,10 +41,12 @@ public class accedi extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	// Recupero il bean della sessione <---- verificare se è nullo quando arriva dalla jsp
-	UtenteBean utenteSession  = (UtenteBean) request.getSession().getAttribute("utente");
-	String error = "";
+		String error = "";
+		UtenteBean utenteSession  = (UtenteBean) request.getSession().getAttribute("utente");
+
 	
 	if(utenteSession==null) {
 	// ottengo i parametri inseriti nel form di login
@@ -101,6 +103,7 @@ public class accedi extends HttpServlet {
 	
 	if(utenteBean == null){
 		System.out.println("Problemi al DB");
+		error+="Utente Non trovato";
 	}else if (utenteBean.getEmail() == null) {
 		error += "Non sei ancora iscritto, compila i campi che trovi in questa pagina per iniziare subito ad acquistare";
 	}else {
@@ -112,17 +115,19 @@ public class accedi extends HttpServlet {
 	// se non ci sono stati errori -> forward alla home del sito
 	//se ci sono stati errori -> forward alla pagina di login/registrazione del sito
 	
-	//System.out.println(error.length());
+	System.out.println(error+"ss");
 	if (error.equals("")) {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("utente", utenteBean);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);
-	} else {
+	} else 
+		
+	{
 		// ci sono stati errori durante il login
 		// l'errore è accodato all'url come query  
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/account.jsp?errore="+error);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/login.jsp?errore="+error);
 		dispatcher.forward(request, response);
 	}
 	}

@@ -28,6 +28,18 @@ a{
 .reg{
 		padding :50px !important;
 	}
+	
+	/*margin pag modifica*/
+
+.bot{
+	margin-bottom:5%;
+	
+}
+
+.tp{
+	
+	margin-top:5%;
+}
 
 a:hover{
 	color:#fd4004;
@@ -278,7 +290,7 @@ section.navbar{
 	margin-bottom:0;
 }
 .navbar-inner.main-menu {	
-	height: 40px;
+	height: 48px; /*meglio impostarlo a 48 px per il logo */
 	padding-left:10px;	
 	padding-right:0;	
 	border-right: 0;

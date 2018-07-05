@@ -14,6 +14,7 @@
 		<script src="bootstrap/js/bootstrap.min.js"></script>				
 		<script src="themes/js/superfish.js"></script>	
 		<script src="themes/js/jquery.scrolltotop.js"></script>
+		<script  src="themes/js/validate.js"></script>
 		
 		
 	<script>
@@ -47,15 +48,15 @@
 	<%} %>
 					</span>
 <div class ="reg">
-<form method="POST" action ="register">
+<form method="POST" action ="register" onsubmit="return validateName() && validateCognome()&&validateMail()">
 	Nome : <br>
-	<input type="text" name="nome" required/>
+	<input type="text" name="nome" id="nome" required/>
 	<br>
 	Cognome :<br>
-	<input type="text" name="cognome" required/>
+	<input type="text" name="cognome" id="cognome" required/>
 	<br>
 	Email : <br>
-	<input type="text" name="email" required/>
+	<input type="text" name="email" id="mail" required/>
 	<br>
 	Password: <br>
 	<input type="password" name="password" required />
@@ -80,11 +81,14 @@
 	CAP: <br>
 	<input type="text" name="cap" required />
 	<br>
-	<input type="submit" value="Registrati"> 
 	
 	Civico: <br>
 	<input type="text" name="civico" required />
 	<br>
+	
+	<input type="submit" class="btn btn" value="Registrati"> 
+	
+	
 </form>
 
 

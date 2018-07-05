@@ -68,7 +68,7 @@
 				</div>	
 			</section>
 			<section id="copyright">
-				<span>Copyright 2013 bootstrappage template  All right reserved.</span>
+				<span>Copyright 2018 Rianna Alfonso && Raffaele Dragone. Tutti i diritti riservati.</span>
 			</section>
 		</div>
 

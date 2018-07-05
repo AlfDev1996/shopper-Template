@@ -14,6 +14,9 @@
 		<script src="bootstrap/js/bootstrap.min.js"></script>				
 		<script src="themes/js/superfish.js"></script>	
 		<script src="themes/js/jquery.scrolltotop.js"></script>
+		<script  src="themes/js/validate.js"></script>
+	
+		
 </head>
 <body>
 
@@ -21,20 +24,40 @@
 
 
 
-<form method="post" action="accedi">
+<form method="post" action="accedi"  onsubmit="return validateMail()">
 
 
 <div class="reg">
 
-<span class="errore container">
-	<%if(request.getParameter("errore")!=null){ %>
-		<h4 ><%=request.getParameter("errore") %></h4>
-	<%} %>
-					</span>
-<label>Email: <br><input type="text" value="" name="mail" maxlength="30" style=""/> <br />
-<label>Password: <br><input type="password" value="" name="password" maxlength="20" /><br/>
 
-<input type="submit" value="login" name="loginSubmit" /></label>
+			<%
+				if (request.getParameter("errore") != null && !request.getParameter("errore").contains("Complimenti") && !request.getParameter("errore").contains("Ops")) {
+			%>
+			<div class="alert alert-danger" role="alert">
+				<strong><%=request.getParameter("errore")%></strong>
+			</div>
+			<%
+				} else if (request.getParameter("errore") != null && request.getParameter("errore").contains("Complimenti")){
+			%>
+			<%
+				
+			%>
+			<div class="alert alert-success" role="alert">
+				<strong><%=request.getParameter("errore")%></strong>
+			</div>
+			<%
+				} else if(request.getParameter("errore") != null && request.getParameter("errore").contains("Ops")){
+			%>
+		
+			<div class="alert alert-warning" role="alert">
+				<strong><%=request.getParameter("errore")%></strong>
+			</div>
+			<% } %>
+
+			<label>Email: <br><input type="text" value="" name="mail" id="mail" maxlength="30" style="" required/> <br />
+<label>Password: <br><input type="password" value="" name="password" id="password" maxlength="20" required /><br/>
+
+<input type="submit" class="btn btn " value="Login" name="loginSubmit" /></label>
 
 
 </div>
