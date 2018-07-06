@@ -59,6 +59,7 @@ return mar;
 		
 		
 		if(rs.next()) {
+			mar = new MarcaBean();
 			mar.setIdMarca(rs.getInt("id_marca"));
 			mar.setNome(rs.getString("nome"));
 		return mar;	
@@ -148,7 +149,7 @@ return mar;
 	
 	public synchronized ArrayList<MarcaBean> doRetrieveAll(String orderBy){
 		
-		ArrayList<MarcaBean> marche=null;
+		ArrayList<MarcaBean> marche=new ArrayList<>();
 		Connection connection = null;
 		PreparedStatement preparedStatement =null;
 		MarcaBean tmpMarca = null;

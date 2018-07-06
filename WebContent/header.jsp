@@ -86,8 +86,8 @@ function submit(){
 								<ul>
 								<li>Funzioni Admin</a>
 								<ul>
-								<li>Modifica Articolo</li>
-								<li>Aggiungi Articolo</li>
+								<li><a href="ModificaArticolo.jsp">Modifica Articolo</a></li>
+								<li><a href="AggiungiArticolo.jsp">Aggiungi Articolo</li>
 								<li>Rimuovi Articolo</li>
 								</ul></li>
 								</ul>

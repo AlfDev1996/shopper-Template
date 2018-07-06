@@ -248,7 +248,7 @@ public synchronized ArrayList<ProdottoBean> doRetrieveAll(String orderBy){
 	return prodotti;
 }
 
-public synchronized void doSave(ProdottoBean prodotto) {
+public synchronized boolean doSave(ProdottoBean prodotto) {
 	if(prodotto!=null)
 	{
 		Connection connection = null;
@@ -274,6 +274,7 @@ public synchronized void doSave(ProdottoBean prodotto) {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return false;
 		}finally{
 			try {
 				preparedStatement.close();
@@ -284,7 +285,7 @@ public synchronized void doSave(ProdottoBean prodotto) {
 			}
 		}
 	}
-	
+	return true;
 }
 
 public synchronized boolean doDelete(int id_prodotto) {
