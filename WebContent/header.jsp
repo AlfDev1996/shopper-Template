@@ -27,8 +27,7 @@
 <link href="themes/css/main.css" rel="stylesheet" />
 
 <!-- scripts -->
-<!--  <script src="themes/js/jquery-1.7.2.min.js"></script> -->
-<script src="themes/js/jquery-3.3.1.min.js"></script>
+ <script src="themes/js/jquery-1.7.2.min.js"></script>
 <!-- Libreeia jQuery: preferisco linkarla da google -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- Funzioni bootstrap per eventuali animazioni  -->

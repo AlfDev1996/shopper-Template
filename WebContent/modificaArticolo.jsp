@@ -10,8 +10,7 @@
 		<link href="themes/css/main.css" rel="stylesheet"/>
 
 		<!-- scripts -->
-		<!--  <script src="themes/js/jquery-1.7.2.min.js"></script> -->
-		<script src="themes/js/jquery-3.3.1.min.js"></script>
+		 <script src="themes/js/jquery-1.7.2.min.js"></script> 
 		<script src="bootstrap/js/bootstrap.min.js"></script>				
 		<script src="themes/js/superfish.js"></script>	
 		<script src="themes/js/jquery.scrolltotop.js"></script>
