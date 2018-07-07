@@ -31,6 +31,7 @@
 
 
 			<%
+			
 				if (request.getParameter("errore") != null && !request.getParameter("errore").contains("Complimenti") && !request.getParameter("errore").contains("Ops")) {
 			%>
 			<div class="alert alert-danger" role="alert">
@@ -38,9 +39,6 @@
 			</div>
 			<%
 				} else if (request.getParameter("errore") != null && request.getParameter("errore").contains("Complimenti")){
-			%>
-			<%
-				
 			%>
 			<div class="alert alert-success" role="alert">
 				<strong><%=request.getParameter("errore")%></strong>

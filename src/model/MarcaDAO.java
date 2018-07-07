@@ -13,7 +13,7 @@ public class MarcaDAO {
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
-		MarcaBean mar = null;
+		MarcaBean mar = new MarcaBean();
 		try {
 		conn =(Connection) DriverManagerConnectionPool.getConnection();
 		ps=(PreparedStatement) conn.prepareStatement("SELECT * FROM marca WHERE id_marca=?");

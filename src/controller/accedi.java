@@ -65,52 +65,16 @@ public class accedi extends HttpServlet {
 	// oggetto DAO
 	UtenteDAO utenteDAO = new UtenteDAO();
 
-	utenteBean = utenteDAO.doRetriveByEmailAndPassword(emailParameter, passwordParameter);
-	//System.out.println(utenteBean.getNome());
+	utenteBean = utenteDAO.doRetriveByEmail(emailParameter);
 	
-	/**
-	 *  verifica se l'utente con email = emailParameter
-	 *  
-	 *  Se l'utente esiste e la psw è corretta si completa il bean di tutti i dati dell'utente
-	 *  e si effettua una forward alla home
-	 *  
-	 *  Se l'utente non esiste o la psw non è corretta si effettua una forward con 
-	 *  l'errore relativo
-	 */
-//	if (utenteDb==null) 
-//		//l'utente non esiste
-//		error += "Non sei ancora iscritto, compila i campi che trovi in questa pagina per iniziare subito ad acquistare";
-//	else{
-//		if(!utenteDb.getPassword().equals(passwordParameter))
-//			error += "Password errata";
-//		else {
-//			//i dati iseriti nel form sono corretti
-//			utenteSession.setMail(utenteDb.getMail());
-//			utenteSession.setNome(utenteDb.getNome());
-//			utenteSession.setCognome(utenteDb.getCognome());
-//			utenteSession.setPassword(utenteDb.getPassword());
-//			utenteSession.setTipo(utenteDb.getTipo());
-//			utenteSession.setPaese(utenteDb.getPaese());
-//			utenteSession.setProvincia(utenteDb.getProvincia());
-//			utenteSession.setCitta(utenteDb.getCitta());
-//			utenteSession.setVia(utenteDb.getVia());
-//			utenteSession.setCap(utenteDb.getCap());
-//			utenteSession.setCivico(utenteDb.getCivico());
-//			utenteSession.setNumerCarta(utenteDb.getNumerCarta());
-//			// il bean di sessione ha tutti i dati dell'utente
-//			}
-//		}
+	if(utenteBean==null) {
+		System.out.println("Utente non presente ");
+		error+="Utente non registrato";
+	}else
+	 if(!utenteBean.getPassword().equals(passwordParameter)) {
+		 error += "Password errata";
+	 }
 	
-	if(utenteBean == null){
-		System.out.println("Problemi al DB");
-		error+="Utente Non trovato";
-	}else if (utenteBean.getEmail() == null) {
-		error += "Non sei ancora iscritto, compila i campi che trovi in questa pagina per iniziare subito ad acquistare";
-	}else {
-		if (!utenteBean.getPassword().equals(passwordParameter)) {
-			error += "Password errata";
-		}
-	}
 	
 	// se non ci sono stati errori -> forward alla home del sito
 	//se ci sono stati errori -> forward alla pagina di login/registrazione del sito
@@ -123,7 +87,6 @@ public class accedi extends HttpServlet {
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 		dispatcher.forward(request, response);
 	} else 
-		
 	{
 		// ci sono stati errori durante il login
 		// l'errore è accodato all'url come query  
@@ -133,7 +96,7 @@ public class accedi extends HttpServlet {
 	}
 	else
 	{
-		System.out.println("sono entrato con la session");
+	System.out.println("sono entrato con la session");
 	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 	dispatcher.forward(request, response);}
 }

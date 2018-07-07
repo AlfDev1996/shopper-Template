@@ -125,6 +125,64 @@ public synchronized ArrayList<ProdottoBean> doRetriveBySesso(String sesso)  {
 	return prodotti;
 	}
 
+public synchronized ArrayList<ProdottoBean> doRetriveByNome(String nome)  {
+	
+	Connection conn = null;
+	PreparedStatement ps = null;
+	ProdottoBean prodotto = null;
+	ArrayList<ProdottoBean> prodotti = new ArrayList<>();
+	try {
+		conn = (Connection) DriverManagerConnectionPool.getConnection();
+		ps=(PreparedStatement) conn.prepareStatement("SELECT * from prodotto where nome like  ?  ");
+		ps.setString(1, "%"+nome+"%");
+		
+		ResultSet res =ps.executeQuery();
+
+		//Prendo il risultato dalla query
+		while(res.next()) {
+			prodotto=new ProdottoBean();
+			prodotto.setId_prodotto(res.getInt("id_prodotto"));
+			prodotto.setNome(res.getString("nome"));
+			prodotto.setDescrizione_breve(res.getString("descrizione_breve"));
+			prodotto.setDescrizione_estesa(res.getString("descrizione_estesa"));
+			prodotto.setTags(res.getString("tags"));
+			prodotto.setModello(res.getString("modello"));
+			prodotto.setPrezzo(res.getDouble("prezzo"));
+			prodotto.setSesso(res.getString("sesso"));
+			int id_marca = res.getInt("id_marca") != 0 ? res.getInt("id_marca") : 0;
+			if(id_marca!=0)
+			{
+				MarcaDAO marcaDao= new MarcaDAO();
+				MarcaBean marca = marcaDao.doRetriveByKey(id_marca);
+				if(marca!=null && marca.getIdMarca()>0)
+				 prodotto.setMarca(marca);
+				else
+				 prodotto.setMarca(null);
+			}
+			
+			//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
+			ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
+			VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
+			varianti = varianteDAO.doRetriveByProdotto(prodotto);
+			
+			prodotto.setVariantiProdotto(varianti);
+			System.out.println(prodotto);
+			prodotti.add(prodotto);
+		}
+	}catch(SQLException ex) {
+		ex.printStackTrace();
+	}finally{
+		try {
+			ps.close();
+			DriverManagerConnectionPool.releaseConnection(conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	return prodotti;
+	}
+
 public synchronized ArrayList<ProdottoBean> doRetriveByMarca(MarcaBean marca)  {
 	
 	Connection conn = null;
