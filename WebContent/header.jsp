@@ -27,7 +27,8 @@
 <link href="themes/css/main.css" rel="stylesheet" />
 
 <!-- scripts -->
-<script src="themes/js/jquery-1.7.2.min.js"></script>
+<!--  <script src="themes/js/jquery-1.7.2.min.js"></script> -->
+<script src="themes/js/jquery-3.3.1.min.js"></script>
 <!-- Libreeia jQuery: preferisco linkarla da google -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- Funzioni bootstrap per eventuali animazioni  -->
@@ -86,9 +87,8 @@ function submit(){
 								<ul>
 								<li>Funzioni Admin</a>
 								<ul>
-								<li><a href="ModificaArticolo.jsp">Modifica Articolo</a></li>
-								<li><a href="AggiungiArticolo.jsp">Aggiungi Articolo</li>
-								<li>Rimuovi Articolo</li>
+								<li><a href="modificaArticolo.jsp">Modifica Articolo</a></li>
+								<li><a href="AggiungiArticolo.jsp">Aggiungi Articolo</a></li>
 								</ul></li>
 								</ul>
 						

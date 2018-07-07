@@ -204,6 +204,7 @@ public synchronized boolean doDelete(int id_ordine) {
 	}finally{
 		try {
 			preparedStatement.close();
+			connection.commit();
 			DriverManagerConnectionPool.releaseConnection(connection);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

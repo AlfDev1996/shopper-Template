@@ -1,5 +1,7 @@
 package model;
 
+import java.util.ArrayList;
+
 import com.mysql.jdbc.Connection;
 
 public class test {
@@ -8,11 +10,18 @@ public class test {
 		// TODO Auto-generated method stub
 
 		
+		ProdottoDAO pDao= new ProdottoDAO();
+		ArrayList<ProdottoBean> prodotti= pDao.doRetrieveAll(null);
+		System.out.println(prodotti);
 		
-		MarcaBean marca = new MarcaBean();
-		marca.setNome("Adidas");
-		MarcaDAO marcaDAO=new MarcaDAO();
-		marcaDAO.doSave(marca);
+		pDao.doDelete(17);
+		
+
+		
+		 pDao= new ProdottoDAO();
+		prodotti= pDao.doRetrieveAll(null);
+		System.out.println(prodotti);
+		
 	}
 
 }

@@ -4,31 +4,43 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Modifica Prodotti</title>
+<title>Modifica Articolo</title>
 
 <link href="themes/css/flexslider.css" rel="stylesheet"/>
 		<link href="themes/css/main.css" rel="stylesheet"/>
 
 		<!-- scripts -->
-		<script src="themes/js/jquery-1.7.2.min.js"></script>
+		<!--  <script src="themes/js/jquery-1.7.2.min.js"></script> -->
+		<script src="themes/js/jquery-3.3.1.min.js"></script>
 		<script src="bootstrap/js/bootstrap.min.js"></script>				
 		<script src="themes/js/superfish.js"></script>	
 		<script src="themes/js/jquery.scrolltotop.js"></script>
 		<script  src="themes/js/validate.js"></script>
 		<!--  Includo il file js relativo al prodotto -->
 		<script src="themes/js/prodotto.js"></script>
+<script>
+
+</script>	
 	
 </head>
-<body onload="createTableProdotti()">
+<body >
+<% UtenteBean user =(UtenteBean) session.getAttribute("utente"); %>
+<% if( user==null|| !user.getRuolo().equalsIgnoreCase("admin")){ response.sendRedirect("index.jsp");}  %>
+	
 	<%@ include file="header.jsp" %>
-<div>
+	
+	<form action="">
+	
+	<div>
 	<input type="text" id="nome" class="inputMargin" >
 	
-	<input type="button" value="Cerca Prodotto" onclick="find()" class="btn btn" style="height: 100%"> 
+	<input type="button" id="btnCerca" value="Cerca Prodotto" onclick="find()" class="btn btn" style="height: 100%"> 
 	
-	<input type="button" value="Elimina" onclick="deleteProducts()" class="btn btn" style="height: 100%">
+	<input type="button" id="btnElimina" name="btnElimina" value="Elimina" onclick="deleteProducts()" class="btn btn" style="height: 100%">
 	
-</div>
+	</div>
+ 
+	</form>
 
 	 
 	<div id="container">
@@ -39,10 +51,15 @@
 		 	<th> Modello </th>
 		 	<th> Marca </th>
 		 	<th> Prezzo </th>
+		 	<th> Descr. Breve </th>
+		 	<th> Descr. Estesa </th>
+		 	<th> Sesso </th>
+		 	<th> &nbsp; </th>
+		 	<th> &nbsp; </th>
 		 </tr>
+		 
 		</table>
 	</div>
-
 
 	<%@ include file="footer.jsp" %>
 </body>
