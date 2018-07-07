@@ -63,9 +63,11 @@
 				} %>
 
 
-<form id="container" method="POST" action="AddProduct" >
+<form id="container" method="POST" action="AddProduct" enctype="multipart/form-data">
 
+	
 </form>
+
 
 <%@ include file="footer.jsp" %>  
 

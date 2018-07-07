@@ -9,6 +9,7 @@ public class ProdottoBean {
 	private double prezzo ;
 	private MarcaBean marca;
 	private ArrayList<VarianteProdottoBean> variantiProdotto;
+	private ArrayList<ImmagineBean> immagini;
 	
 	public ProdottoBean() {
 		id_prodotto=0;
@@ -16,10 +17,11 @@ public class ProdottoBean {
 		prezzo=0.0;
 		marca=new MarcaBean();
 		variantiProdotto=new ArrayList<>();
+		immagini= new ArrayList<>();
 	}
 
 	public ProdottoBean(int id_prodotto, String nome, String descrizione_breve, String descrizione_estesa, String tags,
-			String modello, String sesso, double prezzo, MarcaBean marca, ArrayList<VarianteProdottoBean> varianti) {
+			String modello, String sesso, double prezzo, MarcaBean marca, ArrayList<VarianteProdottoBean> varianti, ArrayList<ImmagineBean> immagini) {
 		
 		this.id_prodotto = id_prodotto;
 		this.nome = nome;
@@ -31,6 +33,15 @@ public class ProdottoBean {
 		this.prezzo = prezzo;
 		this.marca = marca;
 		this.variantiProdotto=varianti;
+		this.immagini=immagini;
+	}
+
+	public ArrayList<ImmagineBean> getImmagini() {
+		return immagini;
+	}
+
+	public void setImmagini(ArrayList<ImmagineBean> immagini) {
+		this.immagini = immagini;
 	}
 
 	public int getId_prodotto() {

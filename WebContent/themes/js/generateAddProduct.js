@@ -12,8 +12,6 @@ function loadMarca(){
 			
 			if(xh.readyState==4 && xh.status==200){
 				console.log("inizio creazione text");
-				
-				
 				check.innerHTML=xh.responseText;
 				
 			}
@@ -60,33 +58,7 @@ function loadMarca(){
 			
 		
 		}
-		
-	/*var p=document.createElement("p"); 
-	p.setAttribute("id","par_Sesso");
-	var lblSesso =document.createElement("label"); 
-		label.appendChild(sesso);
-		p.appendChild(label);
-		div.appendChild(p);
-		
-		var check= document.createElement("select"); 
-		check.setAttribute("name", "sesso")
-		var f=document.getElementById("container");
-		var m = document.createTextNode("M");
-		var opM =document.createElement("option"); 
-		opM.setAttribute("value", "M")
-		opM.appendChild(m);
-		check.appendChild(opM)
-		
-		var sf = document.createTextNode("F");
-		var opF =document.createElement("option"); 
-		opF.setAttribute("value", "F")
-		opF.appendChild(sf);
-		check.appendChild(opF)
-		
-		
-		f.appendChild(check);
-		f.appendChild(x);
-		*/
+
 		loadMarca();
 		
 		var  par= document.createElement("p"); 
@@ -96,6 +68,26 @@ function loadMarca(){
 		par.appendChild(check);
 		div.appendChild(par);
 		
+		par = document.createElement("p");
+		var file = document.createElement("input");
+		file.setAttribute("type","file");
+		file.setAttribute("name","file1");
+		par.appendChild(file);
+		div.appendChild(par);
+		
+		par = document.createElement("p");
+		file = document.createElement("input");
+		file.setAttribute("type","file");
+		file.setAttribute("name","file2");
+		par.appendChild(file);
+		div.appendChild(par);
+		
+		par = document.createElement("p");
+		file = document.createElement("input");
+		file.setAttribute("type","file");
+		file.setAttribute("name","file3");
+		par.appendChild(file);
+		div.appendChild(par);
 		
 		var invia = document.createElement("input");
 		invia.setAttribute("type", "submit");

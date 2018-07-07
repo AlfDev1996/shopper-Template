@@ -51,6 +51,12 @@ public synchronized ProdottoBean doRetriveByKey(int id)  {
 				varianti = varianteDAO.doRetriveByProdotto(prodotto);
 				
 				prodotto.setVariantiProdotto(varianti);
+				//Mi inizializzo la lista di immagini
+				ArrayList<ImmagineBean> immagini = new ArrayList<>();
+				ImmagineDAO immagineDAO=new ImmagineDAO();
+				immagini = immagineDAO.doRetriveByProdotto(prodotto);
+				
+				prodotto.setImmagini(immagini);
 				res.close();
 				return prodotto;
 			}
@@ -112,6 +118,12 @@ public synchronized ArrayList<ProdottoBean> doRetriveBySesso(String sesso)  {
 			
 			prodotto.setVariantiProdotto(varianti);
 			
+			//Mi inizializzo la lista di immagini
+			ArrayList<ImmagineBean> immagini = new ArrayList<>();
+			ImmagineDAO immagineDAO=new ImmagineDAO();
+			immagini = immagineDAO.doRetriveByProdotto(prodotto);
+			
+			prodotto.setImmagini(immagini);
 			prodotti.add(prodotto);
 		}
 
@@ -173,7 +185,13 @@ public synchronized ArrayList<ProdottoBean> doRetriveByNome(String nome)  {
 			varianti = varianteDAO.doRetriveByProdotto(prodotto);
 			
 			prodotto.setVariantiProdotto(varianti);
-			System.out.println(prodotto);
+			
+			//Mi inizializzo la lista di immagini
+			ArrayList<ImmagineBean> immagini = new ArrayList<>();
+			ImmagineDAO immagineDAO=new ImmagineDAO();
+			immagini = immagineDAO.doRetriveByProdotto(prodotto);
+			
+			prodotto.setImmagini(immagini);
 			prodotti.add(prodotto);
 		}
 
@@ -237,6 +255,13 @@ public synchronized ProdottoBean doRetriveByNomeAndModello(String nome, String m
 			
 			prodotto.setVariantiProdotto(varianti);
 			
+			
+			//Mi inizializzo la lista di immagini
+			ArrayList<ImmagineBean> immagini = new ArrayList<>();
+			ImmagineDAO immagineDAO=new ImmagineDAO();
+			immagini = immagineDAO.doRetriveByProdotto(prodotto);
+			
+			prodotto.setImmagini(immagini);
 			res.close();
 			return prodotto;
 		}
@@ -298,6 +323,13 @@ public synchronized ArrayList<ProdottoBean> doRetriveByMarca(MarcaBean marca)  {
 			varianti = varianteDAO.doRetriveByProdotto(prodotto);
 			
 			prodotto.setVariantiProdotto(varianti);
+			
+			//Mi inizializzo la lista di immagini
+			ArrayList<ImmagineBean> immagini = new ArrayList<>();
+			ImmagineDAO immagineDAO=new ImmagineDAO();
+			immagini = immagineDAO.doRetriveByProdotto(prodotto);
+			
+			prodotto.setImmagini(immagini);
 			
 			prodotti.add(prodotto);
 		}
@@ -365,6 +397,12 @@ public synchronized ArrayList<ProdottoBean> doRetrieveAll(String orderBy){
 			varianti = varianteDAO.doRetriveByProdotto(prodotto);
 			
 			prodotto.setVariantiProdotto(varianti);
+			//Mi inizializzo la lista di immagini
+			ArrayList<ImmagineBean> immagini = new ArrayList<>();
+			ImmagineDAO immagineDAO=new ImmagineDAO();
+			immagini = immagineDAO.doRetriveByProdotto(prodotto);
+			
+			prodotto.setImmagini(immagini);
 			
 			prodotti.add(prodotto);
 			
@@ -419,7 +457,7 @@ public synchronized boolean doSave(ProdottoBean prodotto) {
 		}finally{
 			try {
 				preparedStatement.close();
-				DriverManagerConnectionPool.getConnection().commit();
+				connection.commit();
 				DriverManagerConnectionPool.releaseConnection(connection);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

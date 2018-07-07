@@ -125,12 +125,11 @@ function deleteRowTable(){
 }
 
 function modifica(object, salva){
-	
+	// 9 indice btnSalva
+	// 8 indice btnModifica
 	
 	if(salva=="true"){
 		object.setAttribute("style","display:none");
-		var btnModfica = document.getElementById("btnModifica");
-		btnModfica.setAttribute("style","display: inline");
 		var td = object.parentElement;
 		var tr= td.parentElement;
 		var c = tr.childNodes;
@@ -164,9 +163,14 @@ function modifica(object, salva){
 			  case 7 : jsonObj.sesso = c[i].innerHTML;
   		   	   			break;
 		   	  default : break;
-			 }
-			 
+			 } 
+				 
 			}
+			//Rendo invisibile il bottone salva e visibile il bottone Modifica
+			 if(c[i].childNodes[0].id=="btnModifica")
+			 {
+				 c[i].childNodes[0].style.display="inline";
+			 }
 		}
 		
 		
@@ -183,16 +187,17 @@ function modifica(object, salva){
 		var x  = JSON.stringify(jsonObj);
 		
 		xh.open("GET","ModificaProdotto?prodotto="+encodeURIComponent(x),true);
-		//xh.setRequestHeader("Content-type", "application/json");
 		xh.send();
 		
 		
+		//var btnModfica = document.getElementById("btnModifica");
+		//btnModfica.setAttribute("style","display: inline");
 		
 	}else
 	{
 		object.setAttribute("style","display:none");
-		var btnSalva= document.getElementById("btnSalva");
-		btnSalva.setAttribute("style","display: inline");
+		//var btnSalva= document.getElementById("btnSalva");
+		//btnSalva.setAttribute("style","display: inline");
 		var td = object.parentElement;
 		var tr= td.parentElement;
 		var c = tr.childNodes;
@@ -201,6 +206,13 @@ function modifica(object, salva){
 			//if(c[i].childNodes[0]!=undefined && c[i].childNodes[0].type!="checkbox" && c[i].childNodes[0].type!="button")
 			if(c[i].id=="prezzo" || c[i].id=="descrizione_breve" || c[i].id=="descrizione_estesa" || c[i].id=="sesso")
 				c[i].contentEditable = "true"
+			else
+			 //Rendo invisibile il bottone modifica e visibile il bottone salva
+			 if(c[i].childNodes[0].id=="btnSalva")
+		     {
+				 c[i].childNodes[0].style="display:inline";
+		     }
+			
 			}
 	}
 	
