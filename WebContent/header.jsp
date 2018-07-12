@@ -134,7 +134,7 @@ function submit(){
 						<li><a href="./products.html">Eget molestie</a></li>
 						<li><a href="./products.html">Varius purus</a></li>
 					</ul></li>
-				<li><a href="./products.html">Man</a></li>
+				<li><a href="./prodotti.jsp?filtro=sesso_M">Man</a></li>
 				<li><a href="./products.html">Sport</a>
 					<ul>
 						<li><a href="./products.html">Gifts and Tech</a></li>

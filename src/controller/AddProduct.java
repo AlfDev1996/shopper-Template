@@ -102,7 +102,7 @@ public class AddProduct extends HttpServlet {
 					part = request.getPart("file1");
 					name_image=extractFileName(part);
 					part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);img.setNomeFile(name_image);
-					img.setProdotto(prodotto);
+					//img.setProdotto(prodotto);
 					imgDao.doSave(img);
 					immagini.add(img);
 				}
@@ -115,7 +115,7 @@ public class AddProduct extends HttpServlet {
 					part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);
 					
 					img.setNomeFile(name_image);
-					img.setProdotto(prodotto);
+					//img.setProdotto(prodotto);
 					imgDao.doSave(img);
 					immagini.add(img);
 				}
@@ -126,7 +126,7 @@ public class AddProduct extends HttpServlet {
 					part = request.getPart("file3");
 					name_image=extractFileName(part);
 					part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);img.setNomeFile(name_image);
-					img.setProdotto(prodotto);
+					//img.setProdotto(prodotto);
 					imgDao.doSave(img);
 					immagini.add(img);
 				}

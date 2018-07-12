@@ -245,3 +245,75 @@ function deleteProducts(){
 	
 }
 
+
+function returnProductsByFilter(parametro){
+	var tipoFiltro = parametro.substring(0,parametro.indexOf("_"));
+	var filtro = parametro.substring(parametro.indexOf("_")+1,parametro.length);
+	
+	var xh= new XMLHttpRequest;
+	xh.onreadystatechange=function(){
+		
+		if(xh.readyState==4 && xh.status==200){
+			var response = xh.responseText;
+			var arrProdottiJson = JSON.parse(response);
+			
+			
+			if(arrProdottiJson.length>0)
+		    {
+				//Prendo la lista html
+				var ul = document.getElementById("listProdotti");
+				for( var i in arrProdottiJson)
+				{
+					var li=document.createElement('li');
+					li.setAttribute("class","span3");
+					
+					var div = document.createElement("div");
+					div.setAttribute("class","product-box");
+					
+					var span = document.createElement("span");
+					span.setAttribute("class","sale_tag");
+					span.innerHTML="50%";
+					div.appendChild(span);
+					
+					var immagini = arrProdottiJson[i].immagini;
+					if(immagini!=null && immagini.length>0)
+					{
+						var aImg = document.createElement("a");
+						aImg.setAttribute("href","prodotto_dettagli.jsp?nome="+arrProdottiJson[i].nome+"&modello="+arrProdottiJson[i].modello);
+						var img = document.createElement("img");
+						img.setAttribute("src","themes/images/prodotti/"+arrProdottiJson[i].immagini[0].nome_file+"");
+						img.setAttribute("alt","");
+						img.setAttribute("src","themes/images/prodotti/"+arrProdottiJson[i].immagini[0].nome_file+"");
+						aImg.appendChild(img);
+						div.appendChild(aImg);
+					}
+					
+					
+					var aNomeProdotto = document.createElement("a");
+					aNomeProdotto.setAttribute("href","prodotto_dettagli.jsp?nome="+arrProdottiJson[i].nome+"&modello="+arrProdottiJson[i].modello);
+					aNomeProdotto.setAttribute("class","title");
+					aNomeProdotto.innerHTML= arrProdottiJson[i].nome;
+					div.appendChild(aNomeProdotto);
+					
+					var pPrezzo = document.createElement("p");
+					pPrezzo.setAttribute("class","price");
+					pPrezzo.innerHTML= "$"+arrProdottiJson[i].prezzo;
+					div.appendChild(pPrezzo);
+					//Aggiungo gli elementi al div
+					
+					
+					
+					
+					
+					li.appendChild(div);
+					
+				    ul.appendChild(li);
+				}
+		    }
+		}
+	}
+	
+	xh.open("GET","FindProdotti?tipoFiltro="+tipoFiltro+"&filtro="+filtro,true);
+	xh.send();
+	
+}

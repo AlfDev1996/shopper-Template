@@ -52,11 +52,14 @@ public synchronized ProdottoBean doRetriveByKey(int id)  {
 				
 				prodotto.setVariantiProdotto(varianti);
 				//Mi inizializzo la lista di immagini
-				ArrayList<ImmagineBean> immagini = new ArrayList<>();
+				
+				 ArrayList<ImmagineBean> immagini = new ArrayList<>();
 				ImmagineDAO immagineDAO=new ImmagineDAO();
 				immagini = immagineDAO.doRetriveByProdotto(prodotto);
 				
 				prodotto.setImmagini(immagini);
+				
+				
 				res.close();
 				return prodotto;
 			}
@@ -398,11 +401,16 @@ public synchronized ArrayList<ProdottoBean> doRetrieveAll(String orderBy){
 			
 			prodotto.setVariantiProdotto(varianti);
 			//Mi inizializzo la lista di immagini
-			ArrayList<ImmagineBean> immagini = new ArrayList<>();
+			
+			 ArrayList<ImmagineBean> immagini = new ArrayList<>();
 			ImmagineDAO immagineDAO=new ImmagineDAO();
 			immagini = immagineDAO.doRetriveByProdotto(prodotto);
 			
 			prodotto.setImmagini(immagini);
+			 
+			
+			
+			
 			
 			prodotti.add(prodotto);
 			

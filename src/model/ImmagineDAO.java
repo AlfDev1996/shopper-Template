@@ -31,16 +31,21 @@ public class ImmagineDAO {
 			img.setNomeFile(rs.getString("nome_file"));
 			
 			int id_prodotto= rs.getInt("id_prodotto") !=0 ? rs.getInt("id_utente"):0;
-			
-			if(id_prodotto!=0) {
+			/*
+			 if(id_prodotto!=0) {
 				ProdottoDAO prodottoDAO = new ProdottoDAO();
 				ProdottoBean prodotto = prodottoDAO.doRetriveByKey(id_prodotto);
-				if(prodotto != null && prodotto.getId_prodotto()>0)
+				
+				 if(prodotto != null && prodotto.getId_prodotto()>0)
 					img.setProdotto(prodotto);
 				else
 					img.setProdotto(null);
+				 
+				
 			
 			}
+			 */
+			
 
 			
 			return img;
@@ -89,15 +94,20 @@ public class ImmagineDAO {
 			
 			int id_prodotto= rs.getInt("id_prodotto") !=0 ? rs.getInt("id_utente"):0;
 			
-			if(id_prodotto!=0) {
+			/*
+			 if(id_prodotto!=0) {
 				ProdottoDAO prodottoDAO = new ProdottoDAO();
 				ProdottoBean prodotto = prodottoDAO.doRetriveByKey(id_prodotto);
-				if(prodotto != null && prodotto.getId_prodotto()>0)
+				
+				 if(prodotto != null && prodotto.getId_prodotto()>0)
 					img.setProdotto(prodotto);
 				else
 					img.setProdotto(null);
+				 
+				
 			
 			}
+			 */
 			immagini.add(img);
 			
 		}
@@ -133,11 +143,11 @@ public class ImmagineDAO {
 			
 			preparedStatement.setString(1, immagine.getNomeFile());
 			preparedStatement.setString(2,immagine.getDidascalia());
-			preparedStatement.setInt(3, immagine.getProdotto().getId_prodotto());
+			//preparedStatement.setInt(3, immagine.getProdotto().getId_prodotto());
 			
 			
 			 res= preparedStatement.executeUpdate();
-			 connection.commit();
+			 
 			
 			}catch(SQLException e) {
 				e.printStackTrace();
@@ -209,16 +219,20 @@ public class ImmagineDAO {
 			img.setIdImmagine(res.getInt("id_immagine"));
 			
 			int id_prodotto = res.getInt("id_prodotto");
-			if(id_prodotto!=0) {
+			/*
+			 if(id_prodotto!=0) {
 				ProdottoDAO prodotoDAO= new ProdottoDAO();
 				prodotto = prodotoDAO.doRetriveByKey(id_prodotto);
 				img.setProdotto(prodotto);
 				
 			}
+			 */
+			prodotto.setId_prodotto(id_prodotto);
+			//img.setProdotto(prodotto);
 			immagini.add(img);
 			
 		}
-		
+		res.close();
 		}catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -246,7 +260,7 @@ public class ImmagineDAO {
 		
 		preparedStatement.setString(1, immagine.getDidascalia());
 		preparedStatement.setString(2, immagine.getNomeFile());
-		preparedStatement.setInt(3, immagine.getProdotto().getId_prodotto());
+		//preparedStatement.setInt(3, immagine.getProdotto().getId_prodotto());
 		preparedStatement.setInt(4, immagine.getIdImmagine());
 		
 		res=preparedStatement.executeUpdate();
