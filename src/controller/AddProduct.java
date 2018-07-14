@@ -96,38 +96,45 @@ public class AddProduct extends HttpServlet {
 				ImmagineBean img=null;
 				ImmagineDAO imgDao=new ImmagineDAO();
 				
-				if(request.getPart("file1")!=null)
+				if(request.getPart("file1")!=null && request.getPart("file1").getSize()>0)
 				{
 					img= new ImmagineBean();
 					part = request.getPart("file1");
 					name_image=extractFileName(part);
-					part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);img.setNomeFile(name_image);
+					//part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);img.setNomeFile(name_image);
 					//img.setProdotto(prodotto);
+					img.setId_prodotto(prodotto.getId_prodotto());
 					imgDao.doSave(img);
+					part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);img.setNomeFile(name_image);
+					
 					immagini.add(img);
 				}
 				
-				if(request.getPart("file2")!=null)
+				if(request.getPart("file2")!=null && request.getPart("file2").getSize()>0)
 				{
 					img= new ImmagineBean();
 					part = request.getPart("file2");
 					name_image=extractFileName(part);
-					part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);
+					//part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);
 					
 					img.setNomeFile(name_image);
 					//img.setProdotto(prodotto);
+					img.setId_prodotto(prodotto.getId_prodotto());
 					imgDao.doSave(img);
+					part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);img.setNomeFile(name_image);
+					
 					immagini.add(img);
 				}
 				
-				if(request.getPart("file3")!=null)
+				if(request.getPart("file3")!=null && request.getPart("file3").getSize()>0)
 				{
 					img= new ImmagineBean();
 					part = request.getPart("file3");
 					name_image=extractFileName(part);
-					part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);img.setNomeFile(name_image);
 					//img.setProdotto(prodotto);
+					img.setId_prodotto(prodotto.getId_prodotto());
 					imgDao.doSave(img);
+					part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);img.setNomeFile(name_image);
 					immagini.add(img);
 				}
 			}

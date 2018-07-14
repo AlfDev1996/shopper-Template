@@ -143,7 +143,7 @@ public class ImmagineDAO {
 			
 			preparedStatement.setString(1, immagine.getNomeFile());
 			preparedStatement.setString(2,immagine.getDidascalia());
-			//preparedStatement.setInt(3, immagine.getProdotto().getId_prodotto());
+			preparedStatement.setInt(3, immagine.getId_prodotto());
 			
 			
 			 res= preparedStatement.executeUpdate();
@@ -155,6 +155,8 @@ public class ImmagineDAO {
 			}finally{
 				try {
 					preparedStatement.close();
+					connection.commit();
+					
 					DriverManagerConnectionPool.releaseConnection(connection);
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
@@ -260,7 +262,7 @@ public class ImmagineDAO {
 		
 		preparedStatement.setString(1, immagine.getDidascalia());
 		preparedStatement.setString(2, immagine.getNomeFile());
-		//preparedStatement.setInt(3, immagine.getProdotto().getId_prodotto());
+		preparedStatement.setInt(3, immagine.getId_prodotto());
 		preparedStatement.setInt(4, immagine.getIdImmagine());
 		
 		res=preparedStatement.executeUpdate();

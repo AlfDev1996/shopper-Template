@@ -287,6 +287,7 @@ function returnProductsByFilter(parametro){
 						var aImg = document.createElement("a");
 						aImg.setAttribute("href","prodotto_dettagli.jsp?nome="+arrProdottiJson[i].nome+"&modello="+arrProdottiJson[i].modello);
 						var img = document.createElement("img");
+						
 						img.setAttribute("src","themes/images/prodotti/"+arrProdottiJson[i].immagini[0].nome_file+"");
 						img.setAttribute("alt","");
 						img.setAttribute("src","themes/images/prodotti/"+arrProdottiJson[i].immagini[0].nome_file+"");

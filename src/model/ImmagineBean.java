@@ -59,6 +59,16 @@ public class ImmagineBean {
 
 
 
+	public int getId_prodotto() {
+		return id_prodotto;
+	}
+
+
+	public void setId_prodotto(int id_prodotto) {
+		this.id_prodotto = id_prodotto;
+	}
+
+
 	@Override
 	public String toString() {
 		return "ImmagineBean [id_immagine=" + id_immagine + ", nome_file=" + nome_file + ", didascalia=" + didascalia
@@ -68,7 +78,7 @@ public class ImmagineBean {
 
 
 
-	private int id_immagine;
+	private int id_immagine, id_prodotto;
 	private String nome_file, didascalia;
 	
 }

@@ -121,29 +121,19 @@ function submit(){
 		<!-- Qui inizia il menu principale  -->
 		<section class="navbar main-menu"> <!--  Inizio section menu -->
 		<div class="navbar-inner main-menu">
-			<a href="index.jsp" class="logo pull-left"><img
-				src="themes/images/logo.PNG" alt=""
+			<a href="index.jsp" class="logo pull-left"><img src="themes/images/logo.PNG" alt=""
 				style="width: 150px; height: 45px;"></a>
 			<!-- logo del sito  con posizionamento a sinistra tramite la classe pull-left -->
 			<nav id="menu" class="pull-right"> <!-- Il menu invece si posiziona a destra -->
 			<ul>
-				<li><a href="./products.html">Woman</a> <!-- categoria menu  -->
-					<ul>
-					<!-- sottocategoria -->
-						<li><a href="./products.html">Lacinia nibh</a></li>
-						<li><a href="./products.html">Eget molestie</a></li>
-						<li><a href="./products.html">Varius purus</a></li>
-					</ul></li>
+				<li><a href="./prodotti.jsp?filtro=sesso_F">Woman</a> <!-- categoria menu  --></li>
 				<li><a href="./prodotti.jsp?filtro=sesso_M">Man</a></li>
-				<li><a href="./products.html">Sport</a>
+				<li><a href="#">Brand</a>
 					<ul>
-						<li><a href="./products.html">Gifts and Tech</a></li>
-						<li><a href="./products.html">Ties and Hats</a></li>
-						<li><a href="./products.html">Cold Weather</a></li>
+						<li><a href="./prodotti.jsp?filtro=marca_Adidas">Adidas</a>
+						<li><a href="./prodotti.jsp?filtro=marca_Nike">Nike</a>
 					</ul></li>
-				<li><a href="./products.html">Hangbag</a></li>
-				<li><a href="./products.html">Best Seller</a></li>
-				<li><a href="./products.html">Top Seller</a></li>
+				<li><a href="./products.html">Piu' Venduti</a></li>
 			</ul>
 			</nav>
 		</div>

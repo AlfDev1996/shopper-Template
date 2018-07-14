@@ -353,7 +353,6 @@ public synchronized ArrayList<ProdottoBean> doRetriveByMarca(MarcaBean marca)  {
 	return prodotti;
 	}
 
-
 public synchronized ArrayList<ProdottoBean> doRetrieveAll(String orderBy){
 	ArrayList<ProdottoBean> prodotti = new ArrayList<>();
 	Connection connection = null;

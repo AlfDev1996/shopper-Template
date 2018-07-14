@@ -43,6 +43,9 @@
 <%@ include file="header.jsp" %>  
 
 
+			<h1> <%=
+			  getServletContext().getRealPath("/themes/images/prodotti")
+			%> </h1>
 
 			<%
 				if (request.getParameter("errore") != null && request.getParameter("errore").contains("Ops")) {

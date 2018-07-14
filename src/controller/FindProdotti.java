@@ -16,6 +16,8 @@ import org.json.simple.parser.JSONParser;
 
 import com.google.gson.Gson;
 
+import model.MarcaBean;
+import model.MarcaDAO;
 import model.ProdottoBean;
 import model.ProdottoDAO;
 
@@ -63,7 +65,26 @@ public class FindProdotti extends HttpServlet {
 					
 					System.out.println(jsonArray);
 				}
-			}
+			}else
+			 if(tipoFiltro.equalsIgnoreCase("marca"))
+			 {
+				 MarcaDAO mDao=new MarcaDAO();
+				 MarcaBean marca = mDao.doRetriveBynome(filtro);
+				 if(marca!=null && marca.getIdMarca()!=0)
+				 {
+					 prodottiFind= proDAO.doRetriveByMarca(marca);
+					 if(prodottiFind!=null && prodottiFind.size()>0)
+						{
+							Gson gson= new Gson();
+							String jsonArray = gson.toJson(prodottiFind);
+							out.append(jsonArray);
+							
+							System.out.println(jsonArray);
+						} 
+				 }
+				  
+			 }
+			 
 		}
 		else
 			//Nel caso in cui non gli passo filtro e tipo filtro significa che mi trovo nella ricerca di ModificaProdotto

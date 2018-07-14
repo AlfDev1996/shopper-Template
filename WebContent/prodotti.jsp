@@ -31,6 +31,7 @@
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 		
 		<script src="themes/js/prodotto.js"></script>
+		
 </head>
 
 <% String filtro = "";
@@ -44,12 +45,14 @@
 
 %>
 <body onload='returnProductsByFilter("<%=request.getParameter("filtro")%>")' >
+
+<%@ include file="header.jsp" %> 
 	
 <% UtenteBean user =(UtenteBean) session.getAttribute("utente"); %>
-<% if( user==null|| !user.getRuolo().equalsIgnoreCase("admin")){ response.sendRedirect("index.jsp");}  %>
+ <% //if( user==null|| !user.getRuolo().equalsIgnoreCase("admin")){ response.sendRedirect("index.jsp");}  %>  
 
 
-<%@ include file="header.jsp" %>  
+ 
 
 
 
