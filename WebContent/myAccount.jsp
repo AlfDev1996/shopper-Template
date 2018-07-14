@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
+    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -14,85 +14,96 @@
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <script src="themes/js/superfish.js"></script>
 <script src="themes/js/jquery.scrolltotop.js"></script>
+<script src="themes/js/user.js"></script>
+
+<% UtenteBean user =(UtenteBean) session.getAttribute("utente"); %>
+<% if( user==null|| !user.getRuolo().equalsIgnoreCase("admin")){ response.sendRedirect("index.jsp");}  %>
+
 </head>
-<body>
+<body onload='load("<%=user.getEmail()%>")' >
+
+
+
 
 	<%@ include file="header.jsp"%>
 	
 
-<form method="post" action="ModificaAccount">
-	<div class="row">
-		<div class="span6" style="margin-top: 5%;">
-			<hr style="border: solid;">
-			<h5> Informazioni personali</h5>
-			<hr style="border: solid;">
+
+	
+	
+	<div id="container" class="container reg">
+		<div id="row">
+			<div class="span6">
+				<p  class="float-left"> Nazione </p>
+			
+			
+				<input type="text" readonly="readonly" id="nazione"/>
+			</div>
 		</div>
-		<div class="span6"  style="margin-top: 5%;">
-			<hr style="border: solid;">
-			<h5> Informazioni di accesso</h5>
-			<hr style="border: solid;">
+		<div id="row">
+			<div class="span6">
+				<p  class="float-left"> Via </p>
+			
+			
+				<input type="text" readonly="readonly" id="via"/>
+			</div>
 		</div>
+			<div id="row">
+			<div class="span6">
+				<p class="float-left"> Citta </p>
+			
+			
+				<input type="text" readonly="readonly"  id="citta" />
+			</div>
+		</div>
+			<div id="row">
+			<div class="span6">
+				<p  class="float-left"> CAP </p>
+			
+			
+				<input type="text" readonly="readonly" id="cap"/>
+			</div>
+		</div>
+			<div id="row">
+			<div class="span6">
+				<p  class="float-left"> Provincia </p>
+			
+			
+				<input type="text" readonly="readonly" id="provincia" />
+			</div>
+		</div>
+			<div id="row">
+			<div class="span6">
+				<p  class="float-left"> Civico </p>
+			
+			
+				<input type="text" readonly="readonly" id="civico"/>
+			</div>
+		</div>
+		<div id="row">
+			<div class="span6">
+				<p  class="float-left"> Email </p>
+			
+			
+				<input type="text" readonly="readonly" id="email"/>
+			</div>
+			<div id="row">
+			<div class="span6">
+				<p  class="float-left"> Password </p>
+			
+			
+				<input type="password" readonly="readonly" id="password"/>
+			</div>
+		</div>
+		</div>
+		<input type="button" class="btn btn" value="Modifica" id="mod" onclick="enableMod(this)">
+		<input type="button" class="btn btn" value="Salva" id="save" onclick="save(this)" style="display:none;">
+	
 	</div>
 
-	<div class="row">
-	<!--  Tabella per informazioni Personali -->
-		<div class="span6 tp">
-		 <table style="float: left; width: 100%">
-		 <tr>
-		 	<td colspan="3"> Nome : </td>
-		 	<td  colspan="3" align="right">
-		 	 <input type=""> 
-		 	</td>
-		 </tr>
-		 <tr>
-		 	<td colspan="3"> Cognome : </td>
-		 	<td colspan="3" align="right">  </td>
-		 </tr>
-		 <tr>
-		 	<td colspan="3"> Indirizzo : </td>
-		 	<td colspan="3" align="right">  </td>
-		 </tr>
-		 <tr>
-		 	<td colspan="3"> Codice Postale : </td>
-		 	<td colspan="3" align="right">  </td>
-		 </tr>
-		 <tr>
-		 	<td colspan="3"> Citta' : </td>
-		 	<td colspan="3" align="right">  </td>
-		 </tr>
-		 <tr>
-		 	<td colspan="3"> Provincia : </td>
-		 	<td colspan="3" align="right">  </td>
-		 </tr>
-		</table>
-		
-		</div>
-	<!--  Tabella per informazioni di accesso -->
-		<div class="span6">
-		<table style="float: left; width: 100%">
-		 <tr>
-		 	<td colspan="3"> Email : </td>
-		 	<td colspan="3" align="right">  </td>
-		 </tr>
-		 <tr>
-		 	<td colspan="3"> Password : </td>
-		 	<td colspan="3" align="right">  </td>
-		 </tr>
-		 </table>
-		</div>
-	</div>
-	<div class="row bot" >
-		<div class="span6" align="right">
-			<input type="button" class="btn btn" value="Modifica">
-		</div>
-		<div class="span6" align="right">
-			<input type="button" class="btn btn" value="Modifica">
-		</div>
-	</div>
- </div>
 
 
 
-		<%@ include file="footer.jsp"%>
+<%@ include file="footer.jsp"%>
 </body>
 </html>

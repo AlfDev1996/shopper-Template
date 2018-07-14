@@ -79,7 +79,7 @@ public class accedi extends HttpServlet {
 	// se non ci sono stati errori -> forward alla home del sito
 	//se ci sono stati errori -> forward alla pagina di login/registrazione del sito
 	
-	System.out.println(error+"ss");
+	System.out.println(error+"sss");
 	if (error.equals("")) {
 		
 		HttpSession session = request.getSession();

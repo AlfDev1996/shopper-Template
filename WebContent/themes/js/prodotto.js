@@ -250,6 +250,12 @@ function returnProductsByFilter(parametro){
 	var tipoFiltro = parametro.substring(0,parametro.indexOf("_"));
 	var filtro = parametro.substring(parametro.indexOf("_")+1,parametro.length);
 	
+	if(filtro=="M"){
+		var x = document.getElementById("title");
+		x.innerHTML="Scarpe Uomo";
+		
+	}
+	
 	var xh= new XMLHttpRequest;
 	xh.onreadystatechange=function(){
 		

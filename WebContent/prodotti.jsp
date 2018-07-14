@@ -74,7 +74,7 @@
 				
 			<section class="header_text sub">
 			<img class="pageBanner" src="themes/images/pageBanner.png" alt="New products" >
-				<h4><span>New products</span></h4>
+				<h4><span id="title"></span></h4>
 			</section>
 			<section class="main-content">
 				
