@@ -50,10 +50,8 @@
 
 <!--   <body onload='returnProductsByFilter("<%=request.getParameter("filtro")%>")' > -->
 
-<body onload='test(<%=request.getAttribute("prodotti")%>)' >
-
+<body onload='returnProducts(<%=request.getAttribute("prodotti")%>)' >
 <%@ include file="header.jsp" %> 
-
 		
 <% UtenteBean user =(UtenteBean) session.getAttribute("utente"); %>	
 
@@ -79,7 +77,8 @@
 			<div class="alert alert-success" role="alert">
 				<strong><%=request.getParameter("errore")%></strong>
 			</div>
-			<% } %>
+			<%
+				} %>
 				
 				
 			<section class="header_text sub">

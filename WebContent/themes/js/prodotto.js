@@ -2,10 +2,6 @@
  * 
  */
 
-
-
-
-
 function find(){
 	
 	deleteRowTable();
@@ -216,10 +212,6 @@ function modifica(object, salva){
 			}
 	}
 	
-	
-		
-	
-	
 }
 
 function deleteProducts(){
@@ -245,7 +237,7 @@ function deleteProducts(){
 	
 }
 
-function test(prodotti){
+function returnProducts(prodotti){
 
 	//var arrProdottiJson = JSON.parse(prodotti);
 	if(prodotti.length>0)

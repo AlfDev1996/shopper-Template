@@ -125,14 +125,12 @@ function submit(){
 			<!-- logo del sito  con posizionamento a sinistra tramite la classe pull-left -->
 			<nav id="menu" class="pull-right"> <!-- Il menu invece si posiziona a destra -->
 			<ul>
-				<li><a href="./prodotti.jsp?filtro=sesso_F">Woman</a> <!-- categoria menu  --></li>
-				<li><a href="./prodotti.jsp?filtro=sesso_M">Man</a></li>
-				<li><a href="FindProdotti?tipoFiltro=sesso&filtro=M">PROVA MAN</a></li>
-				<li><a href="FindProdotti?tipoFiltro=sesso&filtro=M">PROVA WOMAN</a></li>
+				<li><a href="FindProdotti?tipoFiltro=sesso&filtro=F">Woman</a></li>
+				<li><a href="FindProdotti?tipoFiltro=sesso&filtro=M">Man</a></li>
 				<li><a href="#">Brand</a>
 					<ul>
-						<li><a href="./prodotti.jsp?filtro=marca_Adidas">Adidas</a>
-						<li><a href="./prodotti.jsp?filtro=marca_Nike">Nike</a>
+						<li><a href="FindProdotti?tipoFiltro=marca&filtro=adidas">Adidas</a>
+						<li><a href="FindProdotti?tipoFiltro=marca&filtro=nike">Nike</a>
 					</ul></li>
 				<li><a href="./products.html">Piu' Venduti</a></li>
 			</ul>

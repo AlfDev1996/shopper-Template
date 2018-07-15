@@ -58,15 +58,14 @@ public class FindProdotti extends HttpServlet {
 			if(tipoFiltro.equalsIgnoreCase("sesso"))
 			{
 				prodottiFind= proDAO.doRetriveBySesso(filtro);
-				if(prodottiFind!=null && prodottiFind.size()>0)
+				if(prodottiFind!=null )
 				{
-					Gson gson= new Gson();
+					if( prodottiFind.size()>0) {
+						Gson gson= new Gson();
+						String jsonArray = gson.toJson(prodottiFind);
+						request.setAttribute("prodotti", jsonArray);	
+					}
 					
-					String jsonArray = gson.toJson(prodottiFind);
-					
-					//JSONArray arr = (JSONArray) prodottiFind.iterator();
-					
-					request.setAttribute("prodotti", jsonArray);
 					
 					RequestDispatcher requestDispatcher = request.getRequestDispatcher("./prodotti.jsp");
 					requestDispatcher.forward(request, response);
@@ -83,13 +82,18 @@ public class FindProdotti extends HttpServlet {
 				 if(marca!=null && marca.getIdMarca()!=0)
 				 {
 					 prodottiFind= proDAO.doRetriveByMarca(marca);
-					 if(prodottiFind!=null && prodottiFind.size()>0)
+					 if(prodottiFind!=null )
 						{
-							Gson gson= new Gson();
-							String jsonArray = gson.toJson(prodottiFind);
-							out.append(jsonArray);
+						 if( prodottiFind.size()>0) {
+								Gson gson= new Gson();
+								String jsonArray = gson.toJson(prodottiFind);
+								request.setAttribute("prodotti", jsonArray);	
+							}
+						 
+							RequestDispatcher requestDispatcher = request.getRequestDispatcher("./prodotti.jsp");
+							requestDispatcher.forward(request, response);
 							
-							System.out.println(jsonArray);
+
 						} 
 				 }
 				  
