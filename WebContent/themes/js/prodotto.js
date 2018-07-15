@@ -294,8 +294,30 @@ function returnProducts(prodotti){
 		    ul.appendChild(li);
 		}
     }
+	
+	inizializzaFiltri();
 }
 
+function inizializzaFiltri(){
+	
+	//Popolo la lista Marche
+	
+	popolaBrand();
+	
+}
+
+function popolaBrand(){
+	
+	var xh= new XMLHttpRequest;
+	xh.onreadystatechange=function(){
+		if(xh.readyState==4 && xh.status==200){
+			var response = xh.responseText;
+		}
+	}
+	xh.open("GET","ServletMarca?tipoRicerca=allBrands",true);
+	xh.send();
+	
+}
 
 function returnProductsByFilter(parametro){
 	

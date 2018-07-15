@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
+
 import model.MarcaBean;
 import model.MarcaDAO;
 
@@ -34,21 +36,41 @@ public class ServletMarca extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		System.out.println("oi");
-		PrintWriter out = response.getWriter();
-		System.out.println(request.getParameter("status"));
-		if(request.getParameter("status").equalsIgnoreCase("ok")) {
-		MarcaDAO dao = new MarcaDAO();
-		ArrayList<MarcaBean> marche = new ArrayList<>();
 		
-		marche = dao.doRetrieveAll("id");
-		
-		for(MarcaBean s:marche) {
-			out.append("<option "+"value ="+s.getNome()+">"+s.getNome()+"</option>");
-			System.out.println(s.getNome());
+		String tipoRicerca= request.getParameter("tipoRicerca");
+		if(tipoRicerca!=null && tipoRicerca.equalsIgnoreCase("allBrands"))
+		{
+			MarcaDAO mdao=new MarcaDAO();
+			ArrayList<MarcaBean> marche= mdao.doRetrieveAll(null);
+			if(marche!=null && marche.size()>0)
+			{
+				Gson gson= new Gson();
+				String jsonArray = gson.toJson(marche);
+				response.getWriter().append(jsonArray);
+			}
+			
+		}
+		else
+		{
+			PrintWriter out = response.getWriter();
+			System.out.println(request.getParameter("status"));
+			if(request.getParameter("status").equalsIgnoreCase("ok")) {
+			MarcaDAO dao = new MarcaDAO();
+			ArrayList<MarcaBean> marche = new ArrayList<>();
+			
+			marche = dao.doRetrieveAll("id");
+			
+			for(MarcaBean s:marche) {
+				out.append("<option "+"value ="+s.getNome()+">"+s.getNome()+"</option>");
+				System.out.println(s.getNome());
+			}
 		}
 		
+		
+		
 	}
+		
+		
 	}
 
 	/**
