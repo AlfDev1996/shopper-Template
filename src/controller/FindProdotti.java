@@ -60,17 +60,15 @@ public class FindProdotti extends HttpServlet {
 				prodottiFind= proDAO.doRetriveBySesso(filtro);
 				if(prodottiFind!=null && prodottiFind.size()>0)
 				{
-					//Gson gson= new Gson();
+					Gson gson= new Gson();
 					
-					//String jsonArray = gson.toJson(prodottiFind);
+					String jsonArray = gson.toJson(prodottiFind);
 					
 					//JSONArray arr = (JSONArray) prodottiFind.iterator();
 					
-					System.out.println(prodottiFind.get(0).getNome()+"<------");
+					request.setAttribute("prodotti", jsonArray);
 					
-					request.setAttribute("prodotti", prodottiFind);
-					
-					RequestDispatcher requestDispatcher = request.getRequestDispatcher("./speriamo.jsp");
+					RequestDispatcher requestDispatcher = request.getRequestDispatcher("./prodotti.jsp");
 					requestDispatcher.forward(request, response);
 					
 					//out.append(jsonArray);
