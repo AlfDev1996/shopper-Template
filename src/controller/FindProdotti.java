@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -59,11 +60,22 @@ public class FindProdotti extends HttpServlet {
 				prodottiFind= proDAO.doRetriveBySesso(filtro);
 				if(prodottiFind!=null && prodottiFind.size()>0)
 				{
-					Gson gson= new Gson();
-					String jsonArray = gson.toJson(prodottiFind);
-					out.append(jsonArray);
+					//Gson gson= new Gson();
 					
-					System.out.println(jsonArray);
+					//String jsonArray = gson.toJson(prodottiFind);
+					
+					//JSONArray arr = (JSONArray) prodottiFind.iterator();
+					
+					System.out.println(prodottiFind.get(0).getNome()+"<------");
+					
+					request.setAttribute("prodotti", prodottiFind);
+					
+					RequestDispatcher requestDispatcher = request.getRequestDispatcher("./speriamo.jsp");
+					requestDispatcher.forward(request, response);
+					
+					//out.append(jsonArray);
+					
+					//System.out.println(jsonArray);
 				}
 			}else
 			 if(tipoFiltro.equalsIgnoreCase("marca"))
@@ -91,6 +103,21 @@ public class FindProdotti extends HttpServlet {
 			//Lato Customizzatore
 		{
 			String nome = request.getParameter("nome");
+			String modello = request.getParameter("modello");
+			if(modello!=null && nome!=null)
+			{
+				ProdottoDAO prodottoDao =  new ProdottoDAO();
+				ProdottoBean prodotto = prodottoDao.doRetriveByNomeAndModello(nome, modello);
+				if(prodotto!=null)
+				{
+					Gson gson = new Gson();
+					String json = gson.toJson(prodotto);
+					out.append(json);
+					
+					System.out.println(json);
+				}
+				
+			}else
 			if(nome!=null )
 			{
 				

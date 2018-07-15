@@ -103,9 +103,10 @@ public class AddProduct extends HttpServlet {
 					name_image=extractFileName(part);
 					//part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);img.setNomeFile(name_image);
 					//img.setProdotto(prodotto);
+					img.setNomeFile(name_image);
 					img.setId_prodotto(prodotto.getId_prodotto());
 					imgDao.doSave(img);
-					part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);img.setNomeFile(name_image);
+					part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);
 					
 					immagini.add(img);
 				}
@@ -121,7 +122,7 @@ public class AddProduct extends HttpServlet {
 					//img.setProdotto(prodotto);
 					img.setId_prodotto(prodotto.getId_prodotto());
 					imgDao.doSave(img);
-					part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);img.setNomeFile(name_image);
+					part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);
 					
 					immagini.add(img);
 				}
@@ -132,9 +133,10 @@ public class AddProduct extends HttpServlet {
 					part = request.getPart("file3");
 					name_image=extractFileName(part);
 					//img.setProdotto(prodotto);
+					img.setNomeFile(name_image);
 					img.setId_prodotto(prodotto.getId_prodotto());
 					imgDao.doSave(img);
-					part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);img.setNomeFile(name_image);
+					part.write(getServletContext().getRealPath("/themes/images/prodotti")+"/"+name_image);
 					immagini.add(img);
 				}
 			}

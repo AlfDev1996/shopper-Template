@@ -33,6 +33,8 @@ public synchronized ProdottoBean doRetriveByKey(int id)  {
 				prodotto.setModello(res.getString("modello"));
 				prodotto.setPrezzo(res.getDouble("prezzo"));
 				prodotto.setSesso(res.getString("sesso"));
+				prodotto.setTaglie(res.getString("taglie"));
+				prodotto.setQuantita(res.getInt("quantita"));
 				
 				int id_marca = res.getInt("id_marca") != 0 ? res.getInt("id_marca") : 0;
 				if(id_marca!=0)
@@ -46,11 +48,11 @@ public synchronized ProdottoBean doRetriveByKey(int id)  {
 				}
 				
 				//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
-				ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
-				VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
-				varianti = varianteDAO.doRetriveByProdotto(prodotto);
+				//ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
+				//VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
+				//varianti = varianteDAO.doRetriveByProdotto(prodotto);
 				
-				prodotto.setVariantiProdotto(varianti);
+				//prodotto.setVariantiProdotto(varianti);
 				//Mi inizializzo la lista di immagini
 				
 				 ArrayList<ImmagineBean> immagini = new ArrayList<>();
@@ -86,6 +88,7 @@ public synchronized ArrayList<ProdottoBean> doRetriveBySesso(String sesso)  {
 	ArrayList<ProdottoBean> prodotti = new ArrayList<>();
 	try {
 		//DriverManagerConnectionPool.getConnection().commit();
+	
 		conn = (Connection) DriverManagerConnectionPool.getConnection();
 		ps=(PreparedStatement) conn.prepareStatement("SELECT * from prodotto where sesso = ? ");
 		ps.setString(1, sesso);
@@ -103,6 +106,8 @@ public synchronized ArrayList<ProdottoBean> doRetriveBySesso(String sesso)  {
 			prodotto.setModello(res.getString("modello"));
 			prodotto.setPrezzo(res.getDouble("prezzo"));
 			prodotto.setSesso(res.getString("sesso"));
+			prodotto.setTaglie(res.getString("taglie"));
+			prodotto.setQuantita(res.getInt("quantita"));
 			int id_marca = res.getInt("id_marca") != 0 ? res.getInt("id_marca") : 0;
 			if(id_marca!=0)
 			{
@@ -115,11 +120,11 @@ public synchronized ArrayList<ProdottoBean> doRetriveBySesso(String sesso)  {
 			}
 			
 			//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
-			ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
-			VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
-			varianti = varianteDAO.doRetriveByProdotto(prodotto);
+			//ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
+			//VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
+			//varianti = varianteDAO.doRetriveByProdotto(prodotto);
 			
-			prodotto.setVariantiProdotto(varianti);
+			//prodotto.setVariantiProdotto(varianti);
 			
 			//Mi inizializzo la lista di immagini
 			ArrayList<ImmagineBean> immagini = new ArrayList<>();
@@ -131,10 +136,12 @@ public synchronized ArrayList<ProdottoBean> doRetriveBySesso(String sesso)  {
 		}
 
 		res.close();
+		
 	}catch(SQLException ex) {
 		ex.printStackTrace();
 	}finally{
 		try {
+			//conn.commit();
 			ps.close();
 			
 			DriverManagerConnectionPool.releaseConnection(conn);
@@ -171,6 +178,8 @@ public synchronized ArrayList<ProdottoBean> doRetriveByNome(String nome)  {
 			prodotto.setModello(res.getString("modello"));
 			prodotto.setPrezzo(res.getDouble("prezzo"));
 			prodotto.setSesso(res.getString("sesso"));
+			prodotto.setTaglie(res.getString("taglie"));
+			prodotto.setQuantita(res.getInt("quantita"));
 			int id_marca = res.getInt("id_marca") != 0 ? res.getInt("id_marca") : 0;
 			if(id_marca!=0)
 			{
@@ -183,11 +192,11 @@ public synchronized ArrayList<ProdottoBean> doRetriveByNome(String nome)  {
 			}
 			
 			//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
-			ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
-			VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
-			varianti = varianteDAO.doRetriveByProdotto(prodotto);
+			//ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
+			//VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
+			//varianti = varianteDAO.doRetriveByProdotto(prodotto);
 			
-			prodotto.setVariantiProdotto(varianti);
+			//prodotto.setVariantiProdotto(varianti);
 			
 			//Mi inizializzo la lista di immagini
 			ArrayList<ImmagineBean> immagini = new ArrayList<>();
@@ -240,6 +249,8 @@ public synchronized ProdottoBean doRetriveByNomeAndModello(String nome, String m
 			prodotto.setModello(res.getString("modello"));
 			prodotto.setPrezzo(res.getDouble("prezzo"));
 			prodotto.setSesso(res.getString("sesso"));
+			prodotto.setTaglie(res.getString("taglie"));
+			prodotto.setQuantita(res.getInt("quantita"));
 			int id_marca = res.getInt("id_marca") != 0 ? res.getInt("id_marca") : 0;
 			if(id_marca!=0)
 			{
@@ -252,11 +263,11 @@ public synchronized ProdottoBean doRetriveByNomeAndModello(String nome, String m
 			}
 			
 			//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
-			ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
-			VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
-			varianti = varianteDAO.doRetriveByProdotto(prodotto);
+			//ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
+			//VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
+			//varianti = varianteDAO.doRetriveByProdotto(prodotto);
 			
-			prodotto.setVariantiProdotto(varianti);
+			//prodotto.setVariantiProdotto(varianti);
 			
 			
 			//Mi inizializzo la lista di immagini
@@ -309,6 +320,8 @@ public synchronized ArrayList<ProdottoBean> doRetriveByMarca(MarcaBean marca)  {
 			prodotto.setModello(res.getString("modello"));
 			prodotto.setPrezzo(res.getDouble("prezzo"));
 			prodotto.setSesso(res.getString("sesso"));
+			prodotto.setTaglie(res.getString("taglie"));
+			prodotto.setQuantita(res.getInt("quantita"));
 			int id_marca = res.getInt("id_marca") != 0 ? res.getInt("id_marca") : 0;
 			if(id_marca!=0)
 			{
@@ -321,11 +334,11 @@ public synchronized ArrayList<ProdottoBean> doRetriveByMarca(MarcaBean marca)  {
 			}
 			
 			//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
-			ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
-			VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
-			varianti = varianteDAO.doRetriveByProdotto(prodotto);
+			//ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
+			//VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
+			//varianti = varianteDAO.doRetriveByProdotto(prodotto);
 			
-			prodotto.setVariantiProdotto(varianti);
+			//prodotto.setVariantiProdotto(varianti);
 			
 			//Mi inizializzo la lista di immagini
 			ArrayList<ImmagineBean> immagini = new ArrayList<>();
@@ -382,6 +395,8 @@ public synchronized ArrayList<ProdottoBean> doRetrieveAll(String orderBy){
 			prodotto.setModello(res.getString("modello"));
 			prodotto.setPrezzo(res.getDouble("prezzo"));
 			prodotto.setSesso(res.getString("sesso"));
+			prodotto.setTaglie(res.getString("taglie"));
+			prodotto.setQuantita(res.getInt("quantita"));
 			int id_marca = res.getInt("id_marca") != 0 ? res.getInt("id_marca") : 0;
 			if(id_marca!=0)
 			{
@@ -394,11 +409,11 @@ public synchronized ArrayList<ProdottoBean> doRetrieveAll(String orderBy){
 			}
 			
 			//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
-			ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
-			VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
-			varianti = varianteDAO.doRetriveByProdotto(prodotto);
+			//ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
+			//VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
+			//varianti = varianteDAO.doRetriveByProdotto(prodotto);
 			
-			prodotto.setVariantiProdotto(varianti);
+			//prodotto.setVariantiProdotto(varianti);
 			//Mi inizializzo la lista di immagini
 			
 			 ArrayList<ImmagineBean> immagini = new ArrayList<>();
@@ -438,7 +453,7 @@ public synchronized boolean doSave(ProdottoBean prodotto) {
 	{
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;	
-		String sqlInsert = "Insert into prodotto (nome,descrizione_breve,descrizione_estesa,tags,modello,prezzo,sesso,id_marca) values (?,?,?,?,?,?,?,?) ";
+		String sqlInsert = "Insert into prodotto (nome,descrizione_breve,descrizione_estesa,tags,modello,prezzo,sesso,id_marca,taglie,quantita) values (?,?,?,?,?,?,?,?,?,?) ";
 		
 		try {
 			
@@ -453,6 +468,8 @@ public synchronized boolean doSave(ProdottoBean prodotto) {
 			preparedStatement.setDouble(6, prodotto.getPrezzo());
 			preparedStatement.setString(7, prodotto.getSesso());
 			preparedStatement.setInt(8, prodotto.getMarca().getIdMarca());
+			preparedStatement.setString(9, prodotto.getTaglie());
+			preparedStatement.setInt(10, prodotto.getQuantita());
 			
 			preparedStatement.executeUpdate();
 			
@@ -463,8 +480,8 @@ public synchronized boolean doSave(ProdottoBean prodotto) {
 			return false;
 		}finally{
 			try {
-				preparedStatement.close();
 				connection.commit();
+				preparedStatement.close();
 				DriverManagerConnectionPool.releaseConnection(connection);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -517,7 +534,7 @@ public synchronized boolean doUpdate(ProdottoBean prodotto) {
 	Connection connection = null;
 	PreparedStatement preparedStatement = null;
 	int res=0;
-	String sqlUpdate = "UPDATE prodotto SET nome = ? , descrizione_breve = ? , descrizione_estesa = ? , tags = ? , modello = ? , prezzo = ? , sesso = ? , id_marca = ?  where id_prodotto = ?";
+	String sqlUpdate = "UPDATE prodotto SET nome = ? , descrizione_breve = ? , descrizione_estesa = ? , tags = ? , modello = ? , prezzo = ? , sesso = ? , id_marca = ? , taglie = ? , quantita = ? where id_prodotto = ?";
 	try {
 		connection = (Connection) DriverManagerConnectionPool.getConnection();
 		preparedStatement=(PreparedStatement) connection.prepareStatement(sqlUpdate);
@@ -530,7 +547,9 @@ public synchronized boolean doUpdate(ProdottoBean prodotto) {
 		preparedStatement.setDouble(6, prodotto.getPrezzo());
 		preparedStatement.setString(7, prodotto.getSesso());
 		preparedStatement.setInt(8, prodotto.getMarca().getIdMarca());
-		preparedStatement.setInt(9, prodotto.getId_prodotto());
+		preparedStatement.setString(9, prodotto.getTaglie());
+		preparedStatement.setInt(10, prodotto.getQuantita());
+		preparedStatement.setInt(11, prodotto.getId_prodotto());
 		
 		res = preparedStatement.executeUpdate();
 		connection.commit();

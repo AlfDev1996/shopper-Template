@@ -245,8 +245,68 @@ function deleteProducts(){
 	
 }
 
+function test(prodotti){
+
+	//var arrProdottiJson = JSON.parse(prodotti);
+	if(prodotti.length>0)
+    {
+
+		//Prendo la lista html
+		var ul = document.getElementById("listProdotti");
+		for( var i in prodotti)
+		{
+			var li=document.createElement('li');
+			li.setAttribute("class","span3");
+			
+			var div = document.createElement("div");
+			div.setAttribute("class","product-box");
+			
+			var span = document.createElement("span");
+			span.setAttribute("class","sale_tag");
+			span.innerHTML="50%";
+			div.appendChild(span);
+			
+			var immagini = prodotti[i].immagini;
+			if(immagini!=null && immagini.length>0)
+			{
+				var aImg = document.createElement("a");
+				aImg.setAttribute("href","prodotto_dettagli.jsp?nome="+prodotti[i].nome+"&modello="+prodotti[i].modello);
+				var img = document.createElement("img");
+				img.setAttribute("src","themes/images/prodotti/"+prodotti[i].immagini[0].nome_file+"");
+				img.setAttribute("alt","");
+				img.setAttribute("src","themes/images/prodotti/"+prodotti[i].immagini[0].nome_file+"");
+				aImg.appendChild(img);
+				div.appendChild(aImg);
+			}
+			
+			
+			var aNomeProdotto = document.createElement("a");
+			aNomeProdotto.setAttribute("href","prodotto_dettagli.jsp?nome="+prodotti[i].nome+"&modello="+prodotti[i].modello);
+			aNomeProdotto.setAttribute("class","title");
+			aNomeProdotto.innerHTML= prodotti[i].nome;
+			div.appendChild(aNomeProdotto);
+			
+			var pPrezzo = document.createElement("p");
+			pPrezzo.setAttribute("class","price");
+			pPrezzo.innerHTML= "&euro;"+prodotti[i].prezzo;
+			div.appendChild(pPrezzo);
+			//Aggiungo gli elementi al div
+			
+			
+			
+			
+			
+			li.appendChild(div);
+			
+		    ul.appendChild(li);
+		}
+    }
+}
 
 function returnProductsByFilter(parametro){
+	
+	var s="<%=sss%>";
+	alert(s);
 	var tipoFiltro = parametro.substring(0,parametro.indexOf("_"));
 	var filtro = parametro.substring(parametro.indexOf("_")+1,parametro.length);
 	
@@ -287,7 +347,6 @@ function returnProductsByFilter(parametro){
 						var aImg = document.createElement("a");
 						aImg.setAttribute("href","prodotto_dettagli.jsp?nome="+arrProdottiJson[i].nome+"&modello="+arrProdottiJson[i].modello);
 						var img = document.createElement("img");
-						
 						img.setAttribute("src","themes/images/prodotti/"+arrProdottiJson[i].immagini[0].nome_file+"");
 						img.setAttribute("alt","");
 						img.setAttribute("src","themes/images/prodotti/"+arrProdottiJson[i].immagini[0].nome_file+"");
@@ -304,7 +363,7 @@ function returnProductsByFilter(parametro){
 					
 					var pPrezzo = document.createElement("p");
 					pPrezzo.setAttribute("class","price");
-					pPrezzo.innerHTML= "$"+arrProdottiJson[i].prezzo;
+					pPrezzo.innerHTML= "&euro;"+arrProdottiJson[i].prezzo;
 					div.appendChild(pPrezzo);
 					//Aggiungo gli elementi al div
 					
@@ -321,6 +380,85 @@ function returnProductsByFilter(parametro){
 	}
 	
 	xh.open("GET","FindProdotti?tipoFiltro="+tipoFiltro+"&filtro="+filtro,true);
+	xh.send();
+	
+}
+
+function returnProductByNomeAndModello(nome,modello){
+	
+	var xh= new XMLHttpRequest;
+	xh.onreadystatechange=function(){
+		
+		if(xh.readyState==4 && xh.status==200){
+			var response = xh.responseText;
+			var prodotto = JSON.parse(response);
+			
+			
+			if(prodotto!=null)
+		    {
+				var marca = document.getElementById("marca");
+				var disponibilita = document.getElementById("disponibilita");
+				var prezzo = document.getElementById("prezzo");
+				marca.innerHTML= prodotto.marca.nome;
+				disponibilita.innerHTML = prodotto.quantita > 0 ? "Disponibile" : "Esaurito" ;
+				prezzo.innerHTML = "&euro;"+prodotto.prezzo;
+				
+				var img1=document.getElementById("img1");
+				var img2=document.getElementById("img2");
+				var img3=document.getElementById("img3");
+				if(prodotto.immagini!=null && prodotto.immagini.length>0)
+				{
+					if(prodotto.immagini[0]!=null && prodotto.immagini[0].nome_file!="")
+						img1.setAttribute("src","themes/images/prodotti/"+prodotto.immagini[0].nome_file);
+					
+					else
+						img1.parentElement.setAttribute("style","dysplay:none;");
+					
+					if(prodotto.immagini[1]!=null && prodotto.immagini[1].nome_file!="")
+						img2.setAttribute("src","themes/images/prodotti/"+prodotto.immagini[1].nome_file);
+					
+					else
+						img2.parentElement.setAttribute("style","dysplay:none;");
+					
+					if(prodotto.immagini[2]!=null && prodotto.immagini[2].nome_file!="")
+						img3.setAttribute("src","themes/images/prodotti/"+prodotto.immagini[2].nome_file);
+					else
+						img3.parentElement.setAttribute("style","dysplay:none;");
+				}else
+				{
+					img1.parentElement.setAttribute("style","dysplay:none;");
+					img2.parentElement.setAttribute("style","dysplay:none;");
+					img3.parentElement.setAttribute("style","dysplay:none;");
+				}
+				
+				if(prodotto.taglie!=null && prodotto.taglie.length>0){
+					var taglie = document.getElementById("selectTaglie");
+					var res= prodotto.taglie.split(",");
+					for (i=0; i<res.length; ++i)
+						{	var option = document.createElement("option");
+							option.text = res[i]+"";
+							taglie.add(option);
+						
+						
+						}
+					
+					taglie= document.getElementById("taglie");
+					taglie.innerHTML= prodotto.taglie;
+					
+					
+				}
+				
+			if(prodotto.descrizione_estesa!=null){
+				var descrizione_lunga= document.getElementById("descrizione_lunga");
+				descrizione_lunga.innerHTML = prodotto.descrizione_estesa;
+				
+			}
+			
+		    }
+		}
+	}
+	
+	xh.open("GET","FindProdotti?nome="+nome+"&modello="+modello,true);
 	xh.send();
 	
 }
