@@ -81,8 +81,8 @@ function submit(){
 						<li><a href="#">Ciao, <%= us.getNome() %></a></li>
 						
 						
-						<%if(us.getRuolo().equalsIgnoreCase("admin")){ %>
-							<nav id="menu" class="pull-right">
+					 	<%if(us.getRuolo().equalsIgnoreCase("admin")){ %>  
+						 	<nav id="menu" class="pull-right">
 								<ul>
 								<li>Funzioni Admin</a>
 								<ul>
@@ -90,8 +90,10 @@ function submit(){
 								<li><a href="AggiungiArticolo.jsp">Aggiungi Articolo</a></li>
 								</ul></li>
 								</ul>
-						
+						</nav>
 						<%} %>
+					
+						
 						
 						
 						<span style="float: right;">

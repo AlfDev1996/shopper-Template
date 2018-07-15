@@ -47,6 +47,7 @@
 <body onload='returnProductsByFilter("<%=request.getParameter("filtro")%>")' >
 
 <%@ include file="header.jsp" %> 
+
 	
 <% UtenteBean user =(UtenteBean) session.getAttribute("utente"); %>
  <% //if( user==null|| !user.getRuolo().equalsIgnoreCase("admin")){ response.sendRedirect("index.jsp");}  %>  
