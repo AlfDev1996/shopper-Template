@@ -41,11 +41,7 @@
 		
 	</head>
     <body>	
-    
-    											
-		<%@ include file="header.jsp" %>  
-			
-			
+    	<%@ include file="header.jsp" %>  
 			
 			<!-- Inizio section slider -->
 			<section  class="homepage-slider" id="home-slider">  <!--  Slider, immagini che scorrono sulla home page, tutto gia implementato libreria indicata nell'header -->

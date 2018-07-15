@@ -35,7 +35,6 @@ public class ServletMarca extends HttpServlet {
 	 */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
 		
 		String tipoRicerca= request.getParameter("tipoRicerca");
 		if(tipoRicerca!=null && tipoRicerca.equalsIgnoreCase("allBrands"))
@@ -47,8 +46,8 @@ public class ServletMarca extends HttpServlet {
 				Gson gson= new Gson();
 				String jsonArray = gson.toJson(marche);
 				response.getWriter().append(jsonArray);
+				System.out.println(jsonArray);
 			}
-			
 		}
 		else
 		{

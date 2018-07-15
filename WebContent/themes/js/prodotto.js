@@ -237,15 +237,34 @@ function deleteProducts(){
 	
 }
 
-function returnProducts(prodotti){
+function returnProducts(prodotti,refresh){
+	alert("return prod senza numPage");
+	returnProducts(prodotti,refresh,1);
+	
+}
 
+function returnProducts(prodotti,refresh,numPage){
+	
+	
+	
+	if(numPage==undefined)
+		numPage=1;
+	
 	//var arrProdottiJson = JSON.parse(prodotti);
 	if(prodotti.length>0)
     {
 
 		//Prendo la lista html
 		var ul = document.getElementById("listProdotti");
-		for( var i in prodotti)
+		//Svuoto la lista
+		//JQUERY
+		$(ul).empty();
+		
+		var maxProducts = numPage*9;
+		
+		//Riempio la lista
+		//for( var i in prodotti)
+		for(var i = maxProducts-9 ; (i < prodotti.length && i < maxProducts) ; ++i)
 		{
 			var li=document.createElement('li');
 			li.setAttribute("class","span3");
@@ -253,9 +272,10 @@ function returnProducts(prodotti){
 			var div = document.createElement("div");
 			div.setAttribute("class","product-box");
 			
+			
 			var span = document.createElement("span");
 			span.setAttribute("class","sale_tag");
-			span.innerHTML="50%";
+			span.innerHTML="";
 			div.appendChild(span);
 			
 			var immagini = prodotti[i].immagini;
@@ -294,15 +314,20 @@ function returnProducts(prodotti){
 		    ul.appendChild(li);
 		}
     }
-	
-	inizializzaFiltri();
+	if(refresh==true)
+	 inizializzaFiltri();
 }
 
 function inizializzaFiltri(){
 	
 	//Popolo la lista Marche
-	
 	popolaBrand();
+	//Inserisco 3 articoli + Venduti
+	popolaBestSeller();
+	
+}
+
+function popolaBestSeller(){
 	
 }
 
@@ -312,6 +337,53 @@ function popolaBrand(){
 	xh.onreadystatechange=function(){
 		if(xh.readyState==4 && xh.status==200){
 			var response = xh.responseText;
+			
+			var arrMarcheJson = JSON.parse(response);
+			
+			
+			if(arrMarcheJson.length>0)
+		    {
+				//Prendo la lista html marche
+				var liBrands= document.getElementById("listBrands");
+
+				var liBtnApplica = document.getElementById("btnApplicaFiltriBrands");
+				for( var i in arrMarcheJson)
+				{
+					
+					var liInterno= document.createElement("li");
+					liInterno.setAttribute("name","liBrands[]");
+					
+					var divCheck= document.createElement("div");
+					divCheck.setAttribute("class","checkbox");
+					
+					var checkBox= document.createElement("input");
+					checkBox.setAttribute("type","checkbox");
+					
+					checkBox.setAttribute("id",arrMarcheJson[i].id_marca);
+					//checkBox.setAttribute("name",arrMarcheJson[i].nome);
+					checkBox.setAttribute("name","checkBrands[]");
+					
+					divCheck.innerHTML=arrMarcheJson[i].nome;
+					
+					divCheck.appendChild(checkBox);
+					liInterno.appendChild(divCheck);
+					
+					
+					liBrands.insertBefore(liInterno,liBtnApplica);
+				}
+				
+				/*
+				//Creo il bottone Applica
+				var li = document.createElement("li");
+				var btn = document.createElement("button");
+				btn.setAttribute("type","button");
+				btn.setAttribute("class","btn btn-primary btn-md");
+				btn.innerHTML="Applica";
+				btn.setAttribute("onclick","filterByBrands()");
+				
+				li.appendChild(btn);
+				liBrands.appendChild(li);*/
+		    }
 		}
 	}
 	xh.open("GET","ServletMarca?tipoRicerca=allBrands",true);
@@ -321,8 +393,6 @@ function popolaBrand(){
 
 function returnProductsByFilter(parametro){
 	
-	var s="<%=sss%>";
-	alert(s);
 	var tipoFiltro = parametro.substring(0,parametro.indexOf("_"));
 	var filtro = parametro.substring(parametro.indexOf("_")+1,parametro.length);
 	
@@ -477,4 +547,54 @@ function returnProductByNomeAndModello(nome,modello){
 	xh.open("GET","FindProdotti?nome="+nome+"&modello="+modello,true);
 	xh.send();
 	
+}
+
+function filterByBrands(prodotti){
+	
+	var newProdotti = new Array();
+	//JQUERY
+	//Mi prendo tutti i brand checked
+	var brands = $("input[name='checkBrands[]']:checked").map(function() {
+		this.checked=false;
+        return this.id;
+    }).get();
+	
+	if(prodotti.length>0 && brands.length>0)
+	{
+		for( var i in prodotti)
+		{
+			//jQuery.inArray controlla se il primo parametro si trova nell array inviato come secondo
+			//parametro, restituisce l'indice se esiste tale elemento nell'array, -1 altrimenti
+			if(jQuery.inArray(prodotti[i].marca.id_marca+"",brands)!=-1)
+			 newProdotti.push(prodotti[i]);
+		}
+	}
+	else
+	 if(prodotti.length>0 && brands.length==0)
+		 returnProducts(prodotti,false);
+	
+	returnProducts(newProdotti,false);
+}
+function filterByPrice(prodotti){
+	var newProdotti = new Array();
+	var prezzoMin= document.getElementById("txtPrezzoMin").value;
+	var prezzoMax= document.getElementById("txtPrezzoMax").value;
+	
+	if(prodotti.length>0 )
+	{
+		if(prezzoMin=="")
+			prezzoMin=0;
+		if(prezzoMax=="")
+			prezzoMax=9999;
+		for( var i in prodotti)
+		{
+			if(prodotti[i].prezzo>=prezzoMin && prodotti[i].prezzo<=prezzoMax)
+				newProdotti.push(prodotti[i]);
+		}
+	}
+	else
+	 if(prodotti.length>0)
+		 returnProducts(prodotti,false);
+	
+	returnProducts(newProdotti,false);
 }

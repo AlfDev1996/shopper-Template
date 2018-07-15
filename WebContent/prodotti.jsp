@@ -60,21 +60,15 @@
 
 <!--   <body onload='returnProductsByFilter("<%=request.getParameter("filtro")%>")' > -->
 
-<body onload='returnProducts(<%=request.getAttribute("prodotti")%>)'>
-	<%@ include file="header.jsp"%>
+<body onload='returnProducts(<%=request.getAttribute("prodotti")%>,true)'>
+<%@ include file="header.jsp"%>
+
+
+	
 
 	<%
 		UtenteBean user = (UtenteBean) session.getAttribute("utente");
 	%>
-
-	<%
-		//if( user==null|| !user.getRuolo().equalsIgnoreCase("admin")){ response.sendRedirect("index.jsp");}
-	%>
-
-
-
-
-
 
 	<%
 		if (request.getParameter("errore") != null && request.getParameter("errore").contains("Ops")) {
@@ -116,11 +110,10 @@
 			<div class="pagination pagination-small pagination-centered">
 				<ul>
 					<li><a href="#">Prev</a></li>
-					<li class="active"><a href="#">1</a></li>
-					<li><a href="#">2</a></li>
-					<li><a href="#">3</a></li>
-					<li><a href="#">4</a></li>
-					<li><a href="#">Next</a></li>
+					<li id="liPage1"><a href="#" onclick='returnProducts(<%=request.getAttribute("prodotti")%>,false,1)'>1</a></li>
+					<li><a href="#" onclick='returnProducts(<%=request.getAttribute("prodotti")%>,false,2)' >2</a></li>
+					<li><a href="#" onclick='returnProducts(<%=request.getAttribute("prodotti")%>,false,3)'>3</a></li>
+					<li><a href="#" onclick='returnProducts(<%=request.getAttribute("prodotti")%>,false,4)'>4</a></li>
 				</ul>
 			</div>
 		</div>
@@ -134,19 +127,17 @@
 					<li>Min<input type="text" id="txtPrezzoMin" style="width: 30px; height: 20px;">
 						 -- <input type="text" id="txtPrezzoMax" style="width: 30px;height: 20px;">
 						Max</li>
-					<li> <button type="button" class="btn btn-primary btn-md">Applica</button> </li>
+					<li> <button type="button" class="btn btn-primary btn-md" onclick='filterByPrice(<%=request.getAttribute("prodotti")%>)'>Applica</button> </li>
 				</ul>
 				
 				
 			</div>
 			<div class="block">
 				<br />
-				<ul class="nav nav-list below">
-					<li class="nav-header">Brand</li>
-					<li><div class="checkbox">
-							<label><input type="checkbox" value=""></label>
-						</div></li>
-					<li> <button type="button" class="btn btn-primary btn-md">Applica</button> </li>
+				<ul class="nav nav-list below" id="listBrands">
+					<li class="nav-header" >Brands</li>
+					
+					<li id="btnApplicaFiltriBrands"><button type="button" class="btn btn-primary btn-md" onclick='filterByBrands(<%=request.getAttribute("prodotti")%>)' >Applica</button></li>
 				</ul>
 			</div>
 
@@ -174,7 +165,5 @@
 
 
 	<%@ include file="footer.jsp"%>
-
-
 </body>
 </html>
