@@ -286,6 +286,7 @@ function test(prodotti){
 			aNomeProdotto.innerHTML= prodotti[i].nome;
 			div.appendChild(aNomeProdotto);
 			
+			
 			var pPrezzo = document.createElement("p");
 			pPrezzo.setAttribute("class","price");
 			pPrezzo.innerHTML= "&euro;"+prodotti[i].prezzo;
