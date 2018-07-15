@@ -81,19 +81,16 @@ function submit(){
 						<li><a href="#">Ciao, <%= us.getNome() %></a></li>
 						
 						
-					 	
-						<%if(us.getRuolo().equalsIgnoreCase("admin")){ %>
-							
-							<nav id="menu" class="pull-right">
-								<ul>
-								<li>Funzioni Admin</a>
-								<ul>
-								<li><a href="modificaArticolo.jsp">Modifica Articolo</a></li>
-								<li><a href="AggiungiArticolo.jsp">Aggiungi Articolo</a></li>
-								</ul></li>
-								</ul>
-						
-						<%} %>
+					 		<%if(us.getRuolo().equalsIgnoreCase("admin")){ %>  
+						   	<li class="dropdown">
+       						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        					Funzioni Admin <b class="caret"></b></a>
+        					<ul class="dropdown-menu">
+          					<li><a href="modificaArticolo.jsp">Modifica Articolo</a></li>
+          					<li><a href="AggiungiArticolo.jsp">Aggiungi Articolo</a></li>
+       						 </ul>
+     						 </li>
+     						 <%} %>
 						
 						
 						<span style="float: right;">
