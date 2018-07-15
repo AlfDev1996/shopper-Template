@@ -1,5 +1,7 @@
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
+<%@page import="model.ProdottoBean"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="org.json.simple.JSONObject"%>
-<%@page import="com.google.gson.Gson"%>
 <%@page import="org.json.simple.JSONArray"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
@@ -7,60 +9,16 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Prodotti</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- ViewPort è l'aria visibile dall'utente, con questo meta tag introdotto in HTML5 diamo istruzioni al browser sul ridimensionamento  -->
-		<meta name="description" content="">
-		<!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
-		<!-- bootstrap -->
-		<link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">    <!-- Libreria bootsrao (min) utilizzata dagli sviluppatori durante la fase di debugging o di sito in lavorazione, possiede meno proprieta del bootstrap.css  -->   
-		<link href="bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet"> <!-- Libreria responsive -->
-		
-		<link href="themes/css/bootstrappage.css" rel="stylesheet"/>
-		
-		<!-- global styles -->
-		<link href="themes/css/flexslider.css" rel="stylesheet"/> <!-- classe jquery per realizzare immagini, gallerie di immagini responsive !! -->
-		<link href="themes/css/main.css" rel="stylesheet"/>
-
-		<!-- scripts -->
-		<script src="themes/js/jquery-1.7.2.min.js"></script> <!-- Libreeia jQuery: preferisco linkarla da google -->
-		<script src="bootstrap/js/bootstrap.min.js"></script> <!-- Funzioni bootstrap per eventuali animazioni  -->				
-		<script src="themes/js/superfish.js"></script> 	<!-- Classe javascript per implementare il menu, sembra non utilizzata da una prima analisi -->
-		<script src="themes/js/jquery.scrolltotop.js"></script> <!-- http://www.dynamicdrive.com libreria di questo sito che permette di swipppare al top della pagina o in una posizione precisa -->
-		<!--[if lt IE 9]>			
-			<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-			<script src="js/respond.min.js"></script>
-		<![endif]-->
-		
-		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-		
-		<script src="themes/js/prodotto.js">  </script>
-		
+<title>Insert title here</title>
 </head>
+<body>
 
-<% String filtro = "";
-   String tipoFiltro="";
-	if(request.getParameter("sesso")!=null)
-	{	filtro=request.getParameter("sesso"); tipoFiltro="sesso"; }
-	else
-	 if(request.getParameter("categoria")!=null)
-	 { filtro=request.getParameter("categoria"); tipoFiltro="categoria";	}
-	 		 
-
-%>
-
-<!--   <body onload='returnProductsByFilter("<%=request.getParameter("filtro")%>")' > -->
-
-<body onload='test(<%=request.getAttribute("prodotti")%>)' >
+	
 <%@ include file="header.jsp" %> 
 		
 <% UtenteBean user =(UtenteBean) session.getAttribute("utente"); %>	
 
  <% //if( user==null|| !user.getRuolo().equalsIgnoreCase("admin")){ response.sendRedirect("index.jsp");}  %>  
-
-
- 
-
-
 
 			<%
 				if (request.getParameter("errore") != null && request.getParameter("errore").contains("Ops")) {
@@ -90,6 +48,24 @@
 				<div class="row">						
 					<div class="span9">								
 						<ul class="thumbnails listing-products" id="listProdotti">
+							<%  
+							 ArrayList<ProdottoBean> prodotti = (ArrayList<ProdottoBean>) request.getAttribute("prodotti"); 
+							for( ProdottoBean prodotto : prodotti)
+							{
+								
+							
+							%>
+							<li class="span3">
+								<div class="product-box">	
+								<% if(prodotto.getImmagini().size()>0) {%>											
+									<a href="product_detail.html"><img alt="" src="themes/images/prodotti/"<%=prodotto.getImmagini().get(0).getNomeFile() %>></a><br/>
+								<% } %>	
+									<a href="product_detail.html" class="title"><%=prodotto.getNome() %></a><br/>
+									
+									<p class="price"><%=prodotto.getPrezzo() %></p>
+								</div>
+							</li>
+							<% } %>
 							 
 						</ul>								
 						<hr>
@@ -190,7 +166,5 @@
 		
 				
 	<%@ include file="footer.jsp" %>  
-
-
 </body>
 </html>

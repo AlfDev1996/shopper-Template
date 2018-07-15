@@ -22,6 +22,7 @@ function loadMarca(){
 		xh.send();
 		
 		f.appendChild(check);
+		
 	}
 	
 	
@@ -95,4 +96,6 @@ function loadMarca(){
 		//invia.classList.add("btn btn-primary");
 		div.appendChild(x);
 		div.appendChild(invia);
+		
+		
 	}

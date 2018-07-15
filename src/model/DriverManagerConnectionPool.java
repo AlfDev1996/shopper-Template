@@ -28,7 +28,8 @@ public class DriverManagerConnectionPool {
 
 		newConnection = DriverManager.getConnection("jdbc:mysql://"+ ip+":"+ port+"/"+db+"?autoReconnect=true&useSSL=false", username, password);
 
-		newConnection.setAutoCommit(false);
+		//newConnection.setAutoCommit(false);
+		newConnection.setAutoCommit(true);
 		return newConnection;
 	}
 

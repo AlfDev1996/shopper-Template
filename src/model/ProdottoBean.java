@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class ProdottoBean {
 
-	private int id_prodotto;
-	private String nome, descrizione_breve, descrizione_estesa, tags, modello, sesso;
+	private int id_prodotto, quantita;
+	private String nome, descrizione_breve, descrizione_estesa, tags, modello, sesso , taglie;
 	private double prezzo ;
 	private MarcaBean marca;
 	private ArrayList<VarianteProdottoBean> variantiProdotto;
@@ -18,10 +18,33 @@ public class ProdottoBean {
 		marca=new MarcaBean();
 		variantiProdotto=new ArrayList<>();
 		immagini= new ArrayList<>();
+		taglie="";
+		quantita=0;
 	}
 
+	
+	public int getQuantita() {
+		return quantita;
+	}
+
+
+	public void setQuantita(int quantita) {
+		this.quantita = quantita;
+	}
+
+
+	public String getTaglie() {
+		return taglie;
+	}
+
+
+	public void setTaglie(String taglie) {
+		this.taglie = taglie;
+	}
+
+
 	public ProdottoBean(int id_prodotto, String nome, String descrizione_breve, String descrizione_estesa, String tags,
-			String modello, String sesso, double prezzo, MarcaBean marca, ArrayList<VarianteProdottoBean> varianti, ArrayList<ImmagineBean> immagini) {
+			String modello, String sesso, double prezzo, MarcaBean marca, ArrayList<VarianteProdottoBean> varianti, ArrayList<ImmagineBean> immagini, String taglie, int quantita) {
 		
 		this.id_prodotto = id_prodotto;
 		this.nome = nome;
@@ -34,6 +57,8 @@ public class ProdottoBean {
 		this.marca = marca;
 		this.variantiProdotto=varianti;
 		this.immagini=immagini;
+		this.taglie=taglie;
+		this.quantita=quantita;
 	}
 
 	public ArrayList<ImmagineBean> getImmagini() {

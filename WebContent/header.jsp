@@ -82,6 +82,7 @@ function submit(){
 						
 						
 						<%if(us.getRuolo().equalsIgnoreCase("admin")){ %>
+							
 							<nav id="menu" class="pull-right">
 								<ul>
 								<li>Funzioni Admin</a>
@@ -128,6 +129,8 @@ function submit(){
 			<ul>
 				<li><a href="./prodotti.jsp?filtro=sesso_F">Woman</a> <!-- categoria menu  --></li>
 				<li><a href="./prodotti.jsp?filtro=sesso_M">Man</a></li>
+				<li><a href="FindProdotti?tipoFiltro=sesso&filtro=M">PROVA MAN</a></li>
+				<li><a href="FindProdotti?tipoFiltro=sesso&filtro=M">PROVA WOMAN</a></li>
 				<li><a href="#">Brand</a>
 					<ul>
 						<li><a href="./prodotti.jsp?filtro=marca_Adidas">Adidas</a>
