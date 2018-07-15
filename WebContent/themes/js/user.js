@@ -125,16 +125,16 @@ function save(salva){
 	xh.onreadystatechange=function(){
 		
 		if(xh.readyState==4 && xh.status==200){
-			var response = xh.responseText;
-			if(response=="true")
-				//alert("ok");
-				;
+			
+				location.reload(true);
+				
 		}
 	}
 	var x  = JSON.stringify(jsonObj);
 	
 	xh.open("GET","ServletUtente?utenteJs="+encodeURIComponent(x)+"&operation=save",true);
 	xh.send();
+	
 
 }
 	

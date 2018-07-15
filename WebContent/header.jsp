@@ -81,6 +81,7 @@ function submit(){
 						<li><a href="#">Ciao, <%= us.getNome() %></a></li>
 						
 						
+					 	
 						<%if(us.getRuolo().equalsIgnoreCase("admin")){ %>
 							
 							<nav id="menu" class="pull-right">

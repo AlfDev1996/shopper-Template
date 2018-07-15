@@ -53,6 +53,7 @@
 <body onload='test(<%=request.getAttribute("prodotti")%>)' >
 
 <%@ include file="header.jsp" %> 
+
 		
 <% UtenteBean user =(UtenteBean) session.getAttribute("utente"); %>	
 
