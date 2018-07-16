@@ -8,8 +8,9 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Prodotti</title>
+<title>e-shoes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!-- ViewPort Ã¨ l'aria visibile dall'utente, con questo meta tag introdotto in HTML5 diamo istruzioni al browser sul ridimensionamento  -->
+<!-- ViewPort è l'aria visibile dall'utente, con questo meta tag introdotto in HTML5 diamo istruzioni al browser sul ridimensionamento  -->
 <meta name="description" content="">
 <!--[if ie]><meta content='IE=8' http-equiv='X-UA-Compatible'/><![endif]-->
 <!-- bootstrap -->
@@ -26,7 +27,7 @@
 <link href="themes/css/main.css" rel="stylesheet" />
 
 <!-- scripts -->
-<script src="themes/js/jquery-1.7.2.min.js"></script>
+ <script src="themes/js/jquery-1.7.2.min.js"></script>
 <!-- Libreeia jQuery: preferisco linkarla da google -->
 <script src="bootstrap/js/bootstrap.min.js"></script>
 <!-- Funzioni bootstrap per eventuali animazioni  -->
@@ -62,6 +63,7 @@
 
 <body onload='returnProducts(<%=request.getAttribute("prodotti")%>,true)'>
 <%@ include file="header.jsp"%>
+	
 
 
 	

@@ -59,6 +59,18 @@ public class AddProduct extends HttpServlet {
 		Double prezzo = Double.parseDouble(request.getParameter("Prezzo"));
 		String marca = request.getParameter("marca");
 		String sesso = request.getParameter("sesso");
+		String taglie="";
+		int quantita=Integer.parseInt(request.getParameter("quantita"));
+		
+		String[] checked = request.getParameterValues("taglia");
+		
+		
+		for(int i=0;i<checked.length;++i) {
+			taglie+=checked[i]+",";
+			
+		}
+		System.out.println(taglie);
+		
 		
 		ProdottoBean prodotto = new ProdottoBean();
 		
@@ -68,6 +80,8 @@ public class AddProduct extends HttpServlet {
 		prodotto.setTags(tag);
 		prodotto.setModello(modello);
 		prodotto.setPrezzo(prezzo);
+		prodotto.setTaglie(taglie);
+		prodotto.setQuantita(quantita);
 		System.out.println(getServletContext().getRealPath("/themes/images/prodotti"));
 		/*Marca*/
 		MarcaBean mar=null;

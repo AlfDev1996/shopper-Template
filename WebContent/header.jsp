@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+
 <meta charset="utf-8">
 <title>e-shoes</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -118,24 +118,46 @@ function submit(){
 
 	<div id="wrapper" class="container">
 		<!-- Qui inizia il menu principale  -->
+		
 		<section class="navbar main-menu"> <!--  Inizio section menu -->
 		<div class="navbar-inner main-menu">
 			<a href="index.jsp" class="logo pull-left"><img src="themes/images/logo.PNG" alt=""
 				style="width: 150px; height: 45px;"></a>
 			<!-- logo del sito  con posizionamento a sinistra tramite la classe pull-left -->
+		
 			<nav id="menu" class="pull-right"> <!-- Il menu invece si posiziona a destra -->
+		
+		
+			
 			<ul>
-				<li><a href="FindProdotti?tipoFiltro=sesso&filtro=F">Woman</a></li>
+				<li><a href="FindProdotti?tipoFiltro=sesso&filtro=F">Woman</a>
+				
+				
+				</li>
 				<li><a href="FindProdotti?tipoFiltro=sesso&filtro=M">Man</a></li>
-				<li><a href="#">Brand</a>
+			
+				<li><a href="./products.html">Sport</a>
+								<ul>									
+									<li><a href="./products.html">Gifts and Tech</a></li>
+									<li><a href="./products.html">Ties and Hats</a></li>
+									<li><a href="./products.html">Cold Weather</a></li>
+								</ul>
+							</li>							
+			
+		<li><a href="#">Brand</a>
 					<ul>
 						<li><a href="FindProdotti?tipoFiltro=marca&filtro=adidas">Adidas</a>
 						<li><a href="FindProdotti?tipoFiltro=marca&filtro=nike">Nike</a>
-					</ul></li>
+					</ul></li>  
+						
 				<li><a href="./products.html">Piu' Venduti</a></li>
 			</ul>
+		
 			</nav>
 		</div>
+		
 		</section>
+					
+		
 </body>
 </html>

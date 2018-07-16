@@ -25,6 +25,65 @@ function loadMarca(){
 		
 	}
 	
+function loadTaglie(object){
+	var div=document.getElementById("tg");
+	 if(object.value=="F"){
+		 div.innerHTML="";
+		 for(i=35;i<42;++i){
+		 var x = document.createElement("INPUT");
+		 x.setAttribute("type", "checkbox");
+		 x.setAttribute("name","taglia");
+		 x.value=i;
+		 
+		 
+		 var table = document.createElement("table");
+		 var tr = document.createElement("tr");
+		 var td = document.createElement("td");
+		 td.setAttribute("style","display: -webkit-box;");
+		 
+		 
+		 var lbl = document.createElement("label");
+		 var taglie = document.createTextNode(""+i);
+		 lbl.appendChild(taglie);
+		 lbl.setAttribute("style","margin-right:22%;");
+		 
+		 td.append(lbl);
+		 td.append(x);
+		 tr.appendChild(td);
+		 table.appendChild(tr);
+		 div.appendChild(table);
+	 } 
+	 }else
+		 if(object.value=="M"){
+			 div.innerHTML="";
+			 for(i=40;i<46;++i){
+			 var x = document.createElement("INPUT");
+			 x.setAttribute("type", "checkbox");
+			 x.setAttribute("name","taglia");
+			 x.value=i;
+			 
+			 
+			 var table = document.createElement("table");
+			 var tr = document.createElement("tr");
+			 var td = document.createElement("td");
+			 td.setAttribute("style","display: -webkit-box;");
+			 
+			 
+			 var lbl = document.createElement("label");
+			 var taglie = document.createTextNode(""+i);
+			 lbl.appendChild(taglie);
+			 lbl.setAttribute("style","margin-right:22%;");
+			 
+			 td.append(lbl);
+			 td.append(x);
+			 tr.appendChild(td);
+			 table.appendChild(tr);
+			 div.appendChild(table);
+		 } 
+		 }
+}
+	
+
 	
 	
 	function crea(){
@@ -64,10 +123,30 @@ function loadMarca(){
 		
 		var  par= document.createElement("p"); 
 		var check= document.createElement("select"); 
+		check.onchange=function(){loadTaglie(this);}
 		check.setAttribute("name", "sesso")
 		check.innerHTML="<option value='M'> M</option> <option value ='F'> F</option>";
 		par.appendChild(check);
 		div.appendChild(par);
+		
+		var Tpar= document.createElement("p");
+		Tpar.setAttribute("id","tg");
+		div.appendChild(Tpar);
+		
+		var qPar= document.createElement("p");
+		qPar.setAttribute("id","qta");
+		var lblQuantita= document.createElement("label");
+		var lblQtaTesto = document.createTextNode("Quantita'  disponibile");
+		lblQuantita.appendChild(lblQtaTesto);
+		div.appendChild(lblQuantita);
+		var quantita= document.createElement("input");
+		quantita.setAttribute("type","number");
+		quantita.setAttribute("id","quantita");
+		quantita.setAttribute("name","quantita");
+		quantita.setAttribute("min","1");
+		quantita.setAttribute("max","30");
+		qPar.appendChild(quantita);
+		div.appendChild(qPar);
 		
 		par = document.createElement("p");
 		var file = document.createElement("input");

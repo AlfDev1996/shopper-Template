@@ -480,7 +480,7 @@ public synchronized boolean doSave(ProdottoBean prodotto) {
 			return false;
 		}finally{
 			try {
-				connection.commit();
+				//connection.commit();
 				preparedStatement.close();
 				DriverManagerConnectionPool.releaseConnection(connection);
 			} catch (SQLException e) {

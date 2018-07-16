@@ -143,13 +143,16 @@ public class ProdottoBean {
 
 	
 
+
+
 	@Override
 	public String toString() {
-		return "ProdottoBean [id_prodotto=" + id_prodotto + ", nome=" + nome + ", descrizione_breve="
-				+ descrizione_breve + ", descrizione_estesa=" + descrizione_estesa + ", tags=" + tags + ", modello="
-				+ modello + ", sesso=" + sesso + ", prezzo=" + prezzo + ", marca=" + marca + ", variantiProdotto="
-				+ variantiProdotto + "]";
+		return "ProdottoBean [id_prodotto=" + id_prodotto + ", quantita=" + quantita + ", nome=" + nome
+				+ ", descrizione_breve=" + descrizione_breve + ", descrizione_estesa=" + descrizione_estesa + ", tags="
+				+ tags + ", modello=" + modello + ", sesso=" + sesso + ", taglie=" + taglie + ", prezzo=" + prezzo
+				+ ", marca=" + marca + ", variantiProdotto=" + variantiProdotto + ", immagini=" + immagini + "]";
 	}
+
 
 	public ArrayList<VarianteProdottoBean> getVariantiProdotto() {
 		return variantiProdotto;
