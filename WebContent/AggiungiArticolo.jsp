@@ -42,11 +42,6 @@
 
 <%@ include file="header.jsp" %>  
 
-
-			<h1> <%=
-			  getServletContext().getRealPath("/themes/images/prodotti")
-			%> </h1>
-
 			<%
 				if (request.getParameter("errore") != null && request.getParameter("errore").contains("Ops")) {
 			%>
@@ -65,13 +60,15 @@
 			<%
 				} %>
 
+<div class="row">
 
 <form id="container" method="POST" action="AddProduct" enctype="multipart/form-data">
 
 	
+
 </form>
 
-
+</div>
 <%@ include file="footer.jsp" %>  
 
 

@@ -34,6 +34,22 @@ function find(){
 						td.append(check);
 						tr.appendChild(td);
 						
+						td=document.createElement("TD");
+						td.setAttribute("style","width:10%;height:10%;");
+						var aImg = document.createElement("a");
+						aImg.setAttribute("href","#");
+						var img = document.createElement("img");
+						img.setAttribute("alt","");
+						aImg.appendChild(img);
+						
+						var immagini = arrProdottiJson[i].immagini;
+						if(immagini!=null && immagini.length>0)
+						{
+							img.setAttribute("src","themes/images/prodotti/"+arrProdottiJson[i].immagini[0].nome_file+"");
+						}
+						td.appendChild(aImg);
+						tr.appendChild(td);
+						
 						td = document.createElement("TD");
 					    var txt = document.createTextNode(arrProdottiJson[i].nome+"");
 					    
@@ -73,6 +89,12 @@ function find(){
 					    td = document.createElement("TD");
 					    txt = document.createTextNode(arrProdottiJson[i].sesso+"");
 					    td.setAttribute("id","sesso");
+					    td.appendChild(txt);
+					    tr.appendChild(td);
+					    
+					    td = document.createElement("TD");
+					    txt = document.createTextNode(arrProdottiJson[i].quantita+"");
+					    td.setAttribute("id","quantita");
 					    td.appendChild(txt);
 					    tr.appendChild(td);
 					    
@@ -136,7 +158,8 @@ function modifica(object, salva){
 				"prezzo" : 0,
 				"descrizione_breve" : "",
 				"descrizione_estesa" : "",
-				"sesso" : ""
+				"sesso" : "",
+				"quantita" : 0
 		};
 		for(var i =0;i<c.length;++i)
 		{
@@ -144,20 +167,22 @@ function modifica(object, salva){
 			{
 			 switch(i)
 			 {
-			  case 1 : jsonObj.nome= c[i].innerHTML;
+			  case 2 : jsonObj.nome= c[i].innerHTML;
 			  		   break;
-			  case 2 : jsonObj.modello = c[i].innerHTML;
+			  case 3 : jsonObj.modello = c[i].innerHTML;
 			  		   break;
-			  case 3 : jsonObj.marca = c[i].innerHTML;
+			  case 4 : jsonObj.marca = c[i].innerHTML;
 	  		   		   break;
-			  case 4 : jsonObj.prezzo = c[i].innerHTML;
+			  case 5 : jsonObj.prezzo = c[i].innerHTML;
 		   		   	   break;
-			  case 5 : jsonObj.descrizione_breve = c[i].innerHTML;
+			  case 6 : jsonObj.descrizione_breve = c[i].innerHTML;
   		   	   			break;
-			  case 6 : jsonObj.descrizione_estesa = c[i].innerHTML;
+			  case 7 : jsonObj.descrizione_estesa = c[i].innerHTML;
   		   	   			break;
-			  case 7 : jsonObj.sesso = c[i].innerHTML;
+			  case 8 : jsonObj.sesso = c[i].innerHTML;
   		   	   			break;
+			  case 9 : jsonObj.quantita = c[i].innerHTML;
+   	   			break;
 		   	  default : break;
 			 } 
 				 
@@ -200,7 +225,7 @@ function modifica(object, salva){
 		for(var i =0;i<c.length;++i)
 			{
 			//if(c[i].childNodes[0]!=undefined && c[i].childNodes[0].type!="checkbox" && c[i].childNodes[0].type!="button")
-			if(c[i].id=="prezzo" || c[i].id=="descrizione_breve" || c[i].id=="descrizione_estesa" || c[i].id=="sesso")
+			if(c[i].id=="prezzo" || c[i].id=="descrizione_breve" || c[i].id=="descrizione_estesa" || c[i].id=="sesso" || c[i].id=="quantita")
 				c[i].contentEditable = "true"
 			else
 			 //Rendo invisibile il bottone modifica e visibile il bottone salva
@@ -575,6 +600,7 @@ function filterByBrands(prodotti){
 	
 	returnProducts(newProdotti,false);
 }
+
 function filterByPrice(prodotti){
 	var newProdotti = new Array();
 	var prezzoMin= document.getElementById("txtPrezzoMin").value;
@@ -597,4 +623,94 @@ function filterByPrice(prodotti){
 		 returnProducts(prodotti,false);
 	
 	returnProducts(newProdotti,false);
+}
+
+function addToCart(nome,modello){
+	
+	var prodottoJson = {
+			"nome" : "",
+			"modello" : "",
+			"quantita" : 0,
+			"taglia" : ""
+	};
+	
+	var taglia = $("#selectTaglie").val();
+	
+	var quantita = document.getElementById("txtQuantita").value;
+	if(quantita == "")
+		quantita=1;
+	
+	
+	
+	if(prezzo=="")
+		prezzo=0;
+	if(quantita!="" && taglia!="" && nome!="" && modello!="" && prezzo!="")
+	{
+		prodottoJson.nome=nome+"";
+		prodottoJson.modello=modello+"";
+		prodottoJson.quantita=quantita+"";
+		prodottoJson.taglia=taglia+"";
+		
+		
+		var xh= new XMLHttpRequest;
+		xh.onreadystatechange=function(){
+			if(xh.readyState==4 && xh.status==200){
+				var response = xh.responseText;
+				location.reload(true);
+			}
+			
+		}
+		var jsonStr= JSON.stringify(prodottoJson);
+		xh.open("GET","ServletCart?operazione=aggiungi&prodotto="+encodeURIComponent(jsonStr),true);
+		//xh.setRequestHeader("Content-type", "application/json");
+		//xh.send("prodotto="+jsonStr);
+		xh.send();
+	}
+	
+	
+}
+
+function updateProductsFromCart(){
+		//Se la checkBox elimina e' settata, bisogna eliminare i prodotti dal carrello.
+		var eliminaProdottiChecked = $("input[name='prodotti[]']:checked").map(function() {
+			return this.id;
+	    }).get();
+		//Per eliminare prodotti dal carrello, passo semplicemente gli id dei prodotti.
+		if(eliminaProdottiChecked.length>0)
+		{
+			var xh= new XMLHttpRequest;
+			xh.onreadystatechange=function(){
+				if(xh.readyState==4 && xh.status==200){
+					var response = xh.responseText;
+					location.reload(true);
+				}
+				
+			}
+			xh.open("GET","ServletCart?operazione=elimina&prodottiDaRimuovere="+(eliminaProdottiChecked+""),true);
+			xh.send();
+		}else{
+			//UPDATE
+			var arrJson=[];
+			$("input[type='number'][name='qtaProdotti[]']").each(function(){
+				
+				arrJson.push({
+					"id":$(this).attr('id'),
+					"quantita" : $(this).attr('value')
+					});
+			});
+			
+			var xh= new XMLHttpRequest;
+			xh.onreadystatechange=function(){
+				if(xh.readyState==4 && xh.status==200){
+					var response = xh.responseText;
+					location.reload(true);
+				}
+				
+			}
+			var json= JSON.stringify(arrJson);
+			xh.open("GET","ServletCart?operazione=modifica&arrayProdottiModificaJson="+encodeURIComponent(json),true);
+			xh.send();
+			
+		}
+		
 }

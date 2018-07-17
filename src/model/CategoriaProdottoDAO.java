@@ -245,14 +245,38 @@ return categorieProdotto;
 			String sqlInsert="insert into categoria_prodotto (id_categoria,id_prodotto) values(?,?)";
 			int res=0;
 			try {
-				connection = (Connection) DriverManagerConnectionPool.getConnection();
-				preparedStatement = (PreparedStatement) connection.prepareStatement(sqlInsert);
+				if(categoriaProdotto!=null)
+				{
+					if( categoriaProdotto.getProdotto().getId_prodotto()!=0)
+						;
+					else
+					 if( categoriaProdotto.getProdotto().getNome()!=null && categoriaProdotto.getProdotto().getModello()!=null)
+					{
+						ProdottoDAO pdao=new ProdottoDAO();
+						categoriaProdotto.setProdotto(pdao.doRetriveByNomeAndModello(categoriaProdotto.getProdotto().getNome(), categoriaProdotto.getProdotto().getModello()));
+					}
+					if( categoriaProdotto.getCategoria()!=null && categoriaProdotto.getCategoria().getIdCategoria()!=0)
+						;
+					else
+					 if(categoriaProdotto.getCategoria()!=null && categoriaProdotto.getCategoria().getDescrizione()!=null)
+					{
+						CategoriaDAO cdao=new CategoriaDAO();
+						categoriaProdotto.setCategoria(cdao.doRetriveByDescrizione(categoriaProdotto.getCategoria().getDescrizione()));
+					}
+					if( categoriaProdotto.getCategoria()!=null && categoriaProdotto.getProdotto()!=null)
+					{
+						connection = (Connection) DriverManagerConnectionPool.getConnection();
+						preparedStatement = (PreparedStatement) connection.prepareStatement(sqlInsert);
+						
+						preparedStatement.setInt(1, categoriaProdotto.getCategoria().getIdCategoria());
+						preparedStatement.setInt(2, categoriaProdotto.getProdotto().getId_prodotto());
+						
+						res = preparedStatement.executeUpdate();
+						
+					}
+				}
 				
-				preparedStatement.setInt(1, categoriaProdotto.getCategoria().getIdCategoria());
-				preparedStatement.setInt(2, categoriaProdotto.getProdotto().getId_prodotto());
 				
-				res = preparedStatement.executeUpdate();
-				connection.commit();
 			}catch(SQLException e) {
 				e.printStackTrace();
 			}finally{

@@ -1,13 +1,14 @@
 package model;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class CartBean {
 
 	
 	
-	public CartBean(String cliente, ArrayList<ProdottoBean> prodotti) {
-		this.cliente = cliente;
+	public CartBean(UtenteBean utente, ArrayList<ProdottoBean> prodotti) {
+		this.utente= utente;
 		this.prodotti = prodotti;
 	}
 	
@@ -15,16 +16,32 @@ public class CartBean {
 
 	public CartBean() {
 		prodotti = new ArrayList<>();
-		cliente=null;
+		utente=new UtenteBean();
 	}
 	
 	public void rimuoviProdotto(ProdottoBean prodotto) {
-		for (ProdottoBean p : prodotti) {
-			if(p.getNome().equalsIgnoreCase(prodotto.getNome()) && p.getMarca().getNome().equalsIgnoreCase(prodotto.getMarca().getNome()))
-				prodotti.remove(p);
-			
-		}
 		
+		for (Iterator it = prodotti.iterator(); it.hasNext();) {
+			ProdottoBean p = (ProdottoBean) it.next();
+			if(p.getNome().equalsIgnoreCase(prodotto.getNome()) && p.getModello().equalsIgnoreCase(prodotto.getModello()) && p.getTaglie().equalsIgnoreCase(prodotto.getTaglie()))
+				it.remove();
+		}
+	}
+	
+	public void rimuoviProdotti(String[] ids) {
+		for( int i=0; i<ids.length; ++i)
+			for (Iterator it = prodotti.iterator(); it.hasNext();) {
+				ProdottoBean prodotto = (ProdottoBean) it.next();
+				if(prodotto.getId_prodotto()==(Integer.parseInt(ids[i])))
+					it.remove();
+			}
+	}
+	
+	public void updateProdotto(int id, int quantita) {
+		for (ProdottoBean prodottoBean : prodotti) {
+			if(prodottoBean.getId_prodotto()==id)
+				prodottoBean.setQuantita(quantita);
+		}
 	}
 	
 	
@@ -34,23 +51,66 @@ public class CartBean {
 	}
 	
 	public void addProdotto(ProdottoBean prodotto) {
+		if(prodotto!=null)
+		{
+			for( ProdottoBean p : this.prodotti)
+				if(p.getNome().equalsIgnoreCase(prodotto.getNome()) && p.getModello().equalsIgnoreCase(prodotto.getModello()) && p.getTaglie().equalsIgnoreCase(prodotto.getTaglie()))
+					{
+						p.setQuantita(p.getQuantita()+prodotto.getQuantita());
+						return ;
+					}
+		}
 		prodotti.add(prodotto);
 		
 	}
 	
-	public String getCliente() {
-		return cliente;
+	
+	public UtenteBean getUtente() {
+		return utente;
 	}
-	public void setCliente(String cliente) {
-		this.cliente = cliente;
+
+
+
+	public void setUtente(UtenteBean utente) {
+		this.utente = utente;
 	}
+
+
+
 	public ArrayList<ProdottoBean> getProdotti() {
 		return prodotti;
 	}
 	public void setProdotti(ArrayList<ProdottoBean> prodotti) {
 		this.prodotti = prodotti;
 	}
-	private String cliente;// utenteBean
+	
+	
+	
+	public double getPrezzoTotale() {
+		double prezzo = 0.0;
+		for (ProdottoBean prodottoBean : prodotti) {
+			prezzo+=(prodottoBean.getPrezzo()*prodottoBean.getQuantita());
+		}
+		return prezzo;
+	}
+
+
+
+	public void setPrezzoTotale(double prezzoTotale) {
+		this.prezzoTotale = prezzoTotale;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "CartBean [utente=" + utente + ", prodotti=" + prodotti + "]";
+	}
+
+
+
+	private UtenteBean utente;// utenteBean
 	ArrayList<ProdottoBean> prodotti =null;
+	private double prezzoTotale;
 	
 }

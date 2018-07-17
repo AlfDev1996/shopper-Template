@@ -149,10 +149,10 @@ public class CategoriaDAO {
 	}
 	
 	public synchronized ArrayList<CategoriaBean> doRetrieveAll(String orderBy){
-		ArrayList<CategoriaBean> categorie = null;
+		ArrayList<CategoriaBean> categorie = new ArrayList<>();
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		CategoriaBean tempCategoria = null ;
+		CategoriaBean tempCategoria = new CategoriaBean() ;
 		
 		String sqlSelect = "select * from categoria ";
 		if(orderBy!=null && (orderBy.equalsIgnoreCase("id_categoria") || orderBy.equalsIgnoreCase("descrizione") || orderBy.equalsIgnoreCase("in_saldo") || orderBy.equalsIgnoreCase("sconto") ) )
@@ -165,7 +165,6 @@ public class CategoriaDAO {
 			ResultSet rs = preparedStatement.executeQuery();
 			
 			while(rs.next()) {
-				
 				tempCategoria=new CategoriaBean();
 				tempCategoria.setIdCategoria(rs.getInt("id_categoria"));
 				tempCategoria.setDescrizione(rs.getString("descrizione"));

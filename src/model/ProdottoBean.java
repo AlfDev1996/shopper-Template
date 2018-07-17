@@ -10,6 +10,7 @@ public class ProdottoBean {
 	private MarcaBean marca;
 	private ArrayList<VarianteProdottoBean> variantiProdotto;
 	private ArrayList<ImmagineBean> immagini;
+	private ArrayList<CategoriaBean> categorie;
 	
 	public ProdottoBean() {
 		id_prodotto=0;
@@ -20,9 +21,20 @@ public class ProdottoBean {
 		immagini= new ArrayList<>();
 		taglie="";
 		quantita=0;
+		categorie=new ArrayList<>();
 	}
 
 	
+	public ArrayList<CategoriaBean> getCategorie() {
+		return categorie;
+	}
+
+
+	public void setCategorie(ArrayList<CategoriaBean> categorie) {
+		this.categorie = categorie;
+	}
+
+
 	public int getQuantita() {
 		return quantita;
 	}
@@ -44,7 +56,7 @@ public class ProdottoBean {
 
 
 	public ProdottoBean(int id_prodotto, String nome, String descrizione_breve, String descrizione_estesa, String tags,
-			String modello, String sesso, double prezzo, MarcaBean marca, ArrayList<VarianteProdottoBean> varianti, ArrayList<ImmagineBean> immagini, String taglie, int quantita) {
+			String modello, String sesso, double prezzo, MarcaBean marca, ArrayList<VarianteProdottoBean> varianti, ArrayList<ImmagineBean> immagini, String taglie, int quantita, ArrayList<CategoriaBean> categorie) {
 		
 		this.id_prodotto = id_prodotto;
 		this.nome = nome;
@@ -59,6 +71,7 @@ public class ProdottoBean {
 		this.immagini=immagini;
 		this.taglie=taglie;
 		this.quantita=quantita;
+		this.categorie=categorie;
 	}
 
 	public ArrayList<ImmagineBean> getImmagini() {

@@ -36,7 +36,12 @@ a{
 	
 }
 
-
+.imgCarrello{
+	
+	
+	height:100px;
+	width:100px;
+}
 
 .inputMargin{
 	margin-top: 1%;
@@ -471,6 +476,8 @@ section.navbar{
 }
 .product-box img{
 	overflow:hidden;
+	width:220px;
+	height:160px;
 }
 .product-box a.title{
 	text-transform:uppercase;

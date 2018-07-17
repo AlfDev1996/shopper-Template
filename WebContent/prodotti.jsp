@@ -59,12 +59,10 @@
 	}
 %>
 
-<!--   <body onload='returnProductsByFilter("<%=request.getParameter("filtro")%>")' > -->
-
 <body onload='returnProducts(<%=request.getAttribute("prodotti")%>,true)'>
 <%@ include file="header.jsp"%>
 	
-
+</section>	
 
 	
 

@@ -49,6 +49,7 @@
 		<table id="tableProdotti" class="table table-striped" >
 		 <tr id="intestazione">
 		 	<th> &nbsp; </th>
+		 	<th> Immagine </th>
 		 	<th> Nome </th>
 		 	<th> Modello </th>
 		 	<th> Marca </th>
@@ -56,6 +57,7 @@
 		 	<th> Descr. Breve </th>
 		 	<th> Descr. Estesa </th>
 		 	<th> Sesso </th>
+		 	<th> Quantita </th>
 		 	<th> &nbsp; </th>
 		 	<th> &nbsp; </th>
 		 </tr>

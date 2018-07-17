@@ -14,6 +14,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
+import model.CategoriaBean;
+import model.CategoriaProdottoBean;
+import model.CategoriaProdottoDAO;
 import model.ImmagineBean;
 import model.ImmagineDAO;
 import model.MarcaBean;
@@ -69,6 +72,16 @@ public class AddProduct extends HttpServlet {
 			taglie+=checked[i]+",";
 			
 		}
+		
+		String[] categorieChecked = request.getParameterValues("categorie");
+		
+		ArrayList<CategoriaBean> categorie=new ArrayList<>();
+		for(int i=0;i<categorieChecked.length;++i) {
+			CategoriaBean categoria=new CategoriaBean();
+			categoria.setIdCategoria(Integer.parseInt(categorieChecked[i]+""));
+			categorie.add(categoria);
+		}
+		
 		System.out.println(taglie);
 		
 		
@@ -82,6 +95,7 @@ public class AddProduct extends HttpServlet {
 		prodotto.setPrezzo(prezzo);
 		prodotto.setTaglie(taglie);
 		prodotto.setQuantita(quantita);
+		prodotto.setCategorie(categorie);
 		System.out.println(getServletContext().getRealPath("/themes/images/prodotti"));
 		/*Marca*/
 		MarcaBean mar=null;
@@ -104,6 +118,19 @@ public class AddProduct extends HttpServlet {
 			prodotto = pDao.doRetriveByNomeAndModello(prodotto.getNome(), prodotto.getModello());
 			if(prodotto!=null)
 			{
+				//Salvo le categorie Nella tabella ponte fra prodotto e categoria
+				if(prodotto.getCategorie()!=null && prodotto.getCategorie().size()>0)
+				{
+					CategoriaProdottoDAO catDao=new CategoriaProdottoDAO();
+					for (CategoriaBean categoria : prodotto.getCategorie()) {
+						CategoriaProdottoBean catProdBean=new CategoriaProdottoBean();
+						catProdBean.setProdotto(prodotto);
+						catProdBean.setCategoria(categoria);
+						catDao.doSave(catProdBean);
+					}
+				}
+				
+				
 				Part part= null;
 				String name_image=null;
 				ArrayList<ImmagineBean> immagini = new ArrayList<>();

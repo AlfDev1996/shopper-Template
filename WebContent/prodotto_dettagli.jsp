@@ -38,6 +38,7 @@
 <body onload='returnProductByNomeAndModello("<%=request.getParameter("nome")%>","<%=request.getParameter("modello")%>")' >
 
 <%@ include file="header.jsp" %> 
+		
 
 <% UtenteBean user =(UtenteBean) session.getAttribute("utente"); %>
  <% //if( user==null|| !user.getRuolo().equalsIgnoreCase("admin")){ response.sendRedirect("index.jsp");}  %>  
@@ -80,24 +81,27 @@
 									</li>													
 								</ul>
 							</div>
+							
+							<form class="form-inline" action="ServletCart" method="POST">
 							<div class="span6">
 									<strong >Marca </strong> <span id="marca"></span><br>
 									<strong >Disponibilita':</strong> <span id="disponibilita"></span><br>								
 									<h4><strong>Prezzo: </strong> <span id="prezzo"></span></h4>
 									<strong>Taglia : 
-											<select id="selectTaglie">
+											<select id="selectTaglie" name="slTaglie">
 												
 											</select>
 									</strong>
 							</div>
 							<div class="span5">
-								<form class="form-inline">
+								
 									<p>&nbsp;</p>
 									<label>Qty:</label>
-									<input type="text" class="span1" placeholder="1">
-									<button class="btn btn-inverse" type="submit">Add to cart</button>
-								</form>
-							</div>							
+									<input type="number" min="1" class="span1" placeholder="1" id="txtQuantita">
+									<button class="btn btn-inverse" type="button" onclick='addToCart("<%=request.getParameter("nome")%>","<%=request.getParameter("modello")%>")'>Add to cart</button>
+								
+							</div>	
+							</form>						
 						</div>
 						<div class="row">
 							<div class="span10">

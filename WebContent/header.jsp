@@ -1,3 +1,4 @@
+<%@page import="model.CartBean"%>
 <%@page import="model.UtenteBean"%>
 
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -69,13 +70,18 @@ function submit(){
 					<!-- Div che contiene il menu  -->
 					<ul class="user-menu">
 
+					
+						<% CartBean cart = (CartBean) session.getAttribute("carrello"); 
+						   if(cart==null)
+							   cart=new CartBean();
+						 %>
+						<li><a href="cart.jsp" id="menuCarrello">Carrello <%=cart.getProdotti().size()==0 ? "" : "("+cart.getProdotti().size()+")"%></a></li>
+						<li><a href="checkout.html">Checkout</a></li>
 						<%		
 								if(us!=null){
 							%>
-
 						<li><a href="myAccount.jsp">My Account</a></li>
-						<li><a href="cart.html">Your Cart</a></li>
-						<li><a href="checkout.html">Checkout</a></li>
+						
 
 
 						<li><a href="#">Ciao, <%= us.getNome() %></a></li>
@@ -100,8 +106,6 @@ function submit(){
 						</span>
 						<%	}else {%>
 						<li><a href="login.jsp">My Account</a></li>
-						<li><a href="cart.html">Your Cart</a></li>
-						<li><a href="checkout.html">Checkout</a></li>
 						<li><a href="login.jsp">Login</a></li>
 						<li><a href="registrazione.jsp">Registrati</a></li>
 
@@ -126,30 +130,17 @@ function submit(){
 			<!-- logo del sito  con posizionamento a sinistra tramite la classe pull-left -->
 		
 			<nav id="menu" class="pull-right"> <!-- Il menu invece si posiziona a destra -->
-		
-		
-			
 			<ul>
 				<li><a href="FindProdotti?tipoFiltro=sesso&filtro=F">Woman</a>
 				
 				
 				</li>
 				<li><a href="FindProdotti?tipoFiltro=sesso&filtro=M">Man</a></li>
-			
-				<li><a href="./products.html">Sport</a>
-								<ul>									
-									<li><a href="./products.html">Gifts and Tech</a></li>
-									<li><a href="./products.html">Ties and Hats</a></li>
-									<li><a href="./products.html">Cold Weather</a></li>
-								</ul>
-							</li>							
-			
-		<li><a href="#">Brand</a>
+		<li><a href="	">Brand</a>
 					<ul>
 						<li><a href="FindProdotti?tipoFiltro=marca&filtro=adidas">Adidas</a>
 						<li><a href="FindProdotti?tipoFiltro=marca&filtro=nike">Nike</a>
-					</ul></li>  
-						
+					</ul></li>  	
 				<li><a href="./products.html">Piu' Venduti</a></li>
 			</ul>
 		

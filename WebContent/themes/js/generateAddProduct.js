@@ -3,33 +3,70 @@
  */
 
 function loadMarca(){
+		var p=document.createElement("p");
+		p.setAttribute("class", "span3");
 		var check= document.createElement("select"); 
-		check.setAttribute("name", "marca")
+		
+		check.setAttribute("name", "marca");
+		p.appendChild(check);
+		
 		var f=document.getElementById("container");
 		
 		var xh= new XMLHttpRequest;
 		xh.onreadystatechange=function(){
 			
 			if(xh.readyState==4 && xh.status==200){
-				console.log("inizio creazione text");
 				check.innerHTML=xh.responseText;
-				
 			}
-			
 		}
-		
 		xh.open("GET","ServletMarca?status=ok",true);
 		xh.send();
-		
-		f.appendChild(check);
+		f.appendChild(p);
 		
 	}
 	
+function loadCategorie(paragrafo){
+	
+	var xh= new XMLHttpRequest;
+	xh.onreadystatechange=function(){
+		
+		if(xh.readyState==4 && xh.status==200){
+			var response=xh.responseText;
+			var categorieJson= JSON.parse(response);
+			
+			
+			for(var i=0; i<categorieJson.length; ++i)
+			{
+				
+				var label= document.createElement("label");
+				label.setAttribute("class","checkbox-inline");
+				
+				var input=document.createElement("input");
+				input.setAttribute("name","categorie");
+				input.setAttribute("type","checkbox");
+				input.setAttribute("id",categorieJson[i].id_categoria);
+				input.setAttribute("value",categorieJson[i].id_categoria);
+				
+				//var idCategoria = document.createTextNode(""+categorieJson[i].id_categoria);
+				//label.appendChild(idCategoria);
+				label.innerHTML=categorieJson[i].descrizione+"";
+				label.appendChild(input);
+				paragrafo.appendChild(label);
+			}
+		}
+	}
+	xh.open("GET","ServletCategorie?operazione=getAllCategorie",true);
+	xh.send();
+	
+}
+
 function loadTaglie(object){
+	
 	var div=document.getElementById("tg");
 	 if(object.value=="F"){
 		 div.innerHTML="";
 		 for(i=35;i<42;++i){
+		 
 		 var x = document.createElement("INPUT");
 		 x.setAttribute("type", "checkbox");
 		 x.setAttribute("name","taglia");
@@ -46,6 +83,7 @@ function loadTaglie(object){
 		 var taglie = document.createTextNode(""+i);
 		 lbl.appendChild(taglie);
 		 lbl.setAttribute("style","margin-right:22%;");
+		 lbl.setAttribute("class","checkbox-inline");
 		 
 		 td.append(lbl);
 		 td.append(x);
@@ -87,6 +125,7 @@ function loadTaglie(object){
 	
 	
 	function crea(){
+		
 	var x = document.createElement("BR"); 
 	var div=document.getElementById("container");
 	div.classList.add("reg");
@@ -103,6 +142,7 @@ function loadTaglie(object){
 	for(i=0;i<elements.length;++i)
 		{
 			var p=document.createElement("p"); 
+			p.setAttribute("class","span3");
 			var input = document.createElement("input");
 			input.setAttribute("type","text");
 			input.setAttribute("name",elements[i].nodeValue);
@@ -126,10 +166,13 @@ function loadTaglie(object){
 		check.onchange=function(){loadTaglie(this);}
 		check.setAttribute("name", "sesso")
 		check.innerHTML="<option value='M'> M</option> <option value ='F'> F</option>";
+		
+		//par.setAttribute("class","span3");
 		par.appendChild(check);
 		div.appendChild(par);
 		
 		var Tpar= document.createElement("p");
+		//Tpar.setAttribute("class","span9");
 		Tpar.setAttribute("id","tg");
 		div.appendChild(Tpar);
 		
@@ -147,6 +190,12 @@ function loadTaglie(object){
 		quantita.setAttribute("max","30");
 		qPar.appendChild(quantita);
 		div.appendChild(qPar);
+		
+		
+		var divCategorie=document.createElement("div");
+		divCategorie.setAttribute("class","span9");
+		loadCategorie(divCategorie);
+		div.appendChild(divCategorie);
 		
 		par = document.createElement("p");
 		var file = document.createElement("input");

@@ -53,9 +53,10 @@ public class ModificaProdotto extends HttpServlet {
 				 prodotto.setDescrizione_estesa(json.get("descrizione_estesa")+"");
 			 if(json.get("sesso")!=null)
 				 prodotto.setSesso(json.get("sesso")+"");
+			 if(json.get("quantita")!=null)
+				 prodotto.setQuantita(Integer.parseInt(json.get("quantita")+""));
 			 
 			  res = proDAO.doUpdate(prodotto);
-			  
 			}
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
