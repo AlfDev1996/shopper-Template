@@ -97,7 +97,7 @@ public class CategoriaDAO {
 				preparedStatement.setInt(1, categoria.getSconto());
 				
 				preparedStatement.executeUpdate();
-				connection.commit();
+				
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -135,7 +135,7 @@ public class CategoriaDAO {
 		}finally{
 			try {
 				preparedStatement.close();
-				connection.commit();
+				
 				DriverManagerConnectionPool.releaseConnection(connection);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -207,7 +207,7 @@ public class CategoriaDAO {
 			preparedStatement.setInt(4, categoria.getIdCategoria());
 			
 			res = preparedStatement.executeUpdate();
-			connection.commit();
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

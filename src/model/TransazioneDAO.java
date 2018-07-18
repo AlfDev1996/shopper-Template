@@ -165,7 +165,7 @@ public class TransazioneDAO {
 			preparedStatement.setDate(4, (Date) transazione.getData());
 			
 			res = preparedStatement.executeUpdate();
-			connection.commit();
+		
 			
 			}catch(SQLException e) {
 				
@@ -204,7 +204,7 @@ public synchronized boolean doDelete(int id_ordine) {
 	}finally{
 		try {
 			preparedStatement.close();
-			connection.commit();
+			
 			DriverManagerConnectionPool.releaseConnection(connection);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -238,7 +238,7 @@ public synchronized boolean doUpdate(TransazioneBean transazione) {
 	preparedStatement.setInt(5, transazione.getId_transazione());
 	
 	res = preparedStatement.executeUpdate();
-	connection.commit();
+
 	
 	}catch (SQLException e) {
 		e.printStackTrace();

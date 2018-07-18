@@ -75,6 +75,8 @@ public class AddProduct extends HttpServlet {
 		
 		String[] categorieChecked = request.getParameterValues("categorie");
 		
+		
+		
 		ArrayList<CategoriaBean> categorie=new ArrayList<>();
 		for(int i=0;i<categorieChecked.length;++i) {
 			CategoriaBean categoria=new CategoriaBean();
@@ -116,6 +118,7 @@ public class AddProduct extends HttpServlet {
 		if(pDao.doSave(prodotto)) {
 			
 			prodotto = pDao.doRetriveByNomeAndModello(prodotto.getNome(), prodotto.getModello());
+			prodotto.setCategorie(categorie);
 			if(prodotto!=null)
 			{
 				//Salvo le categorie Nella tabella ponte fra prodotto e categoria

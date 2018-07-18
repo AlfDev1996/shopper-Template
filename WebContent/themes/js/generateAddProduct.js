@@ -67,7 +67,8 @@ function loadCategorie(object){
 			var x = document.createElement("INPUT");
 				 x.setAttribute("type", "checkbox");
 				 x.setAttribute("name","categorie");
-				 x.value=categorieJson[i].id_categoria+"";
+				 x.setAttribute("value",categorieJson[i].id_categoria);
+				 //x.value=categorieJson[i].id_categoria+"";
 				 
 				 
 				 var table = document.createElement("table");

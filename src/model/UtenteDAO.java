@@ -223,7 +223,6 @@ public synchronized void doSave(UtenteBean utente) {
 			preparedStatement.setInt(12, utente.getIndirizzo_num_civico());
 			
 			preparedStatement.executeUpdate();
-			connection.commit();
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -261,7 +260,7 @@ public synchronized boolean doDelete(int id_utente) {
 	}finally{
 		try {
 			preparedStatement.close();
-			connection.commit();
+			
 			DriverManagerConnectionPool.releaseConnection(connection);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -299,7 +298,7 @@ public synchronized boolean doUpdate(UtenteBean utente) {
 		preparedStatement.setInt(13, utente.getId_utente());
 		
 		res = preparedStatement.executeUpdate();
-		connection.commit();
+		
 		
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block

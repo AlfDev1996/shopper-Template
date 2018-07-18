@@ -154,7 +154,7 @@ public synchronized void doSave(VarianteProdottoBean variante) {
 			preparedStatement.setInt(4, variante.getProdotto().getId_prodotto());
 			
 			preparedStatement.executeUpdate();
-			connection.commit();
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -193,7 +193,7 @@ public synchronized boolean doDelete(int id_variante_prodotto) {
 	}finally{
 		try {
 			preparedStatement.close();
-			connection.commit();
+			
 			DriverManagerConnectionPool.releaseConnection(connection);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -222,7 +222,7 @@ public synchronized boolean doUpdate(VarianteProdottoBean variante) {
 		preparedStatement.setInt(4, variante.getProdotto().getId_prodotto());
 		
 		res = preparedStatement.executeUpdate();
-		connection.commit();
+		
 		
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block

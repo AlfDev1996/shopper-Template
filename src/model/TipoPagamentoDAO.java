@@ -195,7 +195,7 @@ public class TipoPagamentoDAO {
 		preparedStatement.setInt(7,  pagamento.getIdTipoPagamento());
 		
 		res = preparedStatement.executeUpdate();
-		connection.commit();
+		
 		
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -234,7 +234,8 @@ public class TipoPagamentoDAO {
 			
 			
 			preparedStatement.executeUpdate();
-			connection.commit();
+		
+		
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -272,7 +273,7 @@ public class TipoPagamentoDAO {
 		}finally{
 			try {
 				preparedStatement.close();
-				connection.commit();
+			
 				DriverManagerConnectionPool.releaseConnection(connection);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
