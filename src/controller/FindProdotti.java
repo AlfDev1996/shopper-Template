@@ -137,6 +137,9 @@ public class FindProdotti extends HttpServlet {
 			if(nome!=null )
 			{
 				
+				
+				
+				
 				ProdottoDAO prodottoDao =  new ProdottoDAO();
 				ArrayList<ProdottoBean> prodotti = new ArrayList<>();
 				if(nome.equals(""))
