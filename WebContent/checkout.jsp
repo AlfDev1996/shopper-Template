@@ -1,3 +1,4 @@
+<%@page import="model.ProdottoBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -61,8 +62,6 @@ function accesso(){
 </script>
 
 
-
-
 </head>
 <body>	
 <% UtenteBean user =(UtenteBean) session.getAttribute("utente"); %>
@@ -123,7 +122,7 @@ function accesso(){
 									</div>
 								</div>
 							</div>
-							<% }%>
+							<% } else {%>
 							<div class="accordion-group">
 								<div class="accordion-heading">
 									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Account &amp; Billing Details</a>
@@ -214,6 +213,7 @@ function accesso(){
 									</div>
 								</div>
 							</div>
+							<%} %>
 							<div class="accordion-group">
 								<div class="accordion-heading">
 									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseThree">Confirm Order</a>
@@ -221,8 +221,61 @@ function accesso(){
 								<div id="collapseThree" class="accordion-body collapse">
 									<div class="accordion-inner">
 										<div class="row-fluid">
-											<div class="control-group" id="articoli">
-												
+											<div class="control-group">
+												<table class="table table-striped" id="tableProdotti">
+							<thead>
+								<tr>
+									<th>Remove</th>
+									<th>Immagine</th>
+									<th>Nome Prodotto</th>
+									<th>Quantita'</th>
+									<th>Taglia</th>
+									<th>Prezzo Unitario</th>
+									<th>Prezzo Totale</th>
+								</tr>
+							</thead>
+							<tbody id="listProdotti">
+							<% CartBean carrello = (CartBean) session.getAttribute("carrello"); 
+							if(carrello!=null)
+							{
+								if(carrello.getProdotti()!=null && carrello.getProdotti().size()>0)
+								{
+									for(ProdottoBean prodotto : carrello.getProdotti())
+									{
+										
+							%>
+								<tr id="prod<%=prodotto.getNome()%>">
+									<td id="Alfonso"><input type="checkbox" name="prodotti[]" id='<%= prodotto.getId_prodotto()%>'></td>
+									<% if( prodotto.getImmagini()!=null && prodotto.getImmagini().size()>0) { %>
+									<td style="width:25%"><a href=""><img class="imgCarrello" alt="" src='themes/images/prodotti/<%=prodotto.getImmagini().get(0).getNomeFile() %>'></a></td>
+									<% } else {  %>
+									<td style="width:10%"><a href=""><img alt="" src="themes/images/non-disponibile.png"></a></td>
+									<% } %>
+									<td><%= prodotto.getNome() %></td>
+									<td><input type="number"  class="input-mini" name="qtaProdotti[]" id="<%=prodotto.getId_prodotto() %>" value="<%= prodotto.getQuantita() %>"> </td>
+									<td><%= prodotto.getTaglie() %></td>
+									<td><%= prodotto.getPrezzo() %></td>
+									<td><%= prodotto.getPrezzo()*prodotto.getQuantita() %></td>
+								</tr>			  
+							<%
+							
+									}
+								}
+								%>
+								<tr>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td>&nbsp;</td>
+								<td><strong><%= carrello.getPrezzoTotale() %></strong></td>
+								<%		} //End for %>
+							
+								
+								</tr>		  
+							</tbody>
+						</table>
 											</div>									
 											<button class="btn btn-inverse pull-right">Confirm order</button>
 										</div>
