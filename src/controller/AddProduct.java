@@ -124,6 +124,7 @@ public class AddProduct extends HttpServlet {
 				//Salvo le categorie Nella tabella ponte fra prodotto e categoria
 				if(prodotto.getCategorie()!=null && prodotto.getCategorie().size()>0)
 				{
+					
 					CategoriaProdottoDAO catDao=new CategoriaProdottoDAO();
 					for (CategoriaBean categoria : prodotto.getCategorie()) {
 						CategoriaProdottoBean catProdBean=new CategoriaProdottoBean();

@@ -175,6 +175,7 @@ public class ProdottoBean {
 			ArrayList<CategoriaProdottoBean> catProdBean = catProdDao.doRetriveByProdotto(this.id_prodotto);
 			for (CategoriaProdottoBean categoriaProdottoBean : catProdBean) {
 				this.getCategorie().add(categoriaProdottoBean.getCategoria());
+				
 				//prodotto.getCategorie().add(categoriaProdottoBean.getCategoria());
 			}
 		}
