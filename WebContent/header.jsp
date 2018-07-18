@@ -47,6 +47,32 @@ function submit(){
 	}
 </script>
 
+<script>
+$(function() {
+	  $('[data-toggle="popover"]').popover({
+	        html: true,
+	        content: function() {
+	            return $('#popover-content').html();
+	        }
+	  });
+	});
+
+</script>
+
+<script>
+function runScript(e) {
+    //Controlla la pressione del tasto invio per la ricerca
+   if(e.keyCode == 13)
+{
+	   var text = document.getElementById("searchText").value;
+	   
+	   window.location.replace("FindProdotti?tipoFiltro=marca&filtro="+text);
+}
+
+}
+
+</script>
+
 
 
 </head>
@@ -58,11 +84,13 @@ function submit(){
 			<!-- Crea una riga in alto con bootstrap -->
 			<div class="span4">
 				<!-- classe span 4 predefinita bootstrap, le colonne possono essere max 12, quindi qui ne abbiamo una da 4 e quindi ne restano 8 -->
-				<form method="POST" class="search_form">
-					<!-- Form per la ricerca   -->
-					<input type="text" class="input-block-level search-query"
-						Placeholder="eg. T-sirt">
-				</form>
+				
+				
+				
+				
+					<input style="color:black;" id ="searchText" type="text" onkeypress="return runScript(event)" class="input-block-level search-query"
+						Placeholder="es. Nike">
+				
 			</div>
 			<div class="span8">
 				<!-- Colonna da 8 mancante -->
@@ -136,11 +164,19 @@ function submit(){
 				
 				</li>
 				<li><a href="FindProdotti?tipoFiltro=sesso&filtro=M">Man</a></li>
-		<li><a href="	">Brand</a>
-					<ul>
-						<li><a href="FindProdotti?tipoFiltro=marca&filtro=adidas">Adidas</a>
-						<li><a href="FindProdotti?tipoFiltro=marca&filtro=nike">Nike</a>
-					</ul></li>  	
+				 
+<li><!-- body content -->
+<a href="#"   data-toggle="popover">Brands</a>
+
+<!-- loaded popover content -->
+<ul id="popover-content"  style="display: none">
+  <a href="FindProdotti?tipoFiltro=marca&filtro=adidas" class="list-group-item"><strong>Nike</strong></a><br>
+  <a href="FindProdotti?tipoFiltro=marca&filtro=nike" class="list-group-item"><strong>Adidas</strong></a><br>
+ <a href="FindProdotti?tipoFiltro=marca&filtro=puma" class="list-group-item"><strong>Puma</strong></a><br>
+ <a href="FindProdotti?tipoFiltro=marca&filtro=reebok" class="list-group-item"><strong>Reebok</strong></a><br>
+</ul></li>
+				 
+		
 				<li><a href="./products.html">Piu' Venduti</a></li>
 			</ul>
 		

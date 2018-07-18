@@ -36,6 +36,8 @@
 			 
 			 $("#motto").append(txt2);
 			$("#motto").addClass("header_text");
+			$("#motto").css("font-family","italic");
+			
 		});
 		</script>
 		
@@ -50,20 +52,29 @@
 						<li>
 							<img src="themes/images/carousel/banner-1.jpg" alt="" />
 							<div class="intro">   <!-- Eventuale testo che va inserito sopra le immagini dello slider -->
-								<h1>Per Informazioni Contattare</h1>
-								<p><span>Edward Chen</span></p>
-								<p><span>Preferibilmente WeChat</span></p>
+								<h1>Esplora il </h1>
+								<p><span>passato,presente e futuro</span></p>
+								<p><span>della tecnologia delle scarpe con stile classico o sportivo</span></p>
 							</div>
 						</li>
 						<li>
 							<img src="themes/images/carousel/banner-2.jpg" alt="" />
 							<div class="intro">   <!-- Eventuale testo che va inserito sopra le immagini dello slider -->
-								<h1>Mid season sale</h1>
-								<p><span>Up to 50% Off</span></p>
-								<p><span>On selected items online and in stores</span></p>
+								<h1>Scopri</h1>
+								<p><span>Tutta la collezione</span></p>
+								<p><span>ADIDAS</span></p>
 							</div>
 						</li>
-					</ul>
+					
+					<li>
+							<img src="themes/images/carousel/banner-3.jpg" alt="" />
+							<div class="intro">   <!-- Eventuale testo che va inserito sopra le immagini dello slider -->
+								<h1>Vans Prototype </h1>
+								<p><span>Tested</span></p>
+								<p><span>Approved</span></p>
+							</div>
+						</li>
+						</ul>
 				</div>			
 			</section>
 			
@@ -102,13 +113,48 @@
 								<div class="service">
 									<div class="support">	
 										<img src="themes/images/feature_img_3.png" alt="" />
-										<h4>24/7 LIVE <strong>SUPPORT</strong></h4>
+										<a href="javascript:;"
+  										onClick="window.open('contact.jsp', 'titolo', 'width=850, height=625, resizable, status, scrollbars=1, location');">
+										<h4>24/7 LIVE<strong>SUPPORT</strong></h4></a> 
 										<p>Lorem Ipsum is simply dummy text of the printing and printing industry unknown printer.</p>
 									</div>
 								</div>
-							</div>	
-						</div>		
-					</div>				
+							</div>
+							
+							
+								
+						</div>
+						
+					<hr size="5" style="background-color:black;">	
+						
+			<section class="our_client">
+				<h4 class="title"><span class="text">Manufactures</span></h4>
+				<div class="row">					
+					<div class="span2">
+						<a href="#"><img alt="" src="themes/images/clients/logo-1.png"></a>
+					</div>
+					<div class="span2">
+						<a href="#"><img alt="" src="themes/images/clients/logo-2.png"></a>
+					</div>
+					<div class="span2">
+						<a href="#"><img alt="" src="themes/images/clients/logo-3.png"></a>
+					</div>
+					<div class="span2">
+						<a href="#"><img alt="" src="themes/images/clients/logo-4.png"></a>
+					</div>
+					<div class="span2">
+						<a href="#"><img alt="" src="themes/images/clients/logo-5.png"></a>
+					</div>
+					<div class="span2">
+						<a href="#"><img alt="" src="themes/images/clients/logo-6.png"></a>
+					</div>
+					
+				</div>
+			</section>	
+	
+			<%@ include file="footer.jsp"%>	
+					</div>	
+								
 				</div>
 				<!-- Fine spazio dedicato ai prodotti "latest" -->
 				
@@ -117,36 +163,13 @@
 			
 			
 			<!-- Inizio area clienti  -->
-			<section class="our_client">
-				<h4 class="title"><span class="text">Manufactures</span></h4>
-				<div class="row">					
-					<div class="span2">
-						<a href="#"><img alt="" src="themes/images/clients/14.png"></a>
-					</div>
-					<div class="span2">
-						<a href="#"><img alt="" src="themes/images/clients/35.png"></a>
-					</div>
-					<div class="span2">
-						<a href="#"><img alt="" src="themes/images/clients/1.png"></a>
-					</div>
-					<div class="span2">
-						<a href="#"><img alt="" src="themes/images/clients/2.png"></a>
-					</div>
-					<div class="span2">
-						<a href="#"><img alt="" src="themes/images/clients/3.png"></a>
-					</div>
-					<div class="span2">
-						<a href="#"><img alt="" src="themes/images/clients/4.png"></a>
-					</div>
-				</div>
-			</section>
-			
+				
 			<!-- Fine area clienti -->
 			
 			
 			<!-- Inizio footer che dovremmo generare dinamicamente -->
 		
-		<%@ include file="footer.jsp"%>		
+			
 	
 			<!-- Fine footer -->
 		

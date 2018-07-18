@@ -30,6 +30,8 @@
 			<script src="js/respond.min.js"></script>
 		<![endif]-->
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
 </head>
 <body>
 
@@ -55,8 +57,19 @@
 						</ul>
 					</div>
 					<div class="span5">
-						<p class="logo"><img src="themes/images/logo.png" class="site_logo" alt=""></p>
-						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. the  Lorem Ipsum has been the industry's standard dummy text ever since the you.</p>
+						<p class="logo"><img src="themes/images/logo.PNG" class="site_logo" alt=""></p>
+						<p>
+						<strong> e-shoes è più social che mai, seguici !</strong><br>
+						<span id="social">
+						<a href="http://www.facebook.com" target="_blank" class="fa fa-facebook"></a>
+						<a href="http://www.twitter.com" target="_blank" class="fa fa-twitter"></a>
+						<a href="http://www.youtube.com" target="_blank" class="fa fa-youtube"></a>
+						<a href="http://www.instagram.com" target="_blank" class="fa fa-instagram"></a>
+						<a href="http://www.linkedin.com" target="_blank" class="fa fa-linkedin"></a>
+						</span>
+						
+						
+						</p>
 						<br/>
 						
 					</div>					

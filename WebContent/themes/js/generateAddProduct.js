@@ -4,6 +4,11 @@
 
 function loadMarca(){
 		var p=document.createElement("p");
+		 var lbl = document.createElement("label");
+		 var testo = document.createTextNode("Marca");
+		 lbl.appendChild(testo);
+		 p.appendChild(lbl);
+		
 		p.setAttribute("class", "span3");
 		var check= document.createElement("select"); 
 		
@@ -25,7 +30,12 @@ function loadMarca(){
 		
 	}
 	
-function loadCategorie(paragrafo){
+function loadCategorie(object){
+	
+	
+	
+	
+	
 	
 	var xh= new XMLHttpRequest;
 	xh.onreadystatechange=function(){
@@ -37,7 +47,7 @@ function loadCategorie(paragrafo){
 			
 			for(var i=0; i<categorieJson.length; ++i)
 			{
-				
+				/*
 				var label= document.createElement("label");
 				label.setAttribute("class","checkbox-inline");
 				
@@ -51,20 +61,54 @@ function loadCategorie(paragrafo){
 				//label.appendChild(idCategoria);
 				label.innerHTML=categorieJson[i].descrizione+"";
 				label.appendChild(input);
-				paragrafo.appendChild(label);
+				paragrafo.appendChild(label);*/
+			
+				
+			var x = document.createElement("INPUT");
+				 x.setAttribute("type", "checkbox");
+				 x.setAttribute("name","categorie");
+				 x.value=categorieJson[i].id_categoria+"";
+				 
+				 
+				 var table = document.createElement("table");
+					table.setAttribute("id","tableCategorie");
+				 
+				 var tr = document.createElement("tr");
+				 var td = document.createElement("td");
+				 td.setAttribute("style","display: -webkit-box;");
+				 
+				 
+				 var lbl = document.createElement("label");
+				 var categoria = document.createTextNode(""+categorieJson[i].descrizione);
+				 lbl.appendChild(categoria);
+				 lbl.setAttribute("style","margin-right:22%;");
+				 lbl.setAttribute("class","checkbox-inline");
+				 
+				 td.append(lbl);
+				 td.append(x);
+				 tr.appendChild(td);
+				 table.appendChild(tr);
+				 
+				 object.appendChild(table);
 			}
 		}
 	}
 	xh.open("GET","ServletCategorie?operazione=getAllCategorie",true);
 	xh.send();
 	
+	
 }
 
 function loadTaglie(object){
 	
 	var div=document.getElementById("tg");
+	
+	
+	
 	 if(object.value=="F"){
 		 div.innerHTML="";
+		// label.setAttribute("style","visibility:inherit;");
+		 
 		 for(i=35;i<42;++i){
 		 
 		 var x = document.createElement("INPUT");
@@ -74,6 +118,7 @@ function loadTaglie(object){
 		 
 		 
 		 var table = document.createElement("table");
+		 table.setAttribute("id","tableTaglie");
 		 var tr = document.createElement("tr");
 		 var td = document.createElement("td");
 		 td.setAttribute("style","display: -webkit-box;");
@@ -102,6 +147,7 @@ function loadTaglie(object){
 			 
 			 
 			 var table = document.createElement("table");
+			 table.setAttribute("id","tableTaglie");
 			 var tr = document.createElement("tr");
 			 var td = document.createElement("td");
 			 td.setAttribute("style","display: -webkit-box;");
@@ -163,36 +209,63 @@ function loadTaglie(object){
 		
 		var  par= document.createElement("p"); 
 		var check= document.createElement("select"); 
+		
+		 var lbl = document.createElement("label");
+		 var testo = document.createTextNode("Sesso");
+		 lbl.appendChild(testo);
+		 par.appendChild(lbl);
+		
+		par.setAttribute("class","span3");
+		
 		check.onchange=function(){loadTaglie(this);}
 		check.setAttribute("name", "sesso")
-		check.innerHTML="<option value='M'> M</option> <option value ='F'> F</option>";
+		check.innerHTML="<option value='M' selected='selected'> M</option> <option value ='F'> F</option>";
 		
 		//par.setAttribute("class","span3");
 		par.appendChild(check);
 		div.appendChild(par);
 		
+		
+		
 		var Tpar= document.createElement("p");
 		//Tpar.setAttribute("class","span9");
 		Tpar.setAttribute("id","tg");
+		
+		var lbl = document.createElement("label");
+		 var testo = document.createTextNode("Seleziona le taglie disponibili");
+		 lbl.appendChild(testo);
+		 Tpar.appendChild(lbl);
+		 lbl.setAttribute("id","lblTaglie");
+		 lbl.setAttribute("style","visibility:hidden;");
+		
 		div.appendChild(Tpar);
+		
+		
+		var Cpar= document.createElement("p");
+		
+		Cpar.setAttribute("id","cat");
+		
+		
 		
 		var qPar= document.createElement("p");
 		qPar.setAttribute("id","qta");
+		qPar.setAttribute("class","span3");
 		var lblQuantita= document.createElement("label");
 		var lblQtaTesto = document.createTextNode("Quantita'  disponibile");
 		lblQuantita.appendChild(lblQtaTesto);
-		div.appendChild(lblQuantita);
+		
 		var quantita= document.createElement("input");
 		quantita.setAttribute("type","number");
 		quantita.setAttribute("id","quantita");
 		quantita.setAttribute("name","quantita");
 		quantita.setAttribute("min","1");
 		quantita.setAttribute("max","30");
+		qPar.appendChild(lblQuantita);
 		qPar.appendChild(quantita);
 		div.appendChild(qPar);
 		
 		
-		var divCategorie=document.createElement("div");
+		var divCategorie=document.createElement("p");
 		divCategorie.setAttribute("class","span9");
 		loadCategorie(divCategorie);
 		div.appendChild(divCategorie);
