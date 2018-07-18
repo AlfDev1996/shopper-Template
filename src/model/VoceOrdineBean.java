@@ -3,7 +3,7 @@ package model;
 public class VoceOrdineBean {
 	
 	private OrdineBean ordine ;
-	private VarianteProdottoBean varianteProdotto;
+	private ProdottoBean prodotto;
 	private double prezzo_unitario, prezzo_totale,valore_sconto;
 	private int quantita, id_voce_ordine;
 	
@@ -11,7 +11,7 @@ public class VoceOrdineBean {
 	public VoceOrdineBean() {
 		id_voce_ordine=0;
 		ordine=new OrdineBean();
-		varianteProdotto=new VarianteProdottoBean();
+		prodotto=new ProdottoBean();
 		prezzo_unitario=0.0;
 		prezzo_totale=0.0;
 		valore_sconto=0.0;
@@ -29,11 +29,11 @@ public class VoceOrdineBean {
 	}
 
 
-	public VoceOrdineBean(OrdineBean ordine, VarianteProdottoBean varianteProdotto, double prezzo_unitario,
+	public VoceOrdineBean(OrdineBean ordine, ProdottoBean prodotto, double prezzo_unitario,
 			double prezzo_totale, double valore_sconto, int quantita, int id_voce_ordine) {
 		this.id_voce_ordine=id_voce_ordine;
 		this.ordine = ordine;
-		this.varianteProdotto = varianteProdotto;
+		this.prodotto = prodotto;
 		this.prezzo_unitario = prezzo_unitario;
 		this.prezzo_totale = prezzo_totale;
 		this.valore_sconto = valore_sconto;
@@ -45,12 +45,17 @@ public class VoceOrdineBean {
 	public void setOrdine(OrdineBean ordine) {
 		this.ordine = ordine;
 	}
-	public VarianteProdottoBean getVarianteProdotto() {
-		return varianteProdotto;
+	
+	public ProdottoBean getProdotto() {
+		return prodotto;
 	}
-	public void setVarianteProdotto(VarianteProdottoBean varianteProdotto) {
-		this.varianteProdotto = varianteProdotto;
+
+
+	public void setProdotto(ProdottoBean prodotto) {
+		this.prodotto = prodotto;
 	}
+
+
 	public double getPrezzo_unitario() {
 		return prezzo_unitario;
 	}
@@ -75,12 +80,15 @@ public class VoceOrdineBean {
 	public void setQuantita(int quantita) {
 		this.quantita = quantita;
 	}
+
+
 	@Override
 	public String toString() {
-		return "VoceOrdineBean [ordine=" + ordine + ", varianteProdotto=" + varianteProdotto + ", prezzo_unitario="
-				+ prezzo_unitario + ", prezzo_totale=" + prezzo_totale + ", valore_sconto=" + valore_sconto
-				+ ", quantita=" + quantita + "]";
+		return "VoceOrdineBean [ordine=" + ordine + ", prodotto=" + prodotto + ", prezzo_unitario=" + prezzo_unitario
+				+ ", prezzo_totale=" + prezzo_totale + ", valore_sconto=" + valore_sconto + ", quantita=" + quantita
+				+ ", id_voce_ordine=" + id_voce_ordine + "]";
 	}
+	
 	
 	
 

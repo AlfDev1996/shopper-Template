@@ -123,6 +123,8 @@ function accesso(){
 								</div>
 							</div>
 							<% } else {%>
+							<form method="POST" action="ServletOrdine">
+							
 							<div class="accordion-group">
 								<div class="accordion-heading">
 									<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#collapseTwo">Account &amp; Billing Details</a>
@@ -180,31 +182,31 @@ function accesso(){
 												<div class="control-group">
 													<label class="control-label"><span class="required">*</span> Via</label>
 													<div class="controls">
-														<input type="text" placeholder="" value="<%=user.getIndirizzo_via()%>" class="input-xlarge">
+														<input type="text" placeholder="" name="txtIndirizzoVia" value="<%=user.getIndirizzo_via()%>" class="input-xlarge">
 													</div>
 												</div>
 												<div class="control-group">
 													<label class="control-label">Civico</label>
 													<div class="controls">
-														<input type="text" placeholder=""  value="<%=user.getIndirizzo_num_civico()%>" class="input-xlarge">
+														<input type="text" placeholder=""  name="txtIndirizzoNumCivico" value="<%=user.getIndirizzo_num_civico()%>" class="input-xlarge">
 													</div>
 												</div>
 												<div class="control-group">
 													<label class="control-label"><span class="required">*</span> Città</label>
 													<div class="controls">
-														<input type="text" placeholder="" value="<%=user.getIndirizzo_citta()%>" class="input-xlarge">
+														<input type="text" placeholder="" name="txtIndirizzoCitta" value="<%=user.getIndirizzo_citta()%>" class="input-xlarge">
 													</div>
 												</div>
 												<div class="control-group">
 													<label class="control-label"><span class="required">*</span> CAP</label>
 													<div class="controls">
-														<input type="text" placeholder="" value="<%=user.getIndirizzo_cap()%>" class="input-xlarge">
+														<input type="text" placeholder="" name="txtIndirizzoCap" value="<%=user.getIndirizzo_cap()%>" class="input-xlarge">
 													</div>
 												</div>
 												<div class="control-group">
 													<label class="control-label"><span class="required">*</span> Nazione</label>
 													<div class="controls">
-													<input type="text" placeholder="" value="<%=user.getIndirizzo_nazione()%>" class="input-xlarge">
+													<input type="text" placeholder="" name="txtIndirizzoNazione" value="<%=user.getIndirizzo_nazione()%>" class="input-xlarge">
 													</div>
 												</div>
 												
@@ -277,11 +279,12 @@ function accesso(){
 							</tbody>
 						</table>
 											</div>									
-											<button class="btn btn-inverse pull-right">Confirm order</button>
+											<input type="submit" class="btn btn-inverse pull-right">Confirm order</button>
 										</div>
 									</div>
 								</div>
 							</div>
+							</form>
 						</div>				
 					</div>
 				</div>

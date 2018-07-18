@@ -26,8 +26,8 @@ public synchronized VoceOrdineBean doRetriveByKey(int id_voce_ordine)  {
 			voceOrdine = new VoceOrdineBean();
 			
 			int id_ordine= rs.getInt("id_ordine") !=0 ? rs.getInt("id_ordine"):0;
-			int id_variante_prodotto= rs.getInt("id_variante_prodotto") !=0 ? rs.getInt("id_variante_prodotto"):0;
-			if(id_ordine!=0 && id_variante_prodotto!=0) {
+			int id_prodotto= rs.getInt("id_prodotto") !=0 ? rs.getInt("id_prodotto"):0;
+			if(id_ordine!=0 && id_prodotto!=0) {
 				
 				voceOrdine.setId_voce_ordine(rs.getInt("id_voce_ordine"));
 				
@@ -39,12 +39,12 @@ public synchronized VoceOrdineBean doRetriveByKey(int id_voce_ordine)  {
 				else
 					voceOrdine.setOrdine(null);
 				//Inizializzo la variante prodotto che fa parte dell'ordine
-				VarianteProdottoDAO varianteDao= new VarianteProdottoDAO();
-				VarianteProdottoBean variante = varianteDao.doRetriveByKey(id_variante_prodotto);
-				if(variante!=null && variante.getId_variante_prodotto()>0)
-					voceOrdine.setVarianteProdotto(variante);
+				ProdottoDAO prodottoDao= new ProdottoDAO();
+				ProdottoBean prodotto = prodottoDao.doRetriveByKey(id_prodotto);
+				if(prodotto!=null && prodotto.getId_prodotto()>0)
+					voceOrdine.setProdotto(prodotto);
 				else
-					voceOrdine.setVarianteProdotto(null);
+					voceOrdine.setProdotto(null);
 				
 			 voceOrdine.setQuantita(rs.getInt("quantita"));
 			 voceOrdine.setPrezzo_unitario(rs.getDouble("prezzo_unitario"));
@@ -86,9 +86,8 @@ public synchronized ArrayList<VoceOrdineBean> doRetriveByOrdine(int id_ordine)  
 	while(rs.next()) {
 		voceOrdine= new VoceOrdineBean();
 		id_ordine= rs.getInt("id_ordine") !=0 ? rs.getInt("id_ordine"):0;
-		int id_variante_prodotto= rs.getInt("id_variante_prodotto") !=0 ? rs.getInt("id_variante_prodotto"):0;
-		if(id_ordine!=0 && id_variante_prodotto!=0) {
-			
+		int id_prodotto= rs.getInt("id_prodotto") !=0 ? rs.getInt("id_prodotto"):0;
+		if(id_ordine!=0 && id_prodotto!=0) {
 			voceOrdine.setId_voce_ordine(rs.getInt("id_voce_ordine"));
 			
 			//Inizializzo l'ordine a cui la voceOrdine appartiene
@@ -99,12 +98,12 @@ public synchronized ArrayList<VoceOrdineBean> doRetriveByOrdine(int id_ordine)  
 			else
 				voceOrdine.setOrdine(null);
 			//Inizializzo la variante prodotto che fa parte dell'ordine
-			VarianteProdottoDAO varianteDao= new VarianteProdottoDAO();
-			VarianteProdottoBean variante = varianteDao.doRetriveByKey(id_variante_prodotto);
-			if(variante!=null && variante.getId_variante_prodotto()>0)
-				voceOrdine.setVarianteProdotto(variante);
+			ProdottoDAO prodottoDao= new ProdottoDAO();
+			ProdottoBean prodotto = prodottoDao.doRetriveByKey(id_prodotto);
+			if(prodotto!=null && prodotto.getId_prodotto()>0)
+				voceOrdine.setProdotto(prodotto);
 			else
-				voceOrdine.setVarianteProdotto(null);
+				voceOrdine.setProdotto(null);
 			
 		 voceOrdine.setQuantita(rs.getInt("quantita"));
 		 voceOrdine.setPrezzo_unitario(rs.getDouble("prezzo_unitario"));
@@ -150,9 +149,8 @@ public synchronized ArrayList<VoceOrdineBean> doRetrieveAll(){
 	while(rs.next()) {
 		voceOrdine= new VoceOrdineBean();
 		int id_ordine= rs.getInt("id_ordine") !=0 ? rs.getInt("id_ordine"):0;
-		int id_variante_prodotto= rs.getInt("id_variante_prodotto") !=0 ? rs.getInt("id_variante_prodotto"):0;
-		if(id_ordine!=0 && id_variante_prodotto!=0) {
-			
+		int id_prodotto= rs.getInt("id_prodotto") !=0 ? rs.getInt("id_prodotto"):0;
+		if(id_ordine!=0 && id_prodotto!=0) {
 			voceOrdine.setId_voce_ordine(rs.getInt("id_voce_ordine"));
 			
 			//Inizializzo l'ordine a cui la voceOrdine appartiene
@@ -163,12 +161,12 @@ public synchronized ArrayList<VoceOrdineBean> doRetrieveAll(){
 			else
 				voceOrdine.setOrdine(null);
 			//Inizializzo la variante prodotto che fa parte dell'ordine
-			VarianteProdottoDAO varianteDao= new VarianteProdottoDAO();
-			VarianteProdottoBean variante = varianteDao.doRetriveByKey(id_variante_prodotto);
-			if(variante!=null && variante.getId_variante_prodotto()>0)
-				voceOrdine.setVarianteProdotto(variante);
+			ProdottoDAO prodottoDao= new ProdottoDAO();
+			ProdottoBean prodotto = prodottoDao.doRetriveByKey(id_prodotto);
+			if(prodotto!=null && prodotto.getId_prodotto()>0)
+				voceOrdine.setProdotto(prodotto);
 			else
-				voceOrdine.setVarianteProdotto(null);
+				voceOrdine.setProdotto(null);
 			
 		 voceOrdine.setQuantita(rs.getInt("quantita"));
 		 voceOrdine.setPrezzo_unitario(rs.getDouble("prezzo_unitario"));
@@ -204,7 +202,7 @@ public synchronized void doSave(VoceOrdineBean voceOrdine) {
 	if(voceOrdine!=null) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		String sqlInsert="insert into voce_ordine (id_ordine,id_variante_prodotto,quantita,prezzo_unitario,prezzo_totale,valore_sconto) values(?,?,?,?,?,?)";
+		String sqlInsert="insert into voce_ordine (id_ordine,id_prodotto,quantita,prezzo_unitario,prezzo_totale,valore_sconto) values(?,?,?,?,?,?)";
 		int res=0;
 		try {
 		
@@ -212,7 +210,7 @@ public synchronized void doSave(VoceOrdineBean voceOrdine) {
 		preparedStatement = (PreparedStatement) connection.prepareStatement(sqlInsert);
 		
 		preparedStatement.setInt(1, voceOrdine.getOrdine().getIdOrdine());
-		preparedStatement.setInt(2, voceOrdine.getVarianteProdotto().getId_variante_prodotto());
+		preparedStatement.setInt(2, voceOrdine.getProdotto().getId_prodotto());
 		preparedStatement.setInt(3, voceOrdine.getQuantita());
 		preparedStatement.setDouble(4, voceOrdine.getPrezzo_unitario());
 		preparedStatement.setDouble(5, voceOrdine.getPrezzo_totale());
@@ -278,13 +276,13 @@ public synchronized boolean doUpdate(VoceOrdineBean voceOrdine) {
 	PreparedStatement preparedStatement = null;
 	int res=0;
 	
-	String sqlUpdate = "UPDATE voce_ordine SET id_ordine = ? , id_variante_prodotto = ? , quantita = ? , prezzo_unitario = ? , prezzo_totale = ? , valore_sconto= ? where id_voce_ordine=? ";
+	String sqlUpdate = "UPDATE voce_ordine SET id_ordine = ? , id_prodotto = ? , quantita = ? , prezzo_unitario = ? , prezzo_totale = ? , valore_sconto= ? where id_voce_ordine=? ";
 	try {
 	connection = (Connection) DriverManagerConnectionPool.getConnection();
 	preparedStatement=(PreparedStatement) connection.prepareStatement(sqlUpdate);
 	
 	preparedStatement.setInt(1, voceOrdine.getOrdine().getIdOrdine());
-	preparedStatement.setInt(2, voceOrdine.getVarianteProdotto().getId_variante_prodotto());
+	preparedStatement.setInt(2, voceOrdine.getProdotto().getId_prodotto());
 	preparedStatement.setInt(3, voceOrdine.getQuantita());
 	preparedStatement.setDouble(4, voceOrdine.getPrezzo_unitario());
 	preparedStatement.setDouble(5, voceOrdine.getPrezzo_totale());
