@@ -61,6 +61,8 @@ function accesso(){
 </script>
 
 
+
+
 </head>
 <body>	
 <% UtenteBean user =(UtenteBean) session.getAttribute("utente"); %>
@@ -134,25 +136,25 @@ function accesso(){
 												<div class="control-group">
 													<label class="control-label">First Name</label>
 													<div class="controls">
-														<input type="text" placeholder="" class="input-xlarge">
+														<input type="text" placeholder="" value="<%=user.getNome()%>"class="input-xlarge">
 													</div>
 												</div>
 												<div class="control-group">
-													<label class="control-label">Last Name</label>
+													<label class="control-label" >Last Name</label>
 													<div class="controls">
-														<input type="text" placeholder="" class="input-xlarge">
+														<input type="text" placeholder="" value="<%=user.getCognome()%>" class="input-xlarge">
 													</div>
 												</div>					  
 												<div class="control-group">
 													<label class="control-label">Email Address</label>
 													<div class="controls">
-														<input type="text" placeholder="" class="input-xlarge">
+														<input type="text" value="<%=user.getEmail()%>" placeholder="" class="input-xlarge">
 													</div>
 												</div>
 												<div class="control-group">
 													<label class="control-label">Telephone</label>
 													<div class="controls">
-														<input type="text" placeholder="" class="input-xlarge">
+														<input type="text" placeholder=""  class="input-xlarge">
 													</div>
 												</div>
 												<div class="control-group">
@@ -177,55 +179,36 @@ function accesso(){
 													</div>
 												</div>					  
 												<div class="control-group">
-													<label class="control-label"><span class="required">*</span> Address 1:</label>
+													<label class="control-label"><span class="required">*</span> Via</label>
 													<div class="controls">
-														<input type="text" placeholder="" class="input-xlarge">
+														<input type="text" placeholder="" value="<%=user.getIndirizzo_via()%>" class="input-xlarge">
 													</div>
 												</div>
 												<div class="control-group">
-													<label class="control-label">Address 2:</label>
+													<label class="control-label">Civico</label>
 													<div class="controls">
-														<input type="text" placeholder="" class="input-xlarge">
+														<input type="text" placeholder=""  value="<%=user.getIndirizzo_num_civico()%>" class="input-xlarge">
 													</div>
 												</div>
 												<div class="control-group">
-													<label class="control-label"><span class="required">*</span> City:</label>
+													<label class="control-label"><span class="required">*</span> Città</label>
 													<div class="controls">
-														<input type="text" placeholder="" class="input-xlarge">
+														<input type="text" placeholder="" value="<%=user.getIndirizzo_citta()%>" class="input-xlarge">
 													</div>
 												</div>
 												<div class="control-group">
-													<label class="control-label"><span class="required">*</span> Post Code:</label>
+													<label class="control-label"><span class="required">*</span> CAP</label>
 													<div class="controls">
-														<input type="text" placeholder="" class="input-xlarge">
+														<input type="text" placeholder="" value="<%=user.getIndirizzo_cap()%>" class="input-xlarge">
 													</div>
 												</div>
 												<div class="control-group">
-													<label class="control-label"><span class="required">*</span> Country:</label>
+													<label class="control-label"><span class="required">*</span> Nazione</label>
 													<div class="controls">
-														<select class="input-xlarge">
-															<option value="1">Afghanistan</option>
-															<option value="2">Albania</option>
-															<option value="3">Algeria</option>
-															<option value="4">American Samoa</option>
-															<option value="5">Andorra</option>
-															<option value="6">Angola</option>
-														</select>
+													<input type="text" placeholder="" value="<%=user.getIndirizzo_nazione()%>" class="input-xlarge">
 													</div>
 												</div>
-												<div class="control-group">
-													<label class="control-label"><span class="required">*</span> Region / State:</label>
-													<div class="controls">
-														<select name="zone_id" class="input-xlarge">
-															<option value=""> --- Please Select --- </option>
-															<option value="3513">Aberdeen</option>
-															<option value="3514">Aberdeenshire</option>
-															<option value="3515">Anglesey</option>
-															<option value="3516">Angus</option>
-															<option value="3517">Argyll and Bute</option>
-														</select>
-													</div>
-												</div>
+												
 											</div>
 										</div>
 									</div>
@@ -238,11 +221,8 @@ function accesso(){
 								<div id="collapseThree" class="accordion-body collapse">
 									<div class="accordion-inner">
 										<div class="row-fluid">
-											<div class="control-group">
-												<label for="textarea" class="control-label">Comments</label>
-												<div class="controls">
-													<textarea rows="3" id="textarea" class="span12"></textarea>
-												</div>
+											<div class="control-group" id="articoli">
+												
 											</div>									
 											<button class="btn btn-inverse pull-right">Confirm order</button>
 										</div>
