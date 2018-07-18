@@ -378,7 +378,7 @@ public class OrdineDAO {
 			
 			
 			res = preparedStatement.executeUpdate();
-			connection.commit();
+			
 			
 			}catch(SQLException e) {
 				
@@ -417,7 +417,7 @@ public class OrdineDAO {
 	}finally{
 		try {
 			preparedStatement.close();
-			connection.commit();
+			
 			DriverManagerConnectionPool.releaseConnection(connection);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -450,7 +450,7 @@ public class OrdineDAO {
 		preparedStatement.setInt(7, ordine.getIdOrdine());
 		
 		res = preparedStatement.executeUpdate();
-		connection.commit();
+		
 		
 		}catch (SQLException e) {
 			e.printStackTrace();

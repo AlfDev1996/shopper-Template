@@ -13,7 +13,7 @@ public class CategoriaProdottoDAO {
 		
 		Connection conn = null;
 		PreparedStatement ps = null;
-		CategoriaProdottoBean categoriaProdotto =null;
+		CategoriaProdottoBean categoriaProdotto =new CategoriaProdottoBean();
 		try {
 		conn = (Connection) DriverManagerConnectionPool.getConnection();
 		ps=(PreparedStatement) conn.prepareStatement("SELECT * from categoria_prodotto where id_categoria_prodotto=?");
@@ -126,7 +126,7 @@ return categorieProdotto;
 	public synchronized ArrayList<CategoriaProdottoBean> doRetriveByProdotto(int id_prodotto)  {
 		Connection conn = null;
 		PreparedStatement ps = null;
-		CategoriaProdottoBean categoriaProdotto =null;
+		CategoriaProdottoBean categoriaProdotto =new CategoriaProdottoBean();
 		ArrayList<CategoriaProdottoBean> categorieProdotto= new ArrayList<>();
 		try {
 		conn = (Connection) DriverManagerConnectionPool.getConnection();
@@ -154,7 +154,7 @@ return categorieProdotto;
 				
 				
 				ProdottoDAO pDAO = new ProdottoDAO();
-				ProdottoBean prod = pDAO.doRetriveByKey(rs.getInt("id_prodotto"));
+				ProdottoBean prod = pDAO.doRetriveByKey(id_prodotto);
 				if(prod!=null && prod.getId_prodotto()>0)
 					categoriaProdotto.setProdotto(prod);
 				else
@@ -311,7 +311,7 @@ return categorieProdotto;
 		}finally{
 			try {
 				preparedStatement.close();
-				connection.commit();
+				
 				DriverManagerConnectionPool.releaseConnection(connection);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -338,7 +338,7 @@ return categorieProdotto;
 			preparedStatement.setInt(1, categoriaProdotto.getCategoria().getIdCategoria());
 			preparedStatement.setInt(2, categoriaProdotto.getProdotto().getId_prodotto());
 			res = preparedStatement.executeUpdate();
-			connection.commit();
+			
 			
 			}catch (SQLException e) {
 				e.printStackTrace();

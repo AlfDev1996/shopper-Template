@@ -155,7 +155,7 @@ public class ImmagineDAO {
 			}finally{
 				try {
 					preparedStatement.close();
-					connection.commit();
+					
 					
 					DriverManagerConnectionPool.releaseConnection(connection);
 				} catch (SQLException e) {
@@ -188,7 +188,7 @@ public class ImmagineDAO {
 		}finally{
 			try {
 				preparedStatement.close();
-				connection.commit();
+				
 				DriverManagerConnectionPool.releaseConnection(connection);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -266,7 +266,7 @@ public class ImmagineDAO {
 		preparedStatement.setInt(4, immagine.getIdImmagine());
 		
 		res=preparedStatement.executeUpdate();
-		connection.commit();
+		
 		
 		
 		}catch(SQLException e) {

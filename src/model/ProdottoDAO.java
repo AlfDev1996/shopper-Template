@@ -15,7 +15,7 @@ public synchronized ProdottoBean doRetriveByKey(int id)  {
 		PreparedStatement ps = null;
 		ProdottoBean prodotto = new ProdottoBean();
 		try {
-			//DriverManagerConnectionPool.getConnection().commit();
+			
 			conn = (Connection) DriverManagerConnectionPool.getConnection();
 			ps=(PreparedStatement) conn.prepareStatement("SELECT * from prodotto where id_prodotto=?");
 			ps.setInt(1, id);
@@ -51,12 +51,15 @@ public synchronized ProdottoBean doRetriveByKey(int id)  {
 				
 				//Mi inizializzo l'araylist di categorie
 				
+				/*
 				CategoriaProdottoDAO catProdDao=new CategoriaProdottoDAO();
+				System.out.println(prodotto.getId_prodotto());
 				ArrayList<CategoriaProdottoBean> catProdBean = catProdDao.doRetriveByProdotto(prodotto.getId_prodotto());
+				if(catProdBean!=null && catProdBean.size()>0)
 				for (CategoriaProdottoBean categoriaProdottoBean : catProdBean) {
 					prodotto.getCategorie().add(categoriaProdottoBean.getCategoria());
 				}
-				
+				*/
 				//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
 				//ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
 				//VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
@@ -131,11 +134,7 @@ public synchronized ArrayList<ProdottoBean> doRetriveBySesso(String sesso)  {
 			
 			//Mi inizializzo l'araylist di categorie
 			
-			CategoriaProdottoDAO catProdDao=new CategoriaProdottoDAO();
-			ArrayList<CategoriaProdottoBean> catProdBean = catProdDao.doRetriveByProdotto(prodotto.getId_prodotto());
-			for (CategoriaProdottoBean categoriaProdottoBean : catProdBean) {
-				prodotto.getCategorie().add(categoriaProdottoBean.getCategoria());
-			}
+			
 			
 			//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
 			//ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
@@ -159,7 +158,7 @@ public synchronized ArrayList<ProdottoBean> doRetriveBySesso(String sesso)  {
 		ex.printStackTrace();
 	}finally{
 		try {
-			//conn.commit();
+			
 			ps.close();
 			
 			DriverManagerConnectionPool.releaseConnection(conn);
@@ -178,7 +177,7 @@ public synchronized ArrayList<ProdottoBean> doRetriveByNome(String nome)  {
 	ProdottoBean prodotto =  new ProdottoBean();
 	ArrayList<ProdottoBean> prodotti = new ArrayList<>();
 	try {
-		//DriverManagerConnectionPool.getConnection().commit();
+		
 		conn = (Connection) DriverManagerConnectionPool.getConnection();
 		ps=(PreparedStatement) conn.prepareStatement("SELECT * from prodotto where nome like  ?  ");
 		ps.setString(1, "%"+nome+"%");
@@ -211,11 +210,15 @@ public synchronized ArrayList<ProdottoBean> doRetriveByNome(String nome)  {
 			
 			//Mi inizializzo l'araylist di categorie
 			
+			/*
 			CategoriaProdottoDAO catProdDao=new CategoriaProdottoDAO();
+			System.out.println(prodotto.getId_prodotto());
 			ArrayList<CategoriaProdottoBean> catProdBean = catProdDao.doRetriveByProdotto(prodotto.getId_prodotto());
+			if(catProdBean!=null && catProdBean.size()>0)
 			for (CategoriaProdottoBean categoriaProdottoBean : catProdBean) {
 				prodotto.getCategorie().add(categoriaProdottoBean.getCategoria());
 			}
+			*/
 			
 			//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
 			//ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
@@ -256,7 +259,7 @@ public synchronized ProdottoBean doRetriveByNomeAndModello(String nome, String m
 	PreparedStatement ps = null;
 	ProdottoBean prodotto =  new ProdottoBean();
 	try {
-		//DriverManagerConnectionPool.getConnection().commit();
+		
 		conn = (Connection) DriverManagerConnectionPool.getConnection();
 		ps=(PreparedStatement) conn.prepareStatement("SELECT * from prodotto where nome like  ?  and modello like ?");
 		ps.setString(1, nome);
@@ -290,11 +293,15 @@ public synchronized ProdottoBean doRetriveByNomeAndModello(String nome, String m
 			
 			//Mi inizializzo l'araylist di categorie
 			
+			/*
 			CategoriaProdottoDAO catProdDao=new CategoriaProdottoDAO();
+			System.out.println(prodotto.getId_prodotto());
 			ArrayList<CategoriaProdottoBean> catProdBean = catProdDao.doRetriveByProdotto(prodotto.getId_prodotto());
+			if(catProdBean!=null && catProdBean.size()>0)
 			for (CategoriaProdottoBean categoriaProdottoBean : catProdBean) {
 				prodotto.getCategorie().add(categoriaProdottoBean.getCategoria());
 			}
+			*/
 			
 			//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
 			//ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
@@ -336,7 +343,7 @@ public synchronized ArrayList<ProdottoBean> doRetriveByMarca(MarcaBean marca)  {
 	ProdottoBean prodotto =  new ProdottoBean();
 	ArrayList<ProdottoBean> prodotti = new ArrayList<>();
 	try {
-		//DriverManagerConnectionPool.getConnection().commit();
+		
 		conn = (Connection) DriverManagerConnectionPool.getConnection();
 		ps=(PreparedStatement) conn.prepareStatement("SELECT * from prodotto where id_marca = ? ");
 		ps.setInt(1, marca.getIdMarca());
@@ -369,11 +376,15 @@ public synchronized ArrayList<ProdottoBean> doRetriveByMarca(MarcaBean marca)  {
 			
 			//Mi inizializzo l'araylist di categorie
 			
+			/*
 			CategoriaProdottoDAO catProdDao=new CategoriaProdottoDAO();
+			System.out.println(prodotto.getId_prodotto());
 			ArrayList<CategoriaProdottoBean> catProdBean = catProdDao.doRetriveByProdotto(prodotto.getId_prodotto());
+			if(catProdBean!=null && catProdBean.size()>0)
 			for (CategoriaProdottoBean categoriaProdottoBean : catProdBean) {
 				prodotto.getCategorie().add(categoriaProdottoBean.getCategoria());
 			}
+			*/
 			
 			//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
 			//ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
@@ -419,7 +430,7 @@ public synchronized ArrayList<ProdottoBean> doRetrieveAll(String orderBy){
 		sqlSelect+="order by "+orderBy;
 	
 	try {
-		//DriverManagerConnectionPool.getConnection().commit();
+		
 		connection = (Connection) DriverManagerConnectionPool.getConnection();
 		
 		preparedStatement = (PreparedStatement) connection.prepareStatement(sqlSelect);
@@ -452,21 +463,10 @@ public synchronized ArrayList<ProdottoBean> doRetrieveAll(String orderBy){
 			
 			//Mi inizializzo l'araylist di categorie
 			
-			CategoriaProdottoDAO catProdDao=new CategoriaProdottoDAO();
-			ArrayList<CategoriaProdottoBean> catProdBean = catProdDao.doRetriveByProdotto(prodotto.getId_prodotto());
-			for (CategoriaProdottoBean categoriaProdottoBean : catProdBean) {
-				prodotto.getCategorie().add(categoriaProdottoBean.getCategoria());
-			}
-			
-			//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
-			//ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
-			//VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
-			//varianti = varianteDAO.doRetriveByProdotto(prodotto);
-			
 			//prodotto.setVariantiProdotto(varianti);
 			//Mi inizializzo la lista di immagini
 			
-			 ArrayList<ImmagineBean> immagini = new ArrayList<>();
+			ArrayList<ImmagineBean> immagini = new ArrayList<>();
 			ImmagineDAO immagineDAO=new ImmagineDAO();
 			immagini = immagineDAO.doRetriveByProdotto(prodotto);
 			
@@ -577,7 +577,7 @@ public synchronized boolean doDelete(int id_prodotto) {
 		res = preparedStatement.executeUpdate();
 		
 		
-		connection.commit();
+		
 		
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -627,7 +627,7 @@ public synchronized boolean doUpdate(ProdottoBean prodotto) {
 	}finally{
 		try {
 			preparedStatement.close();
-			DriverManagerConnectionPool.getConnection().commit();
+			
 			DriverManagerConnectionPool.releaseConnection(connection);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

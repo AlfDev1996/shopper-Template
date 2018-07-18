@@ -97,7 +97,7 @@ return mar;
 				preparedStatement = (PreparedStatement) connection.prepareStatement(sqlInsert);
 				preparedStatement.setString(1, marca.getNome());
 				preparedStatement.executeUpdate();
-				connection.commit();
+				
 				
 				
 			}catch(SQLException e) {
@@ -137,7 +137,7 @@ return mar;
 		}finally{
 			try {
 				preparedStatement.close();
-				connection.commit();
+				
 				DriverManagerConnectionPool.releaseConnection(connection);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -210,7 +210,7 @@ return mar;
 		
 		
 		res = preparedStatement.executeUpdate();
-		connection.commit();
+	
 		
 		
 		}catch(SQLException e) {

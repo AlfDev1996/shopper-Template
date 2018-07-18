@@ -17,6 +17,8 @@ import org.json.simple.parser.JSONParser;
 
 import com.google.gson.Gson;
 
+import model.CategoriaProdottoBean;
+import model.CategoriaProdottoDAO;
 import model.MarcaBean;
 import model.MarcaDAO;
 import model.ProdottoBean;
@@ -60,7 +62,14 @@ public class FindProdotti extends HttpServlet {
 				prodottiFind= proDAO.doRetriveBySesso(filtro);
 				if(prodottiFind!=null )
 				{
+					
+					
 					if( prodottiFind.size()>0) {
+						
+						for (ProdottoBean prodottoBean : prodottiFind) {
+							prodottoBean.inizializzaCategorie();
+						}
+						
 						Gson gson= new Gson();
 						String jsonArray = gson.toJson(prodottiFind);
 						request.setAttribute("prodotti", jsonArray);	
@@ -85,6 +94,9 @@ public class FindProdotti extends HttpServlet {
 					 if(prodottiFind!=null )
 						{
 						 if( prodottiFind.size()>0) {
+							 for (ProdottoBean prodottoBean : prodottiFind) {
+									prodottoBean.inizializzaCategorie();
+								}
 								Gson gson= new Gson();
 								String jsonArray = gson.toJson(prodottiFind);
 								request.setAttribute("prodotti", jsonArray);	
@@ -112,10 +124,12 @@ public class FindProdotti extends HttpServlet {
 				ProdottoBean prodotto = prodottoDao.doRetriveByNomeAndModello(nome, modello);
 				if(prodotto!=null)
 				{
+					
+					prodotto.inizializzaCategorie();
+					
 					Gson gson = new Gson();
 					String json = gson.toJson(prodotto);
 					out.append(json);
-					
 					System.out.println(json);
 				}
 				
@@ -131,6 +145,10 @@ public class FindProdotti extends HttpServlet {
 				 prodotti = prodottoDao.doRetriveByNome(nome);
 				if(prodotti!=null && prodotti.size()>0)
 				{
+					for (ProdottoBean prodottoBean : prodotti) {
+						prodottoBean.inizializzaCategorie();
+					}
+					
 					Gson gson= new Gson();
 					String jsonArray = gson.toJson(prodotti);
 					out.append(jsonArray);

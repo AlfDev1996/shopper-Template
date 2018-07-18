@@ -220,7 +220,7 @@ public synchronized void doSave(VoceOrdineBean voceOrdine) {
 		
 		
 		res = preparedStatement.executeUpdate();
-		connection.commit();
+		
 		
 		}catch(SQLException e) {
 			
@@ -259,7 +259,7 @@ public synchronized boolean doDelete(int id_voce_ordine) {
 }finally{
 	try {
 		preparedStatement.close();
-		connection.commit();
+	
 		DriverManagerConnectionPool.releaseConnection(connection);
 	} catch (SQLException e) {
 		// TODO Auto-generated catch block
@@ -292,7 +292,7 @@ public synchronized boolean doUpdate(VoceOrdineBean voceOrdine) {
 	preparedStatement.setInt(7, voceOrdine.getId_voce_ordine());
 	
 	res = preparedStatement.executeUpdate();
-	connection.commit();
+	
 	
 	}catch (SQLException e) {
 		e.printStackTrace();

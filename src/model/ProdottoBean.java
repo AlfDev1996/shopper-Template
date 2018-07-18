@@ -167,6 +167,20 @@ public class ProdottoBean {
 	}
 
 
+	
+	public void inizializzaCategorie() {
+		if(this!=null && this.id_prodotto!=0)
+		{
+			CategoriaProdottoDAO catProdDao=new CategoriaProdottoDAO();
+			ArrayList<CategoriaProdottoBean> catProdBean = catProdDao.doRetriveByProdotto(this.id_prodotto);
+			for (CategoriaProdottoBean categoriaProdottoBean : catProdBean) {
+				this.getCategorie().add(categoriaProdottoBean.getCategoria());
+				//prodotto.getCategorie().add(categoriaProdottoBean.getCategoria());
+			}
+		}
+		
+	}
+	
 	public ArrayList<VarianteProdottoBean> getVariantiProdotto() {
 		return variantiProdotto;
 	}
