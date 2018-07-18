@@ -47,6 +47,8 @@ public synchronized ProdottoBean doRetriveByKey(int id)  {
 					 prodotto.setMarca(null);
 				}
 				
+				
+				
 				//Mi inizializzo l'araylist di categorie
 				
 				CategoriaProdottoDAO catProdDao=new CategoriaProdottoDAO();
