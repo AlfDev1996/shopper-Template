@@ -6,7 +6,7 @@ public class VoceOrdineBean {
 	private ProdottoBean prodotto;
 	private double prezzo_unitario, prezzo_totale,valore_sconto;
 	private int quantita, id_voce_ordine;
-	
+	private String tagliaOrdinata;
 	
 	public VoceOrdineBean() {
 		id_voce_ordine=0;
@@ -16,9 +16,23 @@ public class VoceOrdineBean {
 		prezzo_totale=0.0;
 		valore_sconto=0.0;
 		quantita=0;
+		tagliaOrdinata="";
 	}
 	
 	
+	
+	public String getTagliaOrdinata() {
+		return tagliaOrdinata;
+	}
+
+
+
+	public void setTagliaOrdinata(String tagliaOrdinata) {
+		this.tagliaOrdinata = tagliaOrdinata;
+	}
+
+
+
 	public int getId_voce_ordine() {
 		return id_voce_ordine;
 	}
@@ -30,7 +44,7 @@ public class VoceOrdineBean {
 
 
 	public VoceOrdineBean(OrdineBean ordine, ProdottoBean prodotto, double prezzo_unitario,
-			double prezzo_totale, double valore_sconto, int quantita, int id_voce_ordine) {
+			double prezzo_totale, double valore_sconto, int quantita, int id_voce_ordine, String taglia) {
 		this.id_voce_ordine=id_voce_ordine;
 		this.ordine = ordine;
 		this.prodotto = prodotto;
@@ -38,6 +52,7 @@ public class VoceOrdineBean {
 		this.prezzo_totale = prezzo_totale;
 		this.valore_sconto = valore_sconto;
 		this.quantita = quantita;
+		this.tagliaOrdinata=taglia;
 	}
 	public OrdineBean getOrdine() {
 		return ordine;

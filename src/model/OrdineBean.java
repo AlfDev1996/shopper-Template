@@ -81,13 +81,23 @@ public class OrdineBean {
 	
 	public void inizializzaVociOrdine() {
 		
-		if(this!=null && this.vociOrdine!=null && this.vociOrdine.size()>0 && this.id_ordine!=0)
+		if(this!=null && this.id_ordine!=0)
 		{
 			VoceOrdineDAO voceDao=new VoceOrdineDAO();
 			this.vociOrdine.addAll(voceDao.doRetriveByOrdine(this.id_ordine));
 		}
 			
 		
+	}
+	
+	
+	public int getQuantitaTotale() {
+		int totale = 0;
+		if(this.vociOrdine!=null && this.vociOrdine.size()>0)
+			for (VoceOrdineBean voceOrdineBean : vociOrdine) {
+				totale+=voceOrdineBean.getQuantita();
+			}
+		return totale;
 	}
 	
 	

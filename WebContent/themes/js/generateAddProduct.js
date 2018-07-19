@@ -100,47 +100,19 @@ function loadCategorie(object){
 	
 }
 
-function loadTaglie(object){
+function loadTaglie(object, inizializza)
+{
 	
+
 	var div=document.getElementById("tg");
-	
-	
-	
-	 if(object.value=="F"){
-		 div.innerHTML="";
-		// label.setAttribute("style","visibility:inherit;");
-		 
-		 for(i=35;i<42;++i){
-		 
-		 var x = document.createElement("INPUT");
-		 x.setAttribute("type", "checkbox");
-		 x.setAttribute("name","taglia");
-		 x.value=i;
-		 
-		 
-		 var table = document.createElement("table");
-		 table.setAttribute("id","tableTaglie");
-		 var tr = document.createElement("tr");
-		 var td = document.createElement("td");
-		 td.setAttribute("style","display: -webkit-box;");
-		 
-		 
-		 var lbl = document.createElement("label");
-		 var taglie = document.createTextNode(""+i);
-		 lbl.appendChild(taglie);
-		 lbl.setAttribute("style","margin-right:22%;");
-		 lbl.setAttribute("class","checkbox-inline");
-		 
-		 td.append(lbl);
-		 td.append(x);
-		 tr.appendChild(td);
-		 table.appendChild(tr);
-		 div.appendChild(table);
-	 } 
-	 }else
-		 if(object.value=="M"){
+	if(inizializza==null)
+	{
+		if(object.value=="F"){
 			 div.innerHTML="";
-			 for(i=40;i<46;++i){
+			// label.setAttribute("style","visibility:inherit;");
+			 
+			 for(i=35;i<42;++i){
+			 
 			 var x = document.createElement("INPUT");
 			 x.setAttribute("type", "checkbox");
 			 x.setAttribute("name","taglia");
@@ -158,6 +130,7 @@ function loadTaglie(object){
 			 var taglie = document.createTextNode(""+i);
 			 lbl.appendChild(taglie);
 			 lbl.setAttribute("style","margin-right:22%;");
+			 lbl.setAttribute("class","checkbox-inline");
 			 
 			 td.append(lbl);
 			 td.append(x);
@@ -165,11 +138,71 @@ function loadTaglie(object){
 			 table.appendChild(tr);
 			 div.appendChild(table);
 		 } 
-		 }
+		 }else
+			 if(object.value=="M"){
+				 div.innerHTML="";
+				 for(i=40;i<46;++i){
+				 var x = document.createElement("INPUT");
+				 x.setAttribute("type", "checkbox");
+				 x.setAttribute("name","taglia");
+				 x.value=i;
+				 
+				 
+				 var table = document.createElement("table");
+				 table.setAttribute("id","tableTaglie");
+				 var tr = document.createElement("tr");
+				 var td = document.createElement("td");
+				 td.setAttribute("style","display: -webkit-box;");
+				 
+				 
+				 var lbl = document.createElement("label");
+				 var taglie = document.createTextNode(""+i);
+				 lbl.appendChild(taglie);
+				 lbl.setAttribute("style","margin-right:22%;");
+				 
+				 td.append(lbl);
+				 td.append(x);
+				 tr.appendChild(td);
+				 table.appendChild(tr);
+				 div.appendChild(table);
+			 } 
+			 }
+	}else
+	{
+		
+		 div.innerHTML="";
+		 for(i=40;i<46;++i){
+		 var x = document.createElement("INPUT");
+		 x.setAttribute("type", "checkbox");
+		 x.setAttribute("name","taglia");
+		 x.value=i;
+		 
+		 
+		 var table = document.createElement("table");
+		 table.setAttribute("id","tableTaglie");
+		 var tr = document.createElement("tr");
+		 var td = document.createElement("td");
+		 td.setAttribute("style","display: -webkit-box;");
+		 
+		 
+		 var lbl = document.createElement("label");
+		 var taglie = document.createTextNode(""+i);
+		 lbl.appendChild(taglie);
+		 lbl.setAttribute("style","margin-right:22%;");
+		 
+		 td.append(lbl);
+		 td.append(x);
+		 tr.appendChild(td);
+		 table.appendChild(tr);
+		 div.appendChild(table);
+	 } 
+	}
+	
+	
+	 
+	
 }
-	
 
-	
 	
 	function crea(){
 		
@@ -218,10 +251,11 @@ function loadTaglie(object){
 		
 		par.setAttribute("class","span3");
 		
-		check.onchange=function(){loadTaglie(this);}
+		check.onchange=function(){loadTaglie(this,null);}
 		check.setAttribute("name", "sesso")
 		check.innerHTML="<option value='M' selected='selected'> M</option> <option value ='F'> F</option>";
-		
+		//check.setAttribute("onchange","loadTaglie(this)");
+		//check.setAttribute("onload","loadTaglie(this)");
 		//par.setAttribute("class","span3");
 		par.appendChild(check);
 		div.appendChild(par);
@@ -299,5 +333,5 @@ function loadTaglie(object){
 		div.appendChild(x);
 		div.appendChild(invia);
 		
-		
+		loadTaglie(null,"M");
 	}

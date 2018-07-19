@@ -36,6 +36,7 @@
 <script src="themes/js/superfish.js"></script>
 <!-- Classe javascript per implementare il menu, sembra non utilizzata da una prima analisi -->
 <script src="themes/js/jquery.scrolltotop.js"></script>
+<script  src="themes/js/validate.js"></script>
 
 		<script>
 
@@ -100,18 +101,18 @@ function accesso(){
 											 <div class="span6">
 												<h4>Returning Customer</h4>
 												<p>I am a returning customer</p>
-												<form action="#" method="post">
+												<form method="post" action="accedi"  onsubmit="return validateMail()">
 													<fieldset>
 														<div class="control-group">
-															<label class="control-label">Username</label>
+															<label class="control-label">Email</label>
 															<div class="controls">
-																<input type="text" placeholder="Enter your username" id="username" class="input-xlarge">
+																<input type="text" placeholder="Enter your username" type="text" value="" name="mail" id="mail" maxlength="30" required class="input-xlarge">
 															</div>
 														</div>
 														<div class="control-group">
 															<label class="control-label">Password</label>
 															<div class="controls">
-															<input type="password" placeholder="Enter your password" id="password" class="input-xlarge">
+															<input type="password" placeholder="Enter your password" name="password" id="password" maxlength="20" required class="input-xlarge">
 															</div>
 														</div>
 														<button class="btn btn-inverse">Continue</button>
@@ -278,13 +279,36 @@ function accesso(){
 								</tr>		  
 							</tbody>
 						</table>
-											</div>									
-											<input type="submit" class="btn btn-inverse pull-right">Confirm order</button>
+											</div>	
+											<input type="submit" class="btn btn-inverse pull-right" value="Simula Pagamento"></button>	
+			</form>							
+			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" >
+			<div class=text-right>
+			  <!-- Identify your business so that you can collect the payments. -->
+			  <input type="hidden" name="business" value="raffaeledragonepay3@gmail.com">
+			
+			  <!-- Specify a Buy Now button. -->
+			  <input type="hidden" name="cmd" value="_xclick">
+			
+			  <!-- Specify details about the item that buyers will purchase. -->
+			  <input type="hidden" name="item_name" value="">
+			  <input type="hidden" name="amount" value='<%=carrello.getPrezzoTotale() %>'>
+			  <input type="hidden" name="currency_code" value="EUR">
+			
+			  <!-- Display the payment button. -->
+			  <input class="pull-right" type="image" name="submit" border="0"
+			  src="https://www.paypalobjects.com/en_US/i/btn/btn_buynow_LG.gif"
+			  alt="Buy Now">
+			  <img alt="" border="0" width="1" height="1"
+			  src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
+			</div>
+			</form>	
+											<!--  <input type="submit" class="btn btn-inverse pull-right">Confirm order</button> -->
 										</div>
 									</div>
 								</div>
 							</div>
-							</form>
+							
 						</div>				
 					</div>
 				</div>

@@ -1,3 +1,4 @@
+<%@page import="java.text.DecimalFormat"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="model.ProdottoBean"%>
 <%@page import="model.CartBean"%>
@@ -42,8 +43,9 @@
 			</section>
 			<section class="main-content">				
 				<div class="row">
-					<div class="span9">					
+					<div class="span12">					
 						<h4 class="title"><span class="text"><strong>Your</strong> Cart</span></h4>
+						<div class="table-responsive">
 						<table class="table table-striped" id="tableProdotti">
 							<thead>
 								<tr>
@@ -74,7 +76,7 @@
 									<td><a href=""><img alt="" src="themes/images/non-disponibile.png"></a></td>
 									<% } %>
 									<td><%= prodotto.getNome() %></td>
-									<td><input type="number"  class="input-mini" name="qtaProdotti[]" id="<%=prodotto.getId_prodotto() %>" value="<%= prodotto.getQuantita() %>"> </td>
+									<td><input type="number" min="1" class="input-mini" name="qtaProdotti[]" id="<%=prodotto.getId_prodotto() %>_<%=prodotto.getTaglie() %>" value="<%= prodotto.getQuantita() %>"> </td>
 									<td><%= prodotto.getTaglie() %></td>
 									<td><%= prodotto.getPrezzo() %></td>
 									<td><%= prodotto.getPrezzo()*prodotto.getQuantita() %></td>
@@ -82,9 +84,8 @@
 							<%
 							
 									}
-								}
-										} //End for %>
-							
+								
+								%>
 								<tr>
 									<td>&nbsp;</td>
 									<td>&nbsp;</td>
@@ -93,84 +94,42 @@
 									<td>&nbsp;</td>
 									<td>&nbsp;</td>
 									<td><strong><%= carrello.getPrezzoTotale() %></strong></td>
-								</tr>		  
+								</tr>
+								<%
+									
+								}
+										} //End for %>
+							
+										  
 							</tbody>
 						</table>
+						</div>
 						<hr>
-						<p class="cart-total right">
-							<strong>Sub-Total</strong>:	$100.00<br>
-							<strong>Iva (22%)</strong>: $17.50<br>
-							<strong>Total</strong>: $119.50<br>
-						</p>
+						
+						<% if(carrello!=null && carrello.getProdotti()!=null && carrello.getProdotti().size()>0) {
+							DecimalFormat twoDForm = new DecimalFormat("#.##");
+							
+							
+        					%>
+							<p class="cart-total right">
+							<strong>Sub-Totale</strong>:<%=Math.floor((carrello.getPrezzoTotale()/1.22) * 100.0) / 100.0%><br>
+							<strong>Iva (22%)</strong>: <%=Math.floor((carrello.getPrezzoTotale() - (carrello.getPrezzoTotale()/1.22)) * 100.0) / 100.0%><br>
+							<strong>Totale</strong>: <%=Math.floor((carrello.getPrezzoTotale()) * 100.0) / 100.0 %><br>
+							</p>
 						<hr/>
+						<% } %> 
+						
 						<p class="buttons center">		
 								
 							<button class="btn" type="button" onclick="updateProductsFromCart()">Update</button>
-							<button class="btn" type="button">Continue</button>
-							<button class="btn btn-inverse" type="submit" id="checkout">Checkout</button>
+							<a href="checkout.jsp"> <button class="btn btn-inverse" id="checkout">Checkout</button> </a>
 						
 						</p>					
 					</div>
-					<div class="span3 col">
-						<div class="block">	
-							<ul class="nav nav-list">
-								<li class="nav-header">SUB CATEGORIES</li>
-								<li><a href="products.html">Nullam semper elementum</a></li>
-								<li class="active"><a href="products.html">Phasellus ultricies</a></li>
-								<li><a href="products.html">Donec laoreet dui</a></li>
-								<li><a href="products.html">Nullam semper elementum</a></li>
-								<li><a href="products.html">Phasellus ultricies</a></li>
-								<li><a href="products.html">Donec laoreet dui</a></li>
-							</ul>
-							<br/>
-							<ul class="nav nav-list below">
-								<li class="nav-header">MANUFACTURES</li>
-								<li><a href="products.html">Adidas</a></li>
-								<li><a href="products.html">Nike</a></li>
-								<li><a href="products.html">Dunlop</a></li>
-								<li><a href="products.html">Yamaha</a></li>
-							</ul>
-						</div>
-						<div class="block">
-							<h4 class="title">
-								<span class="pull-left"><span class="text">Randomize</span></span>
-								<span class="pull-right">
-									<a class="left button" href="#myCarousel" data-slide="prev"></a><a class="right button" href="#myCarousel" data-slide="next"></a>
-								</span>
-							</h4>
-							<div id="myCarousel" class="carousel slide">
-								<div class="carousel-inner">
-									<div class="active item">
-										<ul class="thumbnails listing-products">
-											<li class="span3">
-												<div class="product-box">
-													<span class="sale_tag"></span>												
-													<a href="product_detail.html"><img alt="" src="themes/images/ladies/2.jpg"></a><br/>
-													<a href="product_detail.html" class="title">Fusce id molestie massa</a><br/>
-													<a href="#" class="category">Suspendisse aliquet</a>
-													<p class="price">$261</p>
-												</div>
-											</li>
-										</ul>
-									</div>
-									<div class="item">
-										<ul class="thumbnails listing-products">
-											<li class="span3">
-												<div class="product-box">												
-													<a href="product_detail.html"><img alt="" src="themes/images/ladies/4.jpg"></a><br/>
-													<a href="product_detail.html" class="title">Tempor sem sodales</a><br/>
-													<a href="#" class="category">Urna nec lectus mollis</a>
-													<p class="price">$134</p>
-												</div>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</div>
-						</div>						
-					</div>
+					
 				</div>
-			</section>			
+			</section>		
+						
 			<section id="footer-bar">
 				<div class="row">
 					<div class="span3">

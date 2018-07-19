@@ -104,15 +104,21 @@ function runScript(e) {
 							   cart=new CartBean();
 						 %>
 						<li><a href="cart.jsp" id="menuCarrello">Carrello <%=cart.getProdotti().size()==0 ? "" : "("+cart.getProdotti().size()+")"%></a></li>
-						<li><a href="checkout.html">Checkout</a></li>
+						<li><a href="checkout.jsp">Checkout</a></li>
 						<%		
 								if(us!=null){
 							%>
-						<li><a href="myAccount.jsp">My Account</a></li>
 						
 
-
-						<li><a href="#">Ciao, <%= us.getNome() %></a></li>
+						<li class="dropdown">
+       						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        					Ciao, <%= us.getNome() %> <b class="caret"></b></a>
+        					<ul class="dropdown-menu">
+          					<li><a href="myAccount.jsp">Il mio Account</a></li>
+          					<li><a href="ServletOrdine?operazione=getAll">I miei ordini</a></li>
+       						 </ul>
+     						 </li>
+						
 						
 						
 					 		<%if(us.getRuolo().equalsIgnoreCase("admin")){ %>  
@@ -120,7 +126,7 @@ function runScript(e) {
        						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
         					Funzioni Admin <b class="caret"></b></a>
         					<ul class="dropdown-menu">
-          					<li><a href="modificaArticolo.jsp">Modifica Articolo</a></li>
+          					<li><a href="ModificaArticolo.jsp">Modifica Articolo</a></li>
           					<li><a href="AggiungiArticolo.jsp">Aggiungi Articolo</a></li>
        						 </ul>
      						 </li>

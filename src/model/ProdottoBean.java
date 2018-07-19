@@ -8,7 +8,6 @@ public class ProdottoBean {
 	private String nome, descrizione_breve, descrizione_estesa, tags, modello, sesso , taglie;
 	private double prezzo ;
 	private MarcaBean marca;
-	private ArrayList<VarianteProdottoBean> variantiProdotto;
 	private ArrayList<ImmagineBean> immagini;
 	private ArrayList<CategoriaBean> categorie;
 	
@@ -17,7 +16,6 @@ public class ProdottoBean {
 		nome=descrizione_breve=descrizione_estesa=tags=modello=sesso="";
 		prezzo=0.0;
 		marca=new MarcaBean();
-		variantiProdotto=new ArrayList<>();
 		immagini= new ArrayList<>();
 		taglie="";
 		quantita=0;
@@ -56,7 +54,7 @@ public class ProdottoBean {
 
 
 	public ProdottoBean(int id_prodotto, String nome, String descrizione_breve, String descrizione_estesa, String tags,
-			String modello, String sesso, double prezzo, MarcaBean marca, ArrayList<VarianteProdottoBean> varianti, ArrayList<ImmagineBean> immagini, String taglie, int quantita, ArrayList<CategoriaBean> categorie) {
+			String modello, String sesso, double prezzo, MarcaBean marca, ArrayList<ImmagineBean> immagini, String taglie, int quantita, ArrayList<CategoriaBean> categorie) {
 		
 		this.id_prodotto = id_prodotto;
 		this.nome = nome;
@@ -67,7 +65,6 @@ public class ProdottoBean {
 		this.sesso = sesso;
 		this.prezzo = prezzo;
 		this.marca = marca;
-		this.variantiProdotto=varianti;
 		this.immagini=immagini;
 		this.taglie=taglie;
 		this.quantita=quantita;
@@ -163,10 +160,13 @@ public class ProdottoBean {
 		return "ProdottoBean [id_prodotto=" + id_prodotto + ", quantita=" + quantita + ", nome=" + nome
 				+ ", descrizione_breve=" + descrizione_breve + ", descrizione_estesa=" + descrizione_estesa + ", tags="
 				+ tags + ", modello=" + modello + ", sesso=" + sesso + ", taglie=" + taglie + ", prezzo=" + prezzo
-				+ ", marca=" + marca + ", variantiProdotto=" + variantiProdotto + ", immagini=" + immagini + "]";
+				+ ", marca=" + marca  + ", immagini=" + immagini + "]";
 	}
 
 
+	
+	
+	
 	
 	public void inizializzaCategorie() {
 		if(this!=null && this.id_prodotto!=0)
@@ -181,15 +181,7 @@ public class ProdottoBean {
 		}
 		
 	}
-	
-	public ArrayList<VarianteProdottoBean> getVariantiProdotto() {
-		return variantiProdotto;
-	}
 
-	public void setVariantiProdotto(ArrayList<VarianteProdottoBean> variantiProdotto) {
-		this.variantiProdotto = variantiProdotto;
-	}
-	
 	
 	
 	

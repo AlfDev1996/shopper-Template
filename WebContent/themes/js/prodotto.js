@@ -697,6 +697,7 @@ function updateProductsFromCart(){
 					"id":$(this).attr('id'),
 					"quantita" : $(this).attr('value')
 					});
+				//alert($(this).attr('id')+"------"+$(this).attr('value'));
 			});
 			
 			var xh= new XMLHttpRequest;

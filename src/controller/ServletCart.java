@@ -131,7 +131,8 @@ public class ServletCart extends HttpServlet {
 						for(Object o: prodottiJson){
 						    if ( o instanceof JSONObject ) {
 						        JSONObject obj = ((JSONObject)o);
-						        carrello.updateProdotto(Integer.parseInt(obj.get("id")+""), Integer.parseInt(obj.get("quantita")+""));
+						        
+						        carrello.updateProdotto((obj.get("id")+""), Integer.parseInt(obj.get("quantita")+""));
 						    }
 						}	
 					}

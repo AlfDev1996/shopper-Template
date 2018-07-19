@@ -50,6 +50,8 @@ public synchronized VoceOrdineBean doRetriveByKey(int id_voce_ordine)  {
 			 voceOrdine.setPrezzo_unitario(rs.getDouble("prezzo_unitario"));
 			 voceOrdine.setPrezzo_totale(rs.getDouble("prezzo_totale"));
 			 voceOrdine.setValore_sconto(rs.getDouble("valore_sconto"));
+			 voceOrdine.setTagliaOrdinata(rs.getString("taglia_ordinata"));
+			 
 				
 			}
 			
@@ -109,6 +111,7 @@ public synchronized ArrayList<VoceOrdineBean> doRetriveByOrdine(int id_ordine)  
 		 voceOrdine.setPrezzo_unitario(rs.getDouble("prezzo_unitario"));
 		 voceOrdine.setPrezzo_totale(rs.getDouble("prezzo_totale"));
 		 voceOrdine.setValore_sconto(rs.getDouble("valore_sconto"));
+		 voceOrdine.setTagliaOrdinata(rs.getString("taglia_ordinata"));
 			
 		}
 		
@@ -172,6 +175,7 @@ public synchronized ArrayList<VoceOrdineBean> doRetrieveAll(){
 		 voceOrdine.setPrezzo_unitario(rs.getDouble("prezzo_unitario"));
 		 voceOrdine.setPrezzo_totale(rs.getDouble("prezzo_totale"));
 		 voceOrdine.setValore_sconto(rs.getDouble("valore_sconto"));
+		 voceOrdine.setTagliaOrdinata(rs.getString("taglia_ordinata"));
 		
 		 
 		}
@@ -202,7 +206,7 @@ public synchronized void doSave(VoceOrdineBean voceOrdine) {
 	if(voceOrdine!=null) {
 		Connection connection = null;
 		PreparedStatement preparedStatement = null;
-		String sqlInsert="insert into voce_ordine (id_ordine,id_prodotto,quantita,prezzo_unitario,prezzo_totale,valore_sconto) values(?,?,?,?,?,?)";
+		String sqlInsert="insert into voce_ordine (id_ordine,id_prodotto,quantita,prezzo_unitario,prezzo_totale,valore_sconto,taglia_ordinata) values(?,?,?,?,?,?,?)";
 		int res=0;
 		try {
 		
@@ -215,6 +219,7 @@ public synchronized void doSave(VoceOrdineBean voceOrdine) {
 		preparedStatement.setDouble(4, voceOrdine.getPrezzo_unitario());
 		preparedStatement.setDouble(5, voceOrdine.getPrezzo_totale());
 		preparedStatement.setDouble(6, voceOrdine.getValore_sconto());
+		preparedStatement.setString(7, voceOrdine.getTagliaOrdinata());
 		
 		
 		res = preparedStatement.executeUpdate();
@@ -276,7 +281,7 @@ public synchronized boolean doUpdate(VoceOrdineBean voceOrdine) {
 	PreparedStatement preparedStatement = null;
 	int res=0;
 	
-	String sqlUpdate = "UPDATE voce_ordine SET id_ordine = ? , id_prodotto = ? , quantita = ? , prezzo_unitario = ? , prezzo_totale = ? , valore_sconto= ? where id_voce_ordine=? ";
+	String sqlUpdate = "UPDATE voce_ordine SET id_ordine = ? , id_prodotto = ? , quantita = ? , prezzo_unitario = ? , prezzo_totale = ? , valore_sconto= ? , taglia_ordinata = ? where id_voce_ordine=? ";
 	try {
 	connection = (Connection) DriverManagerConnectionPool.getConnection();
 	preparedStatement=(PreparedStatement) connection.prepareStatement(sqlUpdate);
@@ -287,7 +292,9 @@ public synchronized boolean doUpdate(VoceOrdineBean voceOrdine) {
 	preparedStatement.setDouble(4, voceOrdine.getPrezzo_unitario());
 	preparedStatement.setDouble(5, voceOrdine.getPrezzo_totale());
 	preparedStatement.setDouble(6, voceOrdine.getValore_sconto());
-	preparedStatement.setInt(7, voceOrdine.getId_voce_ordine());
+	
+	preparedStatement.setString(7, voceOrdine.getTagliaOrdinata());
+	preparedStatement.setInt(8, voceOrdine.getId_voce_ordine());
 	
 	res = preparedStatement.executeUpdate();
 	

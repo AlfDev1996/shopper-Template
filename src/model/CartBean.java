@@ -37,10 +37,14 @@ public class CartBean {
 			}
 	}
 	
-	public void updateProdotto(int id, int quantita) {
+	public void updateProdotto(String idTaglia, int quantita) {
 		for (ProdottoBean prodottoBean : prodotti) {
+			String[] str = idTaglia.split("_");
+			int id = Integer.parseInt(str[0]);
+			String taglia = str[1];
 			if(prodottoBean.getId_prodotto()==id)
-				prodottoBean.setQuantita(quantita);
+			 if( prodottoBean.getTaglie().equals(taglia))
+				 prodottoBean.setQuantita(quantita);
 		}
 	}
 	
