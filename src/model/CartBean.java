@@ -31,9 +31,14 @@ public class CartBean {
 	public void rimuoviProdotti(String[] ids) {
 		for( int i=0; i<ids.length; ++i)
 			for (Iterator it = prodotti.iterator(); it.hasNext();) {
+				String[] idTaglia = ids[i].split("_");
+				int id_prodotto = Integer.parseInt(idTaglia[0]);
+				String taglia = idTaglia[1];
 				ProdottoBean prodotto = (ProdottoBean) it.next();
-				if(prodotto.getId_prodotto()==(Integer.parseInt(ids[i])))
+				if(prodotto.getId_prodotto()==id_prodotto && prodotto.getTaglie().equalsIgnoreCase(taglia))
 					it.remove();
+				//if(prodotto.getId_prodotto()==(Integer.parseInt(ids[i])))
+					
 			}
 	}
 	

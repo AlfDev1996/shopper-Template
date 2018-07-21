@@ -103,6 +103,7 @@ public class ServletCart extends HttpServlet {
 			 {
 			  String appId= request.getParameter("prodottiDaRimuovere");
 			  String[] ids = appId.split(",");
+			  
 			  HttpSession currentSession = request.getSession();
 				CartBean carrello = new CartBean();
 				
