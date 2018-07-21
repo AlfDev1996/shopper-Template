@@ -203,7 +203,7 @@ function getElementCookie(){
 					<li>Min<input type="text" id="txtPrezzoMin" style="width: 30px; height: 20px;">
 						 -- <input type="text" id="txtPrezzoMax" style="width: 30px;height: 20px;">
 						Max</li>
-					<li> <button type="button" class="btn btn-primary btn-md" onclick='filterByPrice(<%=request.getAttribute("prodotti")%>)'>Applica</button> </li>
+					<li><center> <button type="button" class="btn btn" onclick='filterByPrice(<%=request.getAttribute("prodotti")%>)'>Applica</button> </center></li>
 				</ul>
 				
 				
@@ -213,7 +213,7 @@ function getElementCookie(){
 				<ul class="nav nav-list below" id="listBrands">
 					<li class="nav-header" >Brands</li>
 					
-					<li id="btnApplicaFiltriBrands"><button type="button" class="btn btn-primary btn-md" onclick='filterByBrands(<%=request.getAttribute("prodotti")%>)' >Applica</button></li>
+					<li id="btnApplicaFiltriBrands"> <center> <button type="button" class="btn btn" onclick='filterByBrands(<%=request.getAttribute("prodotti")%>)' >Applica</button> </center></li>  
 				</ul>
 			</div>
 			<div class="block">

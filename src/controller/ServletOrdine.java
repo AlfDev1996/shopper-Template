@@ -47,7 +47,7 @@ public class ServletOrdine extends HttpServlet {
 		UtenteBean utente = (UtenteBean) currentSession.getAttribute("utente");
 		String error ="";
 		String operazione = request.getParameter("operazione");
-		if(operazione!=null && operazione.equalsIgnoreCase("getall"))
+		if(operazione!=null && operazione.equalsIgnoreCase("getOrdiniUtente"))
 		{
 			if(utente!=null && utente.getId_utente()!=0)
 			{
@@ -64,7 +64,28 @@ public class ServletOrdine extends HttpServlet {
 				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
 				dispatcher.forward(request, response);
 				}
-		}else
+		}
+		else
+			if(operazione!=null && operazione.equalsIgnoreCase("getAll"))
+			{
+				if(utente!=null && utente.getId_utente()!=0)
+				{
+					ArrayList<OrdineBean> ordini = new ArrayList<>();
+					OrdineDAO ordineDao=new OrdineDAO();
+					ordini = ordineDao.doRetrieveAll(null);
+				//	ordini = ordineDao.doRetrieveByUtente(utente);
+					
+					request.setAttribute("ordini", ordini);
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/lista_ordini.jsp?error="+error);
+					dispatcher.forward(request, response);
+				}
+				else
+					{
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+					dispatcher.forward(request, response);
+					}
+			}
+	    else
 		if(operazione!=null && operazione.equalsIgnoreCase("getOrdine"))
 		{
 			String id_ordine = request.getParameter("id_ordine");
@@ -99,7 +120,7 @@ public class ServletOrdine extends HttpServlet {
 		
 		OrdineBean ordine= new OrdineBean();
 		
-		if(carrello!=null && carrello.getProdotti()!=null && carrello.getProdotti().size()>0)
+		if(carrello!=null && carrello.getProdotti()!=null && carrello.getProdotti().size()>0) {
 			if ( utente!=null && utente.getId_utente()!=0 && utente.getEmail()!=null)
 			{
 				String indirizzoVia = request.getParameter("txtIndirizzoVia")!= null ? request.getParameter("txtIndirizzoVia") : "";
@@ -144,6 +165,7 @@ public class ServletOrdine extends HttpServlet {
 			}
 			else
 				error+="errore utente ";
+		}
 		else
 			error+="Non ci sono articoli nel carrello";
 		if(carrello!=null && carrello.getProdotti()!=null && carrello.getProdotti().size()>0){

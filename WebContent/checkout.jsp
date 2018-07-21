@@ -134,52 +134,30 @@ function accesso(){
 									<div class="accordion-inner">
 										<div class="row-fluid">
 											<div class="span6">
-												<h4>Your Personal Details</h4>
+												<h4>Dettagli personali</h4>
 												<div class="control-group">
-													<label class="control-label">First Name</label>
+													<label class="control-label">Nome</label>
 													<div class="controls">
 														<input type="text" placeholder="" value="<%=user.getNome()%>"class="input-xlarge">
 													</div>
 												</div>
 												<div class="control-group">
-													<label class="control-label" >Last Name</label>
+													<label class="control-label" >Cognome</label>
 													<div class="controls">
 														<input type="text" placeholder="" value="<%=user.getCognome()%>" class="input-xlarge">
 													</div>
 												</div>					  
 												<div class="control-group">
-													<label class="control-label">Email Address</label>
+													<label class="control-label">Email</label>
 													<div class="controls">
 														<input type="text" value="<%=user.getEmail()%>" placeholder="" class="input-xlarge">
 													</div>
 												</div>
-												<div class="control-group">
-													<label class="control-label">Telephone</label>
-													<div class="controls">
-														<input type="text" placeholder=""  class="input-xlarge">
-													</div>
-												</div>
-												<div class="control-group">
-													<label class="control-label">Fax</label>
-													<div class="controls">
-														<input type="text" placeholder="" class="input-xlarge">
-													</div>
-												</div>
+												
 											</div>
 											<div class="span6">
-												<h4>Your Address</h4>
-												<div class="control-group">
-													<label class="control-label">Company</label>
-													<div class="controls">
-														<input type="text" placeholder="" class="input-xlarge">
-													</div>
-												</div>
-												<div class="control-group">
-													<label class="control-label">Company ID:</label>
-													<div class="controls">
-														<input type="text" placeholder="" class="input-xlarge">
-													</div>
-												</div>					  
+												<h4>Indirizzo Spedizione</h4>
+																  
 												<div class="control-group">
 													<label class="control-label"><span class="required">*</span> Via</label>
 													<div class="controls">
@@ -228,7 +206,7 @@ function accesso(){
 												<table class="table table-striped" id="tableProdotti">
 							<thead>
 								<tr>
-									<th>Immaginee</th>
+									<th>Immagine</th>
 									<th>Nome Prodotto</th>
 									<th>Quantita'</th>
 									<th>Taglia</th>
@@ -248,8 +226,8 @@ function accesso(){
 							%>
 								<tr id="prod<%=prodotto.getNome()%>">
 									<!--  <td id="Alfonso"><input type="checkbox" name="prodotti[]" id='<%= prodotto.getId_prodotto()%>'></td> -->
-									<% if( prodotto.getImmagini()!=null && prodotto.getImmagini().size()>0) { %>
-									<td style="width:25%"><a href=""><img class="imgCarrello" alt="" src='themes/images/prodotti/' onerror='this.onerror=null;this.src="themes/images/defaultImages/<%=prodotto.getImmagini().get(0).getNomeFile() %>"'></a></td>
+									<% if( prodotto.getImmagini()!=null && prodotto.getImmagini()!=null && prodotto.getImmagini().size()>0) { %>
+									<td style="width:25%"><a href=""><img class="imgCarrello" alt="" src='themes/images/prodotti/<%=prodotto.getImmagini().get(0).getNomeFile() %>' onerror='this.onerror=null;this.src="themes/images/defaultImages/<%=prodotto.getImmagini().get(0).getNomeFile() %>"'></a></td>
 									<% } else {  %>
 									<td style="width:10%"><a href=""><img alt="" src="themes/images/non-disponibile.png"></a></td>
 									<% } %>
@@ -279,18 +257,22 @@ function accesso(){
 							</tbody>
 						</table>
 											</div>	
+											<%if(carrello!=null &&carrello.getProdotti().size()>0 ){%>
 											<input type="submit" class="btn btn-inverse pull-right" value="Simula Pagamento"></button>	
-			</form>							
-			<form action="https://www.paypal.com/cgi-bin/webscr" method="post" >
+			ù								<%} %>
+			</form>		
+			 <% if(carrello!=null && carrello.getProdotti()!=null && carrello.getProdotti().size()>0 ) {%>
+			  <form action="https://www.paypal.com/cgi-bin/webscr" method="post" >
 			<div class=text-right>
 			  <!-- Identify your business so that you can collect the payments. -->
-			  <input type="hidden" name="business" value="raffaeledragonepay3@gmail.com">
+			  <input type="hidden" name="business" value="pagamenti@eshoes.it">
 			
 			  <!-- Specify a Buy Now button. -->
 			  <input type="hidden" name="cmd" value="_xclick">
 			
 			  <!-- Specify details about the item that buyers will purchase. -->
 			  <input type="hidden" name="item_name" value="">
+			 
 			  <input type="hidden" name="amount" value='<%=carrello.getPrezzoTotale() %>'>
 			  <input type="hidden" name="currency_code" value="EUR">
 			
@@ -302,6 +284,8 @@ function accesso(){
 			  src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" >
 			</div>
 			</form>	
+			  <% } %>					
+			
 											<!--  <input type="submit" class="btn btn-inverse pull-right">Confirm order</button> -->
 										</div>
 									</div>

@@ -114,8 +114,13 @@ function runScript(e) {
        						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
         					Ciao, <%= us.getNome() %> <b class="caret"></b></a>
         					<ul class="dropdown-menu">
+        					
           					<li><a href="myAccount.jsp">Il mio Account</a></li>
-          					<li><a href="ServletOrdine?operazione=getAll">I miei ordini</a></li>
+          					<% if( us.getRuolo().equalsIgnoreCase("admin")) { %>
+          					 <li><a href="ServletOrdine?operazione=getAll">Ordini</a></li>
+          					 <% } else { %>
+          					 <li><a href="ServletOrdine?operazione=getOrdiniUtente">I miei ordini</a></li>
+          					 <% } %>
        						 </ul>
      						 </li>
 						

@@ -1,3 +1,4 @@
+<%@page import="model.UtenteBean"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -40,26 +41,32 @@
 					<div class="span3">
 						<h4>Navigation</h4>
 						<ul class="nav">
-							<li><a href="./index.html">Homepage</a></li>  
-							<li><a href="./about.html">About Us</a></li>
-							<li><a href="./contact.html">Contac Us</a></li>
-							<li><a href="./cart.html">Your Cart</a></li>
-							<li><a href="./register.html">Login</a></li>							
+							<li><a href="index.jsp">Homepage</a></li>  
+							<li><a href="contact.jsp">Contattaci</a></li>
+							<li><a href="cart.jsp">Carrello</a></li>
+							<li><a href="login.jsp">Login</a></li>							
 						</ul>					
 					</div>
 					<div class="span4">
-						<h4>My Account</h4>
+						<h4>Account</h4>
 						<ul class="nav">
-							<li><a href="#">My Account</a></li>
-							<li><a href="#">Order History</a></li>
-							<li><a href="#">Wish List</a></li>
-							<li><a href="#">Newsletter</a></li>
+						<% if(us!=null) { %>
+							<li><a href="myAccount.jsp">Il mio account</a></li>
+							<% if(us.getRuolo().equalsIgnoreCase("admin")) { %>
+							<li><a href="ServletOrdine?operazione=getAll">Ordini</a></li>
+							<% }else { %>
+							<li><a href="ServletOrdine?operazione=getOrdiniUtente">ordini</a></li>
+							<% } %>
+						<% } else { %> 
+							<li><a href="login.jsp">Il mio account</a></li>
+							<li><a href="login.jsp">I miei ordini</a></li>
+						<% } %>
 						</ul>
 					</div>
 					<div class="span5">
 						<p class="logo"><img src="themes/images/logo.PNG" class="site_logo" alt=""></p>
 						<p>
-						<strong> e-shoes è più social che mai, seguici !</strong><br>
+						<strong> e-shoes e' più social che mai, seguici !</strong><br>
 						<span id="social">
 						<a href="http://www.facebook.com" target="_blank" class="fa fa-facebook"></a>
 						<a href="http://www.twitter.com" target="_blank" class="fa fa-twitter"></a>

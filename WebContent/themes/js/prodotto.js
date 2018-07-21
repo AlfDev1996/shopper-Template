@@ -638,10 +638,22 @@ function filterByPrice(prodotti){
 	if(prodotti.length>0 )
 	{
 		
-		if(prezzoMin=="")
+		if(prezzoMin=="" )
 			prezzoMin=0;
+		else
+		 {
+			if(prezzoMin.indexOf(",")!=-1 && isNaN(prezzoMax))
+				 prezzoMin= parseFloat(prezzoMin.replace(",","."));
+		 }
 		if(prezzoMax=="")
-			prezzoMax=9999;
+			{ prezzoMax=9999;  }
+		else
+		 {
+			if(prezzoMax.indexOf(",")!=-1 && isNaN(prezzoMax) )
+				 prezzoMax= parseFloat(prezzoMax.replace(",","."));
+			
+		 }
+		
 		//alert("min -> "+ prezzoMin + " Max --->"+prezzoMax);
 		for( var i in prodotti)
 		{

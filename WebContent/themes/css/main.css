@@ -690,7 +690,8 @@ h4.title.m{
 	width:100%;
 }
 h4.title strong{
-	color:#eb4800;
+	/* color:#eb4800; */
+	color:#886332
 }
 h4.title span.text{
 	background-color:#fff;
@@ -839,7 +840,7 @@ section.our_client .row{
 	text-align: center;
 	padding: 7px;
 	border: 1px solid #ddd;
-	border-top: 3px solid #eb4800;
+	/*border-top: 3px solid #eb4800; */
 	-moz-box-shadow: 0 0 3px 0 #ccc;
 	-webkit-box-shadow: 0 0 3px 0 #ccc;
 	box-shadow: 0 0 3px 0 #ccc;

@@ -38,7 +38,7 @@
 		
 			</section>				
 			<section class="header_text sub">
-			<img class="pageBanner" src="themes/images/pageBanner.png" alt="New products" >
+			<img class="pageBanner" src="themes/images/banner-default.jpg" alt="New products">
 				<h4><span>Shopping Cart</span></h4>
 			</section>
 			<section class="main-content">				
@@ -71,7 +71,7 @@
 								<tr id="prod<%=prodotto.getNome()%>">
 									<td id="Alfonso"><input type="checkbox" name="prodotti[]" id='<%= prodotto.getId_prodotto()%>'></td>
 									<% if( prodotto.getImmagini()!=null && prodotto.getImmagini().size()>0) { %>
-									<td style="width:25%"><a href=""><img class="imgCarrello" alt="" src='themes/images/prodotti/<%=prodotto.getImmagini().get(0).getNomeFile() %>'></a></td>
+									<td style="width:25%"><a href=""><img class="imgCarrello" alt="" src='themes/images/prodotti/<%=prodotto.getImmagini().get(0).getNomeFile() %>' onerror='this.onerror=null;this.src="themes/images/defaultImages/<%=prodotto.getImmagini().get(0).getNomeFile() %>"'></a></td>
 									<% } else {  %>
 									<td><a href=""><img alt="" src="themes/images/non-disponibile.png"></a></td>
 									<% } %>

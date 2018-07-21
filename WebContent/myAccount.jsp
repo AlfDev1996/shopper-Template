@@ -17,7 +17,7 @@
 <script src="themes/js/user.js"></script>
 
 <% UtenteBean user =(UtenteBean) session.getAttribute("utente"); %>
-<% if( user==null|| !user.getRuolo().equalsIgnoreCase("admin")){ response.sendRedirect("index.jsp");}  %>
+<% if( user==null){ response.sendRedirect("index.jsp");}  %>
 
 </head>
 <body onload='load("<%=user.getEmail()%>")' >

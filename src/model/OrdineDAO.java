@@ -190,6 +190,7 @@ public class OrdineDAO {
 		
 		while(res.next()) {
 			ordine= new OrdineBean();
+			ordine.setIdOrdine(res.getInt("id_ordine"));
 			ordine.setDataCreazione(res.getDate("data_creazione"));
 			ordine.setStato(res.getString("stato"));
 			ordine.setIndirizzo(res.getString("indirizzo"));

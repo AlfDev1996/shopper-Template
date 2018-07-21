@@ -63,6 +63,7 @@ public class register extends HttpServlet {
 			user.setRuolo("User");
 		
 		user.setNazione(request.getParameter("nazione"));
+		user.setIndirizzo_nazione(request.getParameter("nazione"));
 		user.setIndirizzo_provincia(request.getParameter("provincia"));
 		user.setIndirizzo_citta(request.getParameter("citta"));
 		user.setIndirizzo_via(request.getParameter("via"));
