@@ -46,6 +46,8 @@ function find(){
 						if(immagini!=null && immagini.length>0)
 						{
 							img.setAttribute("src","themes/images/prodotti/"+arrProdottiJson[i].immagini[0].nome_file+"");
+							img.setAttribute("onerror","this.onerror=null;this.src='themes/images/defaultImages/"+arrProdottiJson[i].immagini[0].nome_file+"'");
+							
 						}
 						td.appendChild(aImg);
 						tr.appendChild(td);
@@ -263,7 +265,8 @@ function deleteProducts(){
 }
 
 function returnProducts(prodotti,refresh){
-	alert("return prod senza numPage");
+	
+
 	returnProducts(prodotti,refresh,1);
 	
 }
@@ -271,8 +274,7 @@ function returnProducts(prodotti,refresh){
 function returnProducts(prodotti,refresh,numPage){
 	
 	
-	
-	if(numPage==undefined)
+	if(numPage==undefined || numPage==null || numPage=="")
 		numPage=1;
 	
 	//var arrProdottiJson = JSON.parse(prodotti);
@@ -310,6 +312,8 @@ function returnProducts(prodotti,refresh,numPage){
 				aImg.setAttribute("href","prodotto_dettagli.jsp?nome="+prodotti[i].nome+"&modello="+prodotti[i].modello);
 				var img = document.createElement("img");
 				img.setAttribute("src","themes/images/prodotti/"+prodotti[i].immagini[0].nome_file+"");
+				
+				img.setAttribute("onerror","this.onerror=null;this.src='themes/images/defaultImages/"+prodotti[i].immagini[0].nome_file+"'");
 				img.setAttribute("alt","");
 				img.setAttribute("src","themes/images/prodotti/"+prodotti[i].immagini[0].nome_file+"");
 				aImg.appendChild(img);
@@ -339,6 +343,15 @@ function returnProducts(prodotti,refresh,numPage){
 		    ul.appendChild(li);
 		}
     }
+	else
+	if(prodotti.length==0)
+	{
+		//Prendo la lista html
+		var ul = document.getElementById("listProdotti");
+		//Svuoto la lista
+		//JQUERY
+		$(ul).empty();
+	}
 	if(refresh==true)
 	 inizializzaFiltri();
 }
@@ -520,19 +533,28 @@ function returnProductByNomeAndModello(nome,modello){
 				if(prodotto.immagini!=null && prodotto.immagini.length>0)
 				{
 					if(prodotto.immagini[0]!=null && prodotto.immagini[0].nome_file!="")
+					{
 						img1.setAttribute("src","themes/images/prodotti/"+prodotto.immagini[0].nome_file);
+						img1.setAttribute("onerror","this.onerror=null;this.src='themes/images/defaultImages/"+prodotto.immagini[0].nome_file+"'");
+					}
 					
 					else
 						img1.parentElement.setAttribute("style","dysplay:none;");
 					
 					if(prodotto.immagini[1]!=null && prodotto.immagini[1].nome_file!="")
+					{
 						img2.setAttribute("src","themes/images/prodotti/"+prodotto.immagini[1].nome_file);
+						img2.setAttribute("onerror","this.onerror=null;this.src='themes/images/defaultImages/"+prodotto.immagini[1].nome_file+"'");
+					}
 					
 					else
 						img2.parentElement.setAttribute("style","dysplay:none;");
 					
 					if(prodotto.immagini[2]!=null && prodotto.immagini[2].nome_file!="")
+					{
 						img3.setAttribute("src","themes/images/prodotti/"+prodotto.immagini[2].nome_file);
+						img3.setAttribute("onerror","this.onerror=null;this.src='themes/images/defaultImages/"+prodotto.immagini[2].nome_file+"'");
+					}
 					else
 						img3.parentElement.setAttribute("style","dysplay:none;");
 				}else
@@ -586,6 +608,7 @@ function filterByBrands(prodotti){
 	
 	if(prodotti.length>0 && brands.length>0)
 	{
+		
 		for( var i in prodotti)
 		{
 			//jQuery.inArray controlla se il primo parametro si trova nell array inviato come secondo
@@ -593,29 +616,40 @@ function filterByBrands(prodotti){
 			if(jQuery.inArray(prodotti[i].marca.id_marca+"",brands)!=-1)
 			 newProdotti.push(prodotti[i]);
 		}
+		
+		returnProducts(newProdotti,false);
 	}
 	else
 	 if(prodotti.length>0 && brands.length==0)
+	 {	
 		 returnProducts(prodotti,false);
-	
-	returnProducts(newProdotti,false);
+	 }
+	// else
+	//	 returnProducts(newProdotti,false);
 }
 
 function filterByPrice(prodotti){
+	
+	
 	var newProdotti = new Array();
 	var prezzoMin= document.getElementById("txtPrezzoMin").value;
 	var prezzoMax= document.getElementById("txtPrezzoMax").value;
 	
 	if(prodotti.length>0 )
 	{
+		
 		if(prezzoMin=="")
 			prezzoMin=0;
 		if(prezzoMax=="")
 			prezzoMax=9999;
+		//alert("min -> "+ prezzoMin + " Max --->"+prezzoMax);
 		for( var i in prodotti)
 		{
 			if(prodotti[i].prezzo>=prezzoMin && prodotti[i].prezzo<=prezzoMax)
+			{
+				//alert("Condizione");
 				newProdotti.push(prodotti[i]);
+			}
 		}
 	}
 	else

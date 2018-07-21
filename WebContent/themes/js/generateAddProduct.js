@@ -105,10 +105,15 @@ function loadTaglie(object, inizializza)
 	
 
 	var div=document.getElementById("tg");
+
 	if(inizializza==null)
 	{
 		if(object.value=="F"){
 			 div.innerHTML="";
+				var lblT= document.createElement("label");
+				var txtLabel= document.createTextNode("Taglie disponibili:");
+				lblT.appendChild(txtLabel);
+				div.appendChild(lblT);
 			// label.setAttribute("style","visibility:inherit;");
 			 
 			 for(i=35;i<42;++i){
@@ -141,6 +146,10 @@ function loadTaglie(object, inizializza)
 		 }else
 			 if(object.value=="M"){
 				 div.innerHTML="";
+					var lblT= document.createElement("label");
+					var txtLabel= document.createTextNode("Taglie disponibili:");
+					lblT.appendChild(txtLabel);
+					div.appendChild(lblT);
 				 for(i=40;i<46;++i){
 				 var x = document.createElement("INPUT");
 				 x.setAttribute("type", "checkbox");
@@ -175,7 +184,7 @@ function loadTaglie(object, inizializza)
 		var lblT= document.createElement("label");
 		var txtLabel= document.createTextNode("Taglie disponibili:");
 		lblT.appendChild(txtLabel);
-		var parr= document.getElementById("tg");
+		//var parr= document.getElementById("tg");
 		div.appendChild(lblT);
 		
 		

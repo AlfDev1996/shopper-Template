@@ -126,7 +126,7 @@ function runScript(e) {
        						<a href="#" class="dropdown-toggle" data-toggle="dropdown">
         					Funzioni Admin <b class="caret"></b></a>
         					<ul class="dropdown-menu">
-          					<li><a href="ModificaArticolo.jsp">Modifica Articolo</a></li>
+          					<li><a href="modificaArticolo.jsp">Modifica Articolo</a></li>
           					<li><a href="AggiungiArticolo.jsp">Aggiungi Articolo</a></li>
        						 </ul>
      						 </li>
@@ -166,8 +166,6 @@ function runScript(e) {
 			<nav id="menu" class="pull-right"> <!-- Il menu invece si posiziona a destra -->
 			<ul>
 				<li><a href="FindProdotti?tipoFiltro=sesso&filtro=F">Woman</a>
-				
-				
 				</li>
 				<li><a href="FindProdotti?tipoFiltro=sesso&filtro=M">Man</a></li>
 				 
@@ -176,14 +174,15 @@ function runScript(e) {
 
 <!-- loaded popover content -->
 <ul id="popover-content"  style="display: none">
-  <a href="FindProdotti?tipoFiltro=marca&filtro=adidas" class="list-group-item"><strong>Nike</strong></a><br>
-  <a href="FindProdotti?tipoFiltro=marca&filtro=nike" class="list-group-item"><strong>Adidas</strong></a><br>
+  <a href="FindProdotti?tipoFiltro=marca&filtro=nike" class="list-group-item"><strong>Nike</strong></a><br>
+  <a href="FindProdotti?tipoFiltro=marca&filtro=adidas" class="list-group-item"><strong>Adidas</strong></a><br>
  <a href="FindProdotti?tipoFiltro=marca&filtro=puma" class="list-group-item"><strong>Puma</strong></a><br>
  <a href="FindProdotti?tipoFiltro=marca&filtro=reebok" class="list-group-item"><strong>Reebok</strong></a><br>
 </ul></li>
-				 
+<li><a href="FindProdotti?tipoFiltro=categoria&filtro=Classica">Classiche</a> </li>
+<li><a href="FindProdotti?tipoFiltro=categoria&filtro=Sport">Sportive</a> </li>				 
 		
-				<li><a href="./products.html">Piu' Venduti</a></li>
+				<li><a href="FindProdotti?tipoFiltro=bestSeller">Piu' Venduti</a></li>
 			</ul>
 		
 			</nav>

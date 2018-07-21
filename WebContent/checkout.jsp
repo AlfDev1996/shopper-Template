@@ -228,8 +228,7 @@ function accesso(){
 												<table class="table table-striped" id="tableProdotti">
 							<thead>
 								<tr>
-									<th>Remove</th>
-									<th>Immagine</th>
+									<th>Immaginee</th>
 									<th>Nome Prodotto</th>
 									<th>Quantita'</th>
 									<th>Taglia</th>
@@ -248,14 +247,14 @@ function accesso(){
 										
 							%>
 								<tr id="prod<%=prodotto.getNome()%>">
-									<td id="Alfonso"><input type="checkbox" name="prodotti[]" id='<%= prodotto.getId_prodotto()%>'></td>
+									<!--  <td id="Alfonso"><input type="checkbox" name="prodotti[]" id='<%= prodotto.getId_prodotto()%>'></td> -->
 									<% if( prodotto.getImmagini()!=null && prodotto.getImmagini().size()>0) { %>
-									<td style="width:25%"><a href=""><img class="imgCarrello" alt="" src='themes/images/prodotti/<%=prodotto.getImmagini().get(0).getNomeFile() %>'></a></td>
+									<td style="width:25%"><a href=""><img class="imgCarrello" alt="" src='themes/images/prodotti/' onerror='this.onerror=null;this.src="themes/images/defaultImages/<%=prodotto.getImmagini().get(0).getNomeFile() %>"'></a></td>
 									<% } else {  %>
 									<td style="width:10%"><a href=""><img alt="" src="themes/images/non-disponibile.png"></a></td>
 									<% } %>
 									<td><%= prodotto.getNome() %></td>
-									<td><input type="number"  class="input-mini" name="qtaProdotti[]" id="<%=prodotto.getId_prodotto() %>" value="<%= prodotto.getQuantita() %>"> </td>
+									<td><%= prodotto.getQuantita() %> </td>
 									<td><%= prodotto.getTaglie() %></td>
 									<td><%= prodotto.getPrezzo() %></td>
 									<td><%= prodotto.getPrezzo()*prodotto.getQuantita() %></td>
@@ -266,7 +265,7 @@ function accesso(){
 								}
 								%>
 								<tr>
-								<td>&nbsp;</td>
+								
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>
 								<td>&nbsp;</td>

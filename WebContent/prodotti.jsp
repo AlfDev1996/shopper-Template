@@ -64,24 +64,28 @@ function getElementCookie(){
 		if(xh.readyState==4 && xh.status==200){
 			var obj = JSON.parse(xh.responseText);
 			
-			console.log(obj);
+			
 			for(var i in obj){
 				var li = document.createElement("li");
 			var title=document.createElement("a");
-				title.setAttribute("title",""+obj[i].nome)
+				title.setAttribute("title",""+obj[i].nome);
 				
 				
 				var img = document.createElement("img");
 				
 			
 			if(obj[i].immagini.length>0)
+			{
 				img.setAttribute("src","themes/images/prodotti/"+obj[i].immagini[0].nome_file);
+				img.setAttribute("onerror","this.onerror=null;this.src='themes/images/defaultImages/"+obj[i].immagini[0].nome_file+"'");
+				
+			}
 			else
 				img.setAttribute("src","themes/images/images.png");
 			
 			var link=document.createElement("a");
 			link.innerHTML=obj[i].marca.nome+"  "+obj[i].modello;
-			link.setAttribute("href","#");
+			link.setAttribute("href","prodotto_dettagli.jsp?nome="+obj[i].nome+"&modello="+obj[i].modello);
 			li.appendChild(title);
 			li.appendChild(img);
 			li.appendChild(link);
@@ -96,7 +100,7 @@ function getElementCookie(){
 		
 	}
 	
-	xh.open("GET","FindProdotti?operazione=getCookie",false);
+	xh.open("GET","FindProdotti?operazione=getCookie",true);
 	xh.send();
 
 	
@@ -155,8 +159,16 @@ function getElementCookie(){
 
 
 
-	<section class="header_text sub"> <img class="pageBanner"
-		src="themes/images/pageBanner.png" alt="New products">
+	<section class="header_text sub"> 
+	<%if(request.getParameter("filtro")!=null && !request.getParameter("filtro").isEmpty() &&  request.getParameter("filtro").equalsIgnoreCase("Adidas")){ %>
+	<img class="pageBanner" src="themes/images/banner.jpg" alt="New products">
+	<% } else if(request.getParameter("filtro")!=null && !request.getParameter("filtro").isEmpty() && request.getParameter("filtro").equalsIgnoreCase("nike")){ %>
+		<img class="pageBanner" src="themes/images/banner-nike.jpg" alt="New products">
+		
+	
+	<%} else {%>
+	<img class="pageBanner" src="themes/images/banner-default.jpg" alt="New products">
+	<%} %>
 	<h4>
 		<span id="title"></span>
 	</h4>
@@ -204,31 +216,13 @@ function getElementCookie(){
 					<li id="btnApplicaFiltriBrands"><button type="button" class="btn btn-primary btn-md" onclick='filterByBrands(<%=request.getAttribute("prodotti")%>)' >Applica</button></li>
 				</ul>
 			</div>
-	
-		
-	
-	<% System.out.println("sonoo quii");%>
-		
-		
-		
 			<div class="block">
 				<h4 class="title">
 					<strong>Consigliati per te </strong> 
 				</h4>
 				
 			<ul class="small-product" id ="listaCookie">
-					<li>
-					<a href="" title="" id="title"> 
 					
-					
-					
-					<img  alt="" id="img"></a> 
-					
-					
-					
-					<a href="" id="linkProdotto">Hello</a>
-					
-					</li>
 					
 				</ul>
 				

@@ -419,6 +419,175 @@ public synchronized ArrayList<ProdottoBean> doRetriveByMarca(MarcaBean marca)  {
 	return prodotti;
 	}
 
+public synchronized ArrayList<ProdottoBean> doRetriveByCategoria(CategoriaBean categoria)  {
+	
+	Connection conn = null;
+	PreparedStatement ps = null;
+	ProdottoBean prodotto =  new ProdottoBean();
+	ArrayList<ProdottoBean> prodotti = new ArrayList<>();
+	try {
+		
+		conn = (Connection) DriverManagerConnectionPool.getConnection();
+		//1 se ho id categoria, 2 se ho non ho id e ho descrizione categoria
+		int flag = 0;
+		String sql = " SELECT p.* from prodotto p join categoria_prodotto cp on cp.id_prodotto=p.id_prodotto ";
+		if(categoria!=null && categoria.getIdCategoria()!=0)
+		{
+			sql+=" where cp.id_categoria= ? ";
+			flag=1;
+		}
+		else
+		 if(categoria!=null && categoria.getDescrizione()!=null && !categoria.getDescrizione().isEmpty() && !categoria.getDescrizione().equalsIgnoreCase(""))
+		 {
+			 sql+=" join categoria c on cp.id_categoria=c.id_categoria where c.descrizione = ? ";
+			 flag=2;
+		 }
+		
+		ps=(PreparedStatement) conn.prepareStatement(sql);
+		if(flag==1)
+			ps.setInt(1, categoria.getIdCategoria());
+		else
+		 if(flag==2)
+			 ps.setString(1, categoria.getDescrizione());
+		
+		ResultSet res =ps.executeQuery();
+
+		//Prendo il risultato dalla query
+		while(res.next()) {
+			prodotto=new ProdottoBean();
+			prodotto.setId_prodotto(res.getInt("id_prodotto"));
+			prodotto.setNome(res.getString("nome"));
+			prodotto.setDescrizione_breve(res.getString("descrizione_breve"));
+			prodotto.setDescrizione_estesa(res.getString("descrizione_estesa"));
+			prodotto.setTags(res.getString("tags"));
+			prodotto.setModello(res.getString("modello"));
+			prodotto.setPrezzo(res.getDouble("prezzo"));
+			prodotto.setSesso(res.getString("sesso"));
+			prodotto.setTaglie(res.getString("taglie"));
+			prodotto.setQuantita(res.getInt("quantita"));
+			int id_marca = res.getInt("id_marca") != 0 ? res.getInt("id_marca") : 0;
+			if(id_marca!=0)
+			{
+				MarcaDAO marcaDao= new MarcaDAO();
+				MarcaBean marca = marcaDao.doRetriveByKey(id_marca);
+				if(marca!=null && marca.getIdMarca()>0)
+				 prodotto.setMarca(marca);
+				else
+				 prodotto.setMarca(null);
+			}
+			
+			//Mi inizializzo l'araylist di categorie
+			
+			/*
+			CategoriaProdottoDAO catProdDao=new CategoriaProdottoDAO();
+			System.out.println(prodotto.getId_prodotto());
+			ArrayList<CategoriaProdottoBean> catProdBean = catProdDao.doRetriveByProdotto(prodotto.getId_prodotto());
+			if(catProdBean!=null && catProdBean.size()>0)
+			for (CategoriaProdottoBean categoriaProdottoBean : catProdBean) {
+				prodotto.getCategorie().add(categoriaProdottoBean.getCategoria());
+			}
+			*/
+			
+			//Mi inizializzo l'arraylist di variantiProdotto cercando da variantiProdottoDAO tutte le varianti dello specifico prodotto
+			//ArrayList<VarianteProdottoBean> varianti = new ArrayList<>();
+			//VarianteProdottoDAO varianteDAO=new VarianteProdottoDAO();
+			//varianti = varianteDAO.doRetriveByProdotto(prodotto);
+			
+			//prodotto.setVariantiProdotto(varianti);
+			
+			//Mi inizializzo la lista di immagini
+			ArrayList<ImmagineBean> immagini = new ArrayList<>();
+			ImmagineDAO immagineDAO=new ImmagineDAO();
+			immagini = immagineDAO.doRetriveByProdotto(prodotto);
+			
+			prodotto.setImmagini(immagini);
+			
+			prodotti.add(prodotto);
+		}
+
+		res.close();
+	}catch(SQLException ex) {
+		ex.printStackTrace();
+	}finally{
+		try {
+			ps.close();
+			
+			DriverManagerConnectionPool.releaseConnection(conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	return prodotti;
+	}
+
+public synchronized ArrayList<ProdottoBean> doRetriveByBestSeller()  {
+	
+	Connection conn = null;
+	PreparedStatement ps = null;
+	ProdottoBean prodotto =  new ProdottoBean();
+	ArrayList<ProdottoBean> prodotti = new ArrayList<>();
+	try {
+		
+		conn = (Connection) DriverManagerConnectionPool.getConnection();
+		String sql = "select p.* , sum(voceOrd.quantita) as qtaVenduta from prodotto p join voce_ordine voceOrd on voceOrd.id_prodotto=p.id_prodotto GROUP BY p.id_prodotto order by qtaVenduta DESC ";
+		
+		ps=(PreparedStatement) conn.prepareStatement(sql);
+		
+		ResultSet res =ps.executeQuery();
+
+		//Prendo il risultato dalla query
+		while(res.next()) {
+			prodotto=new ProdottoBean();
+			prodotto.setId_prodotto(res.getInt("id_prodotto"));
+			prodotto.setNome(res.getString("nome"));
+			prodotto.setDescrizione_breve(res.getString("descrizione_breve"));
+			prodotto.setDescrizione_estesa(res.getString("descrizione_estesa"));
+			prodotto.setTags(res.getString("tags"));
+			prodotto.setModello(res.getString("modello"));
+			prodotto.setPrezzo(res.getDouble("prezzo"));
+			prodotto.setSesso(res.getString("sesso"));
+			prodotto.setTaglie(res.getString("taglie"));
+			prodotto.setQuantita(res.getInt("quantita"));
+			int id_marca = res.getInt("id_marca") != 0 ? res.getInt("id_marca") : 0;
+			if(id_marca!=0)
+			{
+				MarcaDAO marcaDao= new MarcaDAO();
+				MarcaBean marca = marcaDao.doRetriveByKey(id_marca);
+				if(marca!=null && marca.getIdMarca()>0)
+				 prodotto.setMarca(marca);
+				else
+				 prodotto.setMarca(null);
+			}
+			
+			
+			//Mi inizializzo la lista di immagini
+			ArrayList<ImmagineBean> immagini = new ArrayList<>();
+			ImmagineDAO immagineDAO=new ImmagineDAO();
+			immagini = immagineDAO.doRetriveByProdotto(prodotto);
+			
+			prodotto.setImmagini(immagini);
+			
+			prodotti.add(prodotto);
+		}
+
+		res.close();
+	}catch(SQLException ex) {
+		ex.printStackTrace();
+	}finally{
+		try {
+			ps.close();
+			
+			DriverManagerConnectionPool.releaseConnection(conn);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	return prodotti;
+	}
+
+
 public synchronized ArrayList<ProdottoBean> doRetrieveAll(String orderBy){
 	ArrayList<ProdottoBean> prodotti = new ArrayList<>();
 	Connection connection = null;

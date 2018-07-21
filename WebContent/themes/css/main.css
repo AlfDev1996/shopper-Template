@@ -331,7 +331,7 @@ section.navbar{
 	border-right: 0;
 	border-left: 0;
 	border-top: 0;
-	border-bottom:5px solid #eb4800;
+	/*border-bottom:5px solid #eb4800;*/
 	-webkit-border-radius: 0;
 	-moz-border-radius: 0;	
 	border-radius: 0;
@@ -407,8 +407,8 @@ section.navbar{
     color: #333;
     font-size: 12px;
 }
-#menu ul ul a:hover,#menu > ul > li:hover > a{color: #fff;background-color:#eb4800}
-#menu ul ul a:hover{background-color:#eb4800;}
+#menu ul ul a:hover,#menu > ul > li:hover > a{color: #fff;background-color:grey}
+#menu ul ul a:hover{background-color:grey;}
 #menu > ul > li:hover {visibility: inherit;}
 #menu li:hover {visibility: inherit;}
 #menu li:hover ul,

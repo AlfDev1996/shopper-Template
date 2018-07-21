@@ -20,6 +20,7 @@ import org.json.simple.parser.JSONParser;
 import com.google.gson.Gson;
 
 import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
+import model.CategoriaBean;
 import model.CategoriaProdottoBean;
 import model.CategoriaProdottoDAO;
 import model.MarcaBean;
@@ -56,8 +57,31 @@ public class FindProdotti extends HttpServlet {
 		if(request.getParameter("filtro")!=null)
 			filtro=request.getParameter("filtro");
 		
-		
-		
+		if(tipoFiltro!=null && tipoFiltro.equalsIgnoreCase("bestSeller")) {
+			ArrayList<ProdottoBean> prodottiFind=new ArrayList<>();
+			ProdottoDAO proDAO=new ProdottoDAO();
+			prodottiFind= proDAO.doRetriveByBestSeller();
+			if(prodottiFind!=null )
+			{
+				
+				
+				if( prodottiFind.size()>0) {
+					
+					for (ProdottoBean prodottoBean : prodottiFind) {
+						prodottoBean.inizializzaCategorie();
+					}
+					
+					Gson gson= new Gson();
+					String jsonArray = gson.toJson(prodottiFind);
+					request.setAttribute("prodotti", jsonArray);	
+				}
+				
+				RequestDispatcher requestDispatcher = request.getRequestDispatcher("./prodotti.jsp");
+				requestDispatcher.forward(request, response);
+				
+			}
+		}
+		else
 		if(tipoFiltro!=null && filtro!=null)
 		{
 			ArrayList<ProdottoBean> prodottiFind=new ArrayList<>();
@@ -87,18 +111,11 @@ public class FindProdotti extends HttpServlet {
 						c.setMaxAge(-1);
 						c.setPath("/");
 						response.addCookie(c);
-						
-						
-					
-					
-					
+
 					
 					RequestDispatcher requestDispatcher = request.getRequestDispatcher("./prodotti.jsp");
 					requestDispatcher.forward(request, response);
 					
-					//out.append(jsonArray);
-					
-					//System.out.println(jsonArray);
 				}
 			}else
 			 if(tipoFiltro.equalsIgnoreCase("marca"))
@@ -135,6 +152,35 @@ public class FindProdotti extends HttpServlet {
 				 }
 				  
 			 }
+			 else
+				 if(tipoFiltro.equalsIgnoreCase("categoria"))
+				 {
+					 
+					 CategoriaBean categoria = new CategoriaBean();
+					 String descCategoria = filtro;
+					 categoria.setDescrizione(descCategoria);
+						 prodottiFind= proDAO.doRetriveByCategoria(categoria);
+						 if(prodottiFind!=null )
+							{
+							 if( prodottiFind.size()>0) {
+								 for (ProdottoBean prodottoBean : prodottiFind) {
+										prodottoBean.inizializzaCategorie();
+									}
+									Gson gson= new Gson();
+									String jsonArray = gson.toJson(prodottiFind);
+									request.setAttribute("prodotti", jsonArray);	
+								}
+							 
+							//Il cliente ha effettuato una ricerca/aperturaPagina per sesso;
+								
+								RequestDispatcher requestDispatcher = request.getRequestDispatcher("./prodotti.jsp");
+								requestDispatcher.forward(request, response);
+								
+
+							} 
+					 
+					  
+				 }
 			 
 		} else if(request.getParameter("operazione")!=null) {
 			String op =  request.getParameter("operazione");
