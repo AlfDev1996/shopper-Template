@@ -1,3 +1,6 @@
+<%@page import="model.ProdottoBean"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="org.apache.jasper.tagplugins.jstl.core.ForEach"%>
 <%@page import="org.json.simple.JSONObject"%>
 <%@page import="com.google.gson.Gson"%>
 <%@page import="org.json.simple.JSONArray"%>
@@ -6,6 +9,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+
+
+
+
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Prodotti</title>
 <title>e-shoes</title>
@@ -43,7 +50,60 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
+
 <script src="themes/js/prodotto.js">  </script>
+
+
+<script>
+
+function getElementCookie(){
+	var container=document.getElementById("listaCookie");
+	var xh= new XMLHttpRequest;
+	xh.onreadystatechange=function(){
+		
+		if(xh.readyState==4 && xh.status==200){
+			var obj = JSON.parse(xh.responseText);
+			
+			console.log(obj);
+			for(var i in obj){
+				var li = document.createElement("li");
+			var title=document.createElement("a");
+				title.setAttribute("title",""+obj[i].nome)
+				
+				
+				var img = document.createElement("img");
+				
+			
+			if(obj[i].immagini.length>0)
+				img.setAttribute("src","themes/images/prodotti/"+obj[i].immagini[0].nome_file);
+			else
+				img.setAttribute("src","themes/images/images.png");
+			
+			var link=document.createElement("a");
+			link.innerHTML=obj[i].marca.nome+"  "+obj[i].modello;
+			link.setAttribute("href","#");
+			li.appendChild(title);
+			li.appendChild(img);
+			li.appendChild(link);
+			container.appendChild(li);
+				
+				
+	}
+			
+			
+	}
+		
+		
+	}
+	
+	xh.open("GET","FindProdotti?operazione=getCookie",false);
+	xh.send();
+
+	
+
+
+}
+</script>
 
 </head>
 
@@ -59,9 +119,9 @@
 	}
 %>
 
-<body onload='returnProducts(<%=request.getAttribute("prodotti")%>,true)'>
+<body onload='returnProducts(<%=request.getAttribute("prodotti")%>,true);getElementCookie()'>
 <%@ include file="header.jsp"%>
-	
+
 </section>	
 
 	
@@ -89,6 +149,10 @@
 	<%
 		}
 	%>
+
+
+
+
 
 
 	<section class="header_text sub"> <img class="pageBanner"
@@ -140,25 +204,37 @@
 					<li id="btnApplicaFiltriBrands"><button type="button" class="btn btn-primary btn-md" onclick='filterByBrands(<%=request.getAttribute("prodotti")%>)' >Applica</button></li>
 				</ul>
 			</div>
-
+	
+		
+	
+	<% System.out.println("sonoo quii");%>
+		
+		
+		
 			<div class="block">
 				<h4 class="title">
-					<strong>Best</strong> Seller
+					<strong>Consigliati per te </strong> 
 				</h4>
-				<ul class="small-product">
-					<li><a href="#" title="Praesent tempor sem sodales"> <img
-							src="themes/images/ladies/3.jpg"
-							alt="Praesent tempor sem sodales">
-					</a> <a href="#">Praesent tempor sem</a></li>
-					<li><a href="#" title="Luctus quam ultrices rutrum"> <img
-							src="themes/images/ladies/4.jpg"
-							alt="Luctus quam ultrices rutrum">
-					</a> <a href="#">Luctus quam ultrices rutrum</a></li>
-					<li><a href="#" title="Fusce id molestie massa"> <img
-							src="themes/images/ladies/5.jpg" alt="Fusce id molestie massa">
-					</a> <a href="#">Fusce id molestie massa</a></li>
+				
+			<ul class="small-product" id ="listaCookie">
+					<li>
+					<a href="" title="" id="title"> 
+					
+					
+					
+					<img  alt="" id="img"></a> 
+					
+					
+					
+					<a href="" id="linkProdotto">Hello</a>
+					
+					</li>
+					
 				</ul>
+				
+				
 			</div>
+		
 		</div>
 	</div>
 	</section>

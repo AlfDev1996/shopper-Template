@@ -47,8 +47,16 @@
 		<h4 ><%=request.getParameter("errore") %></h4>
 	<%} %>
 					</span>
-<div class ="reg">
+
 <form method="POST" action ="register" onsubmit="return validateName() && validateCognome()&&validateMail()">
+	
+	<div class="row reg" >
+	
+	
+	
+	
+	
+	<div class="column">
 	Nome : <br>
 	<input type="text" name="nome" id="nome" required/>
 	<br>
@@ -58,6 +66,14 @@
 	Email : <br>
 	<input type="text" name="email" id="mail" required/>
 	<br>
+	</div>
+	
+	
+	
+	
+	
+	
+	<div class="column">
 	Password: <br>
 	<input type="password" name="password" required />
 	<br>
@@ -68,9 +84,13 @@
 	<select id="provincia" name="provincia" required>
 	
 	</select>
+	</div>
 	
-	<br>
 	
+	
+	
+	
+	<div class="column">
 	Citta: <br>
 	<input type="text" name="citta" required />
 	<br>
@@ -85,14 +105,14 @@
 	Civico: <br>
 	<input type="text" name="civico" required />
 	<br>
+	</div>
 	
-	<input type="submit" class="btn btn" value="Registrati"> 
-	
-	
+	<center><input type="submit" class="btn btn-success" value="Registrati"> </center>
+</div>
 </form>
 
 
-</div>
+
 <%@ include file="footer.jsp" %>
 </body>
 </html>

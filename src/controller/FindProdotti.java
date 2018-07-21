@@ -7,9 +7,11 @@ import java.util.ArrayList;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
@@ -17,6 +19,7 @@ import org.json.simple.parser.JSONParser;
 
 import com.google.gson.Gson;
 
+import jdk.management.resource.internal.inst.SocketOutputStreamRMHooks;
 import model.CategoriaProdottoBean;
 import model.CategoriaProdottoDAO;
 import model.MarcaBean;
@@ -53,6 +56,8 @@ public class FindProdotti extends HttpServlet {
 		if(request.getParameter("filtro")!=null)
 			filtro=request.getParameter("filtro");
 		
+		
+		
 		if(tipoFiltro!=null && filtro!=null)
 		{
 			ArrayList<ProdottoBean> prodottiFind=new ArrayList<>();
@@ -74,6 +79,18 @@ public class FindProdotti extends HttpServlet {
 						String jsonArray = gson.toJson(prodottiFind);
 						request.setAttribute("prodotti", jsonArray);	
 					}
+					
+					//Il cliente ha effettuato una ricerca/aperturaPagina per sesso;
+					Cookie[] cookies= request.getCookies();
+					
+						Cookie c = new Cookie("sesso", filtro);
+						c.setMaxAge(-1);
+						c.setPath("/");
+						response.addCookie(c);
+						
+						
+					
+					
 					
 					
 					RequestDispatcher requestDispatcher = request.getRequestDispatcher("./prodotti.jsp");
@@ -102,6 +119,14 @@ public class FindProdotti extends HttpServlet {
 								request.setAttribute("prodotti", jsonArray);	
 							}
 						 
+						//Il cliente ha effettuato una ricerca/aperturaPagina per sesso;
+							Cookie[] cookies= request.getCookies();
+							
+								Cookie c = new Cookie("marca", filtro);
+								c.setMaxAge(-1);
+								c.setPath("/");
+								response.addCookie(c);
+						 
 							RequestDispatcher requestDispatcher = request.getRequestDispatcher("./prodotti.jsp");
 							requestDispatcher.forward(request, response);
 							
@@ -111,6 +136,31 @@ public class FindProdotti extends HttpServlet {
 				  
 			 }
 			 
+		} else if(request.getParameter("operazione")!=null) {
+			String op =  request.getParameter("operazione");
+			
+			String marca=null;
+			Cookie[] cookies= request.getCookies();
+			if(cookies!=null)
+				for(Cookie c : cookies) {
+					if(c.getName().equalsIgnoreCase("marca")) {
+						marca = c.getValue();
+						System.out.println("ho trovato ed aggiunto il filtro marca  "+marca);
+				}
+				}
+			MarcaDAO mDao = new MarcaDAO();
+			MarcaBean mBean = mDao.doRetriveBynome(marca);
+			
+			ProdottoDAO pDao = new ProdottoDAO();
+			ArrayList<ProdottoBean> prodotti = pDao.doRetriveByMarca(mBean);
+			
+			if(prodotti!=null) {
+				
+				Gson gson= new Gson();
+				String jsonArray = gson.toJson(prodotti);
+				out.append(jsonArray);
+			
+		}
 		}
 		else
 			//Nel caso in cui non gli passo filtro e tipo filtro significa che mi trovo nella ricerca di ModificaProdotto

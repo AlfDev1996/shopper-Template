@@ -28,6 +28,19 @@ a{
 	color:#eb4800;
 }
 
+.column {
+    float: left;
+    width: 33.33%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+
 #social{
 	
 	font-size: 20px;
@@ -557,7 +570,7 @@ section.navbar{
 }
 
 #tableTaglie{
-	margin-left:1%;
+	margin-left:5%;
 	float: left;
 	
 }

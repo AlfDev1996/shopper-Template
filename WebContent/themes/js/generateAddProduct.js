@@ -171,6 +171,14 @@ function loadTaglie(object, inizializza)
 	{
 		
 		 div.innerHTML="";
+		 
+		var lblT= document.createElement("label");
+		var txtLabel= document.createTextNode("Taglie disponibili:");
+		lblT.appendChild(txtLabel);
+		var parr= document.getElementById("tg");
+		div.appendChild(lblT);
+		
+		
 		 for(i=40;i<46;++i){
 		 var x = document.createElement("INPUT");
 		 x.setAttribute("type", "checkbox");
@@ -265,6 +273,7 @@ function loadTaglie(object, inizializza)
 		var Tpar= document.createElement("p");
 		//Tpar.setAttribute("class","span9");
 		Tpar.setAttribute("id","tg");
+		Tpar.setAttribute("class","span3");
 		
 		var lbl = document.createElement("label");
 		 var testo = document.createTextNode("Seleziona le taglie disponibili");
@@ -307,6 +316,7 @@ function loadTaglie(object, inizializza)
 		
 		par = document.createElement("p");
 		var file = document.createElement("input");
+		file.setAttribute("class","btn btn-primary");
 		file.setAttribute("type","file");
 		file.setAttribute("name","file1");
 		par.appendChild(file);
@@ -314,6 +324,7 @@ function loadTaglie(object, inizializza)
 		
 		par = document.createElement("p");
 		file = document.createElement("input");
+		file.setAttribute("class","btn btn-primary");
 		file.setAttribute("type","file");
 		file.setAttribute("name","file2");
 		par.appendChild(file);
@@ -321,6 +332,7 @@ function loadTaglie(object, inizializza)
 		
 		par = document.createElement("p");
 		file = document.createElement("input");
+		file.setAttribute("class","btn btn-primary");
 		file.setAttribute("type","file");
 		file.setAttribute("name","file3");
 		par.appendChild(file);
@@ -329,6 +341,10 @@ function loadTaglie(object, inizializza)
 		var invia = document.createElement("input");
 		invia.setAttribute("type", "submit");
 		invia.setAttribute("value", "Salva");
+		invia.setAttribute("class","btn btn-success");
+		
+		
+		
 		//invia.classList.add("btn btn-primary");
 		div.appendChild(x);
 		div.appendChild(invia);
